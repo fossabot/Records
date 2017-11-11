@@ -123,8 +123,8 @@ class PerformancesViewController: UIViewController {
   
   @IBOutlet private weak var tableView: PerformancesTableView! {
     didSet {
-      fetchedResultsController?.delegate = tableView
-      fetchedResultsController?.dataSource = tableView
+      fetchedResultsController.delegate = tableView
+      fetchedResultsController.dataSource = tableView
       tableView.dataSource = fetchedResultsController
       tableView.delegate = fetchedResultsController
     }
