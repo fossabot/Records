@@ -6,12 +6,14 @@
         {% for variable in type.variables where variable|!annotated:"sourcerySkip" and variable.readAccess != "private" and variable.readAccess != "fileprivate" %}
         {% if variable.typeName|contains:"Set" %}
         public var {{ variable.name|replace:"_","" }}: RelationshipRestriction?
+        {% elif variable.typeName.isOptional %}
+        public var {{ variable.name|replace:"_","" }}: {{ variable.typeName }}
         {% else %}
         public var {{ variable.name|replace:"_","" }}: {{ variable.typeName }}?
         {% endif %}
         {% endfor %}
 
-        public init({% for variable in type.variables where variable|!annotated:"sourcerySkip" and variable.readAccess != "private" and variable.readAccess != "fileprivate" %}{% if variable.typeName|contains:"Set" %}{{ variable.name|replace:"_","" }}: RelationshipRestriction?{% else %}{{ variable.name|replace:"_","" }}: {{ variable.typeName }}?{% endif %}{% if not forloop.last %},{% endif %}{% endfor %}) {
+        public init({% for variable in type.variables where variable|!annotated:"sourcerySkip" and variable.readAccess != "private" and variable.readAccess != "fileprivate" %}{% if variable.typeName|contains:"Set" %}{{ variable.name|replace:"_","" }}: RelationshipRestriction?{% elif variable.typeName.isOptional %}{{ variable.name|replace:"_","" }}: {{ variable.typeName }}{% else %}{{ variable.name|replace:"_","" }}: {{ variable.typeName }}?{% endif %}{% if not forloop.last %},{% endif %}{% endfor %}) {
           {% for variable in type.variables where variable|!annotated:"sourcerySkip" and variable.readAccess != "private" and variable.readAccess != "fileprivate" %}
           self.{{ variable.name|replace:"_","" }} = {{ variable.name|replace:"_","" }} 
           {% endfor %}
@@ -56,7 +58,7 @@ extension {{ type.name }}.Query: Queryable {
     {% elif variable.typeName|contains:"String" %}
     private func {{ variable.name }}Predicate() -> NSPredicate? {
       guard let {{ variable.name }} = {{ variable.name }} else { return nil }
-      return NSPredicate(format: "{{ variable.name }} BEGINSWITH[cd] %@", {{ variable.name }} as CVarArg)
+      return NSPredicate(format: "{{ variable.name }} BEGINSWITH[cd] %@", {{ variable.name }})
     }
     {% else %}
     private func {{ variable.name }}Predicate() -> NSPredicate? {
