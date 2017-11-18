@@ -63,7 +63,7 @@ public class Performer: NSManagedObject, Fetchable {
 // sourcery:end
 ```
 
-By declaring conformance to `Fetchable` and adding annotation marks for sourcery, the following auto-completing syntax is at your disposal the moment after we compile our code.
+By declaring conformance to `Fetchable` and adding annotation marks for sourcery, the following auto-completing syntax is at your disposal (after you compile).
 
 ```swift
 let query = Performer.Query(dob: nil, firstName: "Maggie", lastName: nil, party: nil, performances: nil) // Fetch all with first name that BEGINSWITH[cd] `Maggie`
@@ -123,8 +123,8 @@ class PerformancesViewController: UIViewController {
   
   @IBOutlet private weak var tableView: PerformancesTableView! {
     didSet {
-      fetchedResultsController?.delegate = tableView
-      fetchedResultsController?.dataSource = tableView
+      fetchedResultsController.delegate = tableView
+      fetchedResultsController.dataSource = tableView
       tableView.dataSource = fetchedResultsController
       tableView.delegate = fetchedResultsController
     }
@@ -144,7 +144,7 @@ class PerformancesViewController: UIViewController {
 String replacement with Enum.
 
 ```swift
-let query = Database.Party.Query(email: email, name: name, phone: phone, performers: nil, type: .school)
+let query = Party.Query(email: email, name: name, phone: phone, performers: nil, type: .school)
 ```
 
 To use an enum set the string property on your Entity subclass to private. Then create a `var` for your enum.
@@ -187,6 +187,8 @@ public class Party: NSManagedObject, Fetchable {
 Make sure to set a default value on the property and write a unit test ([see here](https://github.com/rob-nash/Records/blob/master/RecordsTests/PartyTests.swift)).
 
 ## Installing
+
+For the latest release, select the [release](https://github.com/rob-nash/Records/releases) tab.
 
 ### Carthage:
 

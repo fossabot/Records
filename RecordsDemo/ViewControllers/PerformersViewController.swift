@@ -13,16 +13,19 @@ class PerformersViewController: UIViewController {
   
   var fetchedResultsController: PerformersFetchedResultsController!
   
-  var selectPerformer: PerformerConsumer!
+  var selectPerformer: PerformerConsumer?
   
-  @IBOutlet weak var tableView: PerformersTableView!
+  @IBOutlet weak var tableView: PerformersTableView! {
+    didSet {
+      fetchedResultsController.delegate = tableView
+      fetchedResultsController.dataSource = tableView
+      tableView.dataSource = fetchedResultsController
+      tableView.delegate = fetchedResultsController
+    }
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    tableView.dataSource = fetchedResultsController
-    tableView.delegate = fetchedResultsController
-    fetchedResultsController.delegate = tableView
-    fetchedResultsController.dataSource = tableView
     fetchedResultsController.selectPerformer = selectPerformer
     title = "Performers"
   }
