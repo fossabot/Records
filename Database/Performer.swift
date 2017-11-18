@@ -77,11 +77,11 @@ extension Performer.Query: Queryable {
     }
     private func firstNamePredicate() -> NSPredicate? {
       guard let firstName = firstName else { return nil }
-      return NSPredicate(format: "firstName BEGINSWITH[cd] %@", firstName as CVarArg)
+      return NSPredicate(format: "firstName BEGINSWITH[cd] %@", firstName)
     }
     private func lastNamePredicate() -> NSPredicate? {
       guard let lastName = lastName else { return nil }
-      return NSPredicate(format: "lastName BEGINSWITH[cd] %@", lastName as CVarArg)
+      return NSPredicate(format: "lastName BEGINSWITH[cd] %@", lastName)
     }
     private func partyPredicate() -> NSPredicate? {
       guard let party = party else { return nil }

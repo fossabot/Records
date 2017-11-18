@@ -87,15 +87,15 @@ extension Party.Query: Queryable {
 
     private func emailPredicate() -> NSPredicate? {
       guard let email = email else { return nil }
-      return NSPredicate(format: "email BEGINSWITH[cd] %@", email as CVarArg)
+      return NSPredicate(format: "email BEGINSWITH[cd] %@", email)
     }
     private func namePredicate() -> NSPredicate? {
       guard let name = name else { return nil }
-      return NSPredicate(format: "name BEGINSWITH[cd] %@", name as CVarArg)
+      return NSPredicate(format: "name BEGINSWITH[cd] %@", name)
     }
     private func phonePredicate() -> NSPredicate? {
       guard let phone = phone else { return nil }
-      return NSPredicate(format: "phone BEGINSWITH[cd] %@", phone as CVarArg)
+      return NSPredicate(format: "phone BEGINSWITH[cd] %@", phone)
     }
     private func performersPredicate() -> NSPredicate? {
       guard let performers = performers else { return nil }
