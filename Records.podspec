@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
   s.name               = "Records"
-  s.version            = "1.0.0"
+  s.version            = "1.0.1"
   s.summary            = "A lightweight convenience API for basic CoreData database tasks."
   s.description        = "In just a few minutes, setup a fully functioning CoreData implementation that embraces the static, type-safe nature of Swift."
-  s.homepage           = "https://github.com/rob-nash/Dequable"
+  s.homepage           = "https://github.com/rob-nash/Records"
   s.license            = { :type => "MIT", :file => "LICENSE" }
   s.author             = { "Robert Nash" => "robscode@icloud.com" }
   s.social_media_url   = "https://twitter.com/nashytitz"
