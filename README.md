@@ -182,10 +182,6 @@ For the latest release, select the [release](https://github.com/rob-nash/Records
 
 Add `github "rob-nash/Records"` to your `Cartfile`.
 
-### Cocoapods:
-
-Add `pod "Records"` to your `Podfile`.
-
 ### Donations.
 <p>If you like this and you want to buy me a drink, use bitcoin.</p>
 
