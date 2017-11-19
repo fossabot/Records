@@ -3,20 +3,8 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/Carthage/Carthage">
-        <img src="https://img.shields.io/badge/carthage-compatible-4BC51D.svg?style=flat" alt="Carthage" />
-    </a>
-    <a href="https://cocoapods.org">
-        <img src="https://img.shields.io/badge/cocoapods-compatible-4BC51D.svg?style=flat" alt="Cocoapods" />
-    </a>
     <a href="https://travis-ci.org/rob-nash/records">
         <img src="https://travis-ci.org/rob-nash/Records.svg?branch=master" alt="Build" />
-    </a>
-    <a href="https://developer.apple.com/swift/">
-        <img src="https://img.shields.io/badge/language-Swift%204.0-4BC51D.svg?style=flat" alt="Swift" />
-    </a>
-    <a href="https://developer.apple.com">
-        <img src="https://img.shields.io/badge/platform-iOS%2010%2B-blue.svg?style=flat" alt="Platform: iOS" />
     </a>
     <a href="https://twitter.com/nashytitz">
         <img src="https://img.shields.io/badge/contact-@nashytitz-blue.svg?style=flat" alt="Twitter: @nashytitz" />
