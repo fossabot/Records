@@ -9,6 +9,7 @@
 import UIKit
 import Database
 import CoreData
+import Dequable
 
 class PerformancesFetchedResultsController: TableViewCoreDataBinding<Performance> {
   

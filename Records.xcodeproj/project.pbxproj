@@ -24,6 +24,10 @@
 		507E0C171FB3D4ED00BF48D9 /* NSMutableAttributedString+CustomStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507E0C161FB3D4ED00BF48D9 /* NSMutableAttributedString+CustomStyling.swift */; };
 		507F59C51FB3DC7C001DE6BA /* PerformancesMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507F59C41FB3DC7C001DE6BA /* PerformancesMenuButton.swift */; };
 		507F59C71FB3DF59001DE6BA /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507F59C61FB3DF59001DE6BA /* EventViewController.swift */; };
+		509494FF1FC134EE0052ECB5 /* Dequable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509494F91FC134D60052ECB5 /* Dequable.framework */; };
+		509495001FC134EE0052ECB5 /* Dequable.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 509494F91FC134D60052ECB5 /* Dequable.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		509495011FC134EE0052ECB5 /* Require.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509494FA1FC134D70052ECB5 /* Require.framework */; };
+		509495021FC134EE0052ECB5 /* Require.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 509494FA1FC134D70052ECB5 /* Require.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		50B4FB9B1FA6FD6D0086439D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DD8BB61F9B18AF0075E16E /* Storage.swift */; };
 		50B4FB9F1FA6FDD80086439D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B4FB9E1FA6FDD80086439D /* Storage.swift */; };
 		50B4FBA11FA70E490086439D /* PerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B4FBA01FA70E490086439D /* PerformanceTests.swift */; };
@@ -58,11 +62,7 @@
 		50F547811FB1BDC900ECF514 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F547801FB1BDC900ECF514 /* HomeViewController.swift */; };
 		50F547831FB1C72700ECF514 /* FilterPerformersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F547821FB1C72700ECF514 /* FilterPerformersViewController.swift */; };
 		50F547851FB1C88500ECF514 /* SearchPerformersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F547841FB1C88500ECF514 /* SearchPerformersViewController.swift */; };
-		50F54C311FA358F000D392A6 /* Dequeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F54C2E1FA358F000D392A6 /* Dequeable.swift */; };
-		50F54C321FA358F000D392A6 /* DequeableComponentIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F54C2F1FA358F000D392A6 /* DequeableComponentIdentifiable.swift */; };
-		50F54C331FA358F000D392A6 /* DequeableTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F54C301FA358F000D392A6 /* DequeableTableView.swift */; };
 		50F54C351FA3593D00D392A6 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F54C341FA3593D00D392A6 /* EventTableViewCell.swift */; };
-		50F54C371FA359C300D392A6 /* Require.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F54C361FA359C300D392A6 /* Require.swift */; };
 		50FAC9CB1FB212BD00E4EAF8 /* RelationshipRestrictionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FAC9CA1FB212BD00E4EAF8 /* RelationshipRestrictionViewController.swift */; };
 		50FF383C1FA72F0D0092C808 /* PerformancesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FF383B1FA72F0D0092C808 /* PerformancesViewController.swift */; };
 		50FF383E1FA72F930092C808 /* PerformancesFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FF383D1FA72F930092C808 /* PerformancesFetchedResultsController.swift */; };
@@ -108,7 +108,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				509495001FC134EE0052ECB5 /* Dequable.framework in Embed Frameworks */,
 				50DD8BB21F9B17730075E16E /* Records.framework in Embed Frameworks */,
+				509495021FC134EE0052ECB5 /* Require.framework in Embed Frameworks */,
 				50DD8BC51F9B198E0075E16E /* Database.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -137,6 +139,8 @@
 		50809F651F9B5A9E006D53C1 /* RecordsDemoInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RecordsDemoInfo.plist; sourceTree = "<group>"; };
 		50809F661F9B5ACA006D53C1 /* RecordsDemoUITestsInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RecordsDemoUITestsInfo.plist; sourceTree = "<group>"; };
 		50809F671F9B5AF1006D53C1 /* DatabaseInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DatabaseInfo.plist; sourceTree = "<group>"; };
+		509494F91FC134D60052ECB5 /* Dequable.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Dequable.framework; sourceTree = "<group>"; };
+		509494FA1FC134D70052ECB5 /* Require.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Require.framework; sourceTree = "<group>"; };
 		50B4FB9E1FA6FDD80086439D /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		50B4FBA01FA70E490086439D /* PerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceTests.swift; sourceTree = "<group>"; };
 		50B4FBA21FA70F480086439D /* PartyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyTests.swift; sourceTree = "<group>"; };
@@ -173,11 +177,7 @@
 		50F547801FB1BDC900ECF514 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		50F547821FB1C72700ECF514 /* FilterPerformersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterPerformersViewController.swift; sourceTree = "<group>"; };
 		50F547841FB1C88500ECF514 /* SearchPerformersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPerformersViewController.swift; sourceTree = "<group>"; };
-		50F54C2E1FA358F000D392A6 /* Dequeable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dequeable.swift; sourceTree = "<group>"; };
-		50F54C2F1FA358F000D392A6 /* DequeableComponentIdentifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DequeableComponentIdentifiable.swift; sourceTree = "<group>"; };
-		50F54C301FA358F000D392A6 /* DequeableTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DequeableTableView.swift; sourceTree = "<group>"; };
 		50F54C341FA3593D00D392A6 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
-		50F54C361FA359C300D392A6 /* Require.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Require.swift; sourceTree = "<group>"; };
 		50F54C3B1FA35A9800D392A6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		50F54C3D1FA35AC600D392A6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		50FAC9CA1FB212BD00E4EAF8 /* RelationshipRestrictionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationshipRestrictionViewController.swift; sourceTree = "<group>"; };
@@ -192,7 +192,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				509494FF1FC134EE0052ECB5 /* Dequable.framework in Frameworks */,
 				50DD8BB11F9B17730075E16E /* Records.framework in Frameworks */,
+				509495011FC134EE0052ECB5 /* Require.framework in Frameworks */,
 				50DD8BC41F9B198E0075E16E /* Database.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,7 +387,7 @@
 		50F54C3A1FA35A8800D392A6 /* Require */ = {
 			isa = PBXGroup;
 			children = (
-				50F54C361FA359C300D392A6 /* Require.swift */,
+				509494FA1FC134D70052ECB5 /* Require.framework */,
 				50F54C3B1FA35A9800D392A6 /* README.md */,
 			);
 			path = Require;
@@ -394,9 +396,7 @@
 		50F54C3C1FA35AB600D392A6 /* Dequable */ = {
 			isa = PBXGroup;
 			children = (
-				50F54C2E1FA358F000D392A6 /* Dequeable.swift */,
-				50F54C2F1FA358F000D392A6 /* DequeableComponentIdentifiable.swift */,
-				50F54C301FA358F000D392A6 /* DequeableTableView.swift */,
+				509494F91FC134D60052ECB5 /* Dequable.framework */,
 				50F54C3D1FA35AC600D392A6 /* README.md */,
 			);
 			path = Dequable;
@@ -692,7 +692,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50F54C311FA358F000D392A6 /* Dequeable.swift in Sources */,
 				50DD8BB01F9B16CC0075E16E /* EventsTableView.swift in Sources */,
 				50BB66331FAC9DAA0069B345 /* Consumers.swift in Sources */,
 				50FF38401FA730140092C808 /* PerformanceTableViewCell.swift in Sources */,
@@ -712,12 +711,9 @@
 				501744221FA9EAB4002C255F /* PerformersFetchedResultsController.swift in Sources */,
 				50FF38421FA7305C0092C808 /* PerformancesTableView.swift in Sources */,
 				5017441E1FA9E6CD002C255F /* PerformersMenuButton.swift in Sources */,
-				50F54C331FA358F000D392A6 /* DequeableTableView.swift in Sources */,
 				50FAC9CB1FB212BD00E4EAF8 /* RelationshipRestrictionViewController.swift in Sources */,
-				50F54C371FA359C300D392A6 /* Require.swift in Sources */,
 				50F547811FB1BDC900ECF514 /* HomeViewController.swift in Sources */,
 				50DD8BAD1F9B158B0075E16E /* EventsViewController.swift in Sources */,
-				50F54C321FA358F000D392A6 /* DequeableComponentIdentifiable.swift in Sources */,
 				50DD8BAE1F9B158B0075E16E /* EventsFetchedResultsController.swift in Sources */,
 				5017441C1FA9E53F002C255F /* EventTitleLabel.swift in Sources */,
 				50FF383C1FA72F0D0092C808 /* PerformancesViewController.swift in Sources */,
@@ -822,7 +818,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/RecordsDemo/Model/ThirdParty/Dequable",
+					"$(PROJECT_DIR)/RecordsDemo/Model/ThirdParty/Require",
+				);
 				INFOPLIST_FILE = Configs/RecordsDemoInfo.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.robertnash.RecordsDemo;
@@ -838,7 +838,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/RecordsDemo/Model/ThirdParty/Dequable",
+					"$(PROJECT_DIR)/RecordsDemo/Model/ThirdParty/Require",
+				);
 				INFOPLIST_FILE = Configs/RecordsDemoInfo.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.robertnash.RecordsDemo;

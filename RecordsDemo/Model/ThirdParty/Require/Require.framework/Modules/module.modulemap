@@ -1,0 +1,4 @@
+framework module Require {
+    header "Require-Swift.h"
+    requires objc
+}
