@@ -683,7 +683,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Resources/sourcery/bin/sourcery --sources ./Database --sources ../Records --templates ./Database/Templates/";
+			shellScript = "./Resources/sourcery/bin/sourcery --sources ./Database --sources ./Records --templates ./Database/Templates/";
 		};
 /* End PBXShellScriptBuildPhase section */
 
