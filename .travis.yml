@@ -6,7 +6,7 @@ branches:
 
 xcode_project: Records.xcodeproj
 xcode_scheme: Records
-osx_image: xcode9
+osx_image: xcode9.1
 xcode_sdk: iphonesimulator11.0
 
 script: 
