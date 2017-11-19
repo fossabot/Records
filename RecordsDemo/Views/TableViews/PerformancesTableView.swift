@@ -8,7 +8,6 @@
 
 import UIKit
 import Records
-import Dequable
 
 class PerformancesTableView: UITableView, FetchedResultsControllerDelegate, FetchedResultsControllerDatasource, DequeableTableView {
   

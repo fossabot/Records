@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Require
 
 extension NSMutableAttributedString {
     

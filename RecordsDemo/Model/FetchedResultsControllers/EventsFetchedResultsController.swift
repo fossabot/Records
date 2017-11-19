@@ -8,8 +8,6 @@
 
 import UIKit
 import Database
-import Dequable
-import Require
 
 final class EventsFetchedResultsController: TableViewCoreDataBinding<Event> {
   

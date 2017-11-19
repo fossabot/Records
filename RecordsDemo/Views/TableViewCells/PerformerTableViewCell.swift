@@ -8,7 +8,6 @@
 
 import UIKit
 import Database
-import Dequable
 
 class PerformerTableViewCell: UITableViewCell, DequeableComponentIdentifiable {
   

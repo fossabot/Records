@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Dequable
 
 class EventTableViewCell: UITableViewCell, DequeableComponentIdentifiable {
   

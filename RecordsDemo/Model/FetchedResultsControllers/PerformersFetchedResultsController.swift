@@ -9,8 +9,6 @@
 import UIKit
 import Database
 import CoreData
-import Require
-import Dequable
 
 final class PerformersFetchedResultsController: TableViewCoreDataBinding<Performer> {
   

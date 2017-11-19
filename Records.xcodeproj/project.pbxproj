@@ -21,13 +21,14 @@
 		5050A09C1FA71F64005B2F34 /* Events.json in Resources */ = {isa = PBXBuildFile; fileRef = 50B7924A1FA36298006F0F5B /* Events.json */; };
 		5050A09D1FA71F64005B2F34 /* Parties.json in Resources */ = {isa = PBXBuildFile; fileRef = 50B7924B1FA362AA006F0F5B /* Parties.json */; };
 		5050A09F1FA7210A005B2F34 /* QueryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5050A09E1FA7210A005B2F34 /* QueryTests.swift */; };
+		505E0F991FC1516300E9A4BE /* DequeableTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505E0F951FC1516200E9A4BE /* DequeableTableView.swift */; };
+		505E0F9A1FC1516300E9A4BE /* DequeableComponentIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505E0F961FC1516300E9A4BE /* DequeableComponentIdentifiable.swift */; };
+		505E0F9B1FC1516300E9A4BE /* DequeableCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505E0F971FC1516300E9A4BE /* DequeableCollectionView.swift */; };
+		505E0F9C1FC1516300E9A4BE /* Dequeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505E0F981FC1516300E9A4BE /* Dequeable.swift */; };
+		505E0F9E1FC1519500E9A4BE /* Require.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505E0F9D1FC1519500E9A4BE /* Require.swift */; };
 		507E0C171FB3D4ED00BF48D9 /* NSMutableAttributedString+CustomStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507E0C161FB3D4ED00BF48D9 /* NSMutableAttributedString+CustomStyling.swift */; };
 		507F59C51FB3DC7C001DE6BA /* PerformancesMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507F59C41FB3DC7C001DE6BA /* PerformancesMenuButton.swift */; };
 		507F59C71FB3DF59001DE6BA /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507F59C61FB3DF59001DE6BA /* EventViewController.swift */; };
-		509494FF1FC134EE0052ECB5 /* Dequable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509494F91FC134D60052ECB5 /* Dequable.framework */; };
-		509495001FC134EE0052ECB5 /* Dequable.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 509494F91FC134D60052ECB5 /* Dequable.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		509495011FC134EE0052ECB5 /* Require.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509494FA1FC134D70052ECB5 /* Require.framework */; };
-		509495021FC134EE0052ECB5 /* Require.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 509494FA1FC134D70052ECB5 /* Require.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		50B4FB9B1FA6FD6D0086439D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DD8BB61F9B18AF0075E16E /* Storage.swift */; };
 		50B4FB9F1FA6FDD80086439D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B4FB9E1FA6FDD80086439D /* Storage.swift */; };
 		50B4FBA11FA70E490086439D /* PerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B4FBA01FA70E490086439D /* PerformanceTests.swift */; };
@@ -108,9 +109,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				509495001FC134EE0052ECB5 /* Dequable.framework in Embed Frameworks */,
 				50DD8BB21F9B17730075E16E /* Records.framework in Embed Frameworks */,
-				509495021FC134EE0052ECB5 /* Require.framework in Embed Frameworks */,
 				50DD8BC51F9B198E0075E16E /* Database.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -129,6 +128,11 @@
 		502BAA8C1FAB3CAF0044070C /* RelationshipRestriction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelationshipRestriction.swift; sourceTree = "<group>"; };
 		5032CF8E1FAC7264003EA23C /* TableViewCoreDataBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCoreDataBinding.swift; sourceTree = "<group>"; };
 		5050A09E1FA7210A005B2F34 /* QueryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryTests.swift; sourceTree = "<group>"; };
+		505E0F951FC1516200E9A4BE /* DequeableTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DequeableTableView.swift; sourceTree = "<group>"; };
+		505E0F961FC1516300E9A4BE /* DequeableComponentIdentifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DequeableComponentIdentifiable.swift; sourceTree = "<group>"; };
+		505E0F971FC1516300E9A4BE /* DequeableCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DequeableCollectionView.swift; sourceTree = "<group>"; };
+		505E0F981FC1516300E9A4BE /* Dequeable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dequeable.swift; sourceTree = "<group>"; };
+		505E0F9D1FC1519500E9A4BE /* Require.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Require.swift; sourceTree = "<group>"; };
 		506465A31FAA888B00A59F11 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		506DFAF51F9C929400C793BA /* ManagedObject.Query.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = ManagedObject.Query.stencil; sourceTree = "<group>"; };
 		507E0C161FB3D4ED00BF48D9 /* NSMutableAttributedString+CustomStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+CustomStyling.swift"; sourceTree = "<group>"; };
@@ -139,8 +143,6 @@
 		50809F651F9B5A9E006D53C1 /* RecordsDemoInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RecordsDemoInfo.plist; sourceTree = "<group>"; };
 		50809F661F9B5ACA006D53C1 /* RecordsDemoUITestsInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RecordsDemoUITestsInfo.plist; sourceTree = "<group>"; };
 		50809F671F9B5AF1006D53C1 /* DatabaseInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DatabaseInfo.plist; sourceTree = "<group>"; };
-		509494F91FC134D60052ECB5 /* Dequable.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Dequable.framework; sourceTree = "<group>"; };
-		509494FA1FC134D70052ECB5 /* Require.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Require.framework; sourceTree = "<group>"; };
 		50B4FB9E1FA6FDD80086439D /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		50B4FBA01FA70E490086439D /* PerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceTests.swift; sourceTree = "<group>"; };
 		50B4FBA21FA70F480086439D /* PartyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyTests.swift; sourceTree = "<group>"; };
@@ -192,9 +194,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				509494FF1FC134EE0052ECB5 /* Dequable.framework in Frameworks */,
 				50DD8BB11F9B17730075E16E /* Records.framework in Frameworks */,
-				509495011FC134EE0052ECB5 /* Require.framework in Frameworks */,
 				50DD8BC41F9B198E0075E16E /* Database.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -387,7 +387,7 @@
 		50F54C3A1FA35A8800D392A6 /* Require */ = {
 			isa = PBXGroup;
 			children = (
-				509494FA1FC134D70052ECB5 /* Require.framework */,
+				505E0F9D1FC1519500E9A4BE /* Require.swift */,
 				50F54C3B1FA35A9800D392A6 /* README.md */,
 			);
 			path = Require;
@@ -396,7 +396,10 @@
 		50F54C3C1FA35AB600D392A6 /* Dequable */ = {
 			isa = PBXGroup;
 			children = (
-				509494F91FC134D60052ECB5 /* Dequable.framework */,
+				505E0F981FC1516300E9A4BE /* Dequeable.swift */,
+				505E0F971FC1516300E9A4BE /* DequeableCollectionView.swift */,
+				505E0F961FC1516300E9A4BE /* DequeableComponentIdentifiable.swift */,
+				505E0F951FC1516200E9A4BE /* DequeableTableView.swift */,
 				50F54C3D1FA35AC600D392A6 /* README.md */,
 			);
 			path = Dequable;
@@ -694,8 +697,10 @@
 			files = (
 				50DD8BB01F9B16CC0075E16E /* EventsTableView.swift in Sources */,
 				50BB66331FAC9DAA0069B345 /* Consumers.swift in Sources */,
+				505E0F9A1FC1516300E9A4BE /* DequeableComponentIdentifiable.swift in Sources */,
 				50FF38401FA730140092C808 /* PerformanceTableViewCell.swift in Sources */,
 				50DD8B821F9B15450075E16E /* AppDelegate.swift in Sources */,
+				505E0F9B1FC1516300E9A4BE /* DequeableCollectionView.swift in Sources */,
 				507F59C71FB3DF59001DE6BA /* EventViewController.swift in Sources */,
 				50F547831FB1C72700ECF514 /* FilterPerformersViewController.swift in Sources */,
 				501744261FA9ED7D002C255F /* PerformersTableView.swift in Sources */,
@@ -705,10 +710,13 @@
 				507F59C51FB3DC7C001DE6BA /* PerformancesMenuButton.swift in Sources */,
 				501744201FA9EA71002C255F /* PerformersViewController.swift in Sources */,
 				50F547851FB1C88500ECF514 /* SearchPerformersViewController.swift in Sources */,
+				505E0F991FC1516300E9A4BE /* DequeableTableView.swift in Sources */,
+				505E0F9C1FC1516300E9A4BE /* Dequeable.swift in Sources */,
 				50C6B7741FA9D89900D0B425 /* EventDateFormatter.swift in Sources */,
 				5032CF8F1FAC7264003EA23C /* TableViewCoreDataBinding.swift in Sources */,
 				507E0C171FB3D4ED00BF48D9 /* NSMutableAttributedString+CustomStyling.swift in Sources */,
 				501744221FA9EAB4002C255F /* PerformersFetchedResultsController.swift in Sources */,
+				505E0F9E1FC1519500E9A4BE /* Require.swift in Sources */,
 				50FF38421FA7305C0092C808 /* PerformancesTableView.swift in Sources */,
 				5017441E1FA9E6CD002C255F /* PerformersMenuButton.swift in Sources */,
 				50FAC9CB1FB212BD00E4EAF8 /* RelationshipRestrictionViewController.swift in Sources */,

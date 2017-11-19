@@ -8,7 +8,6 @@
 
 import UIKit
 import Records
-import Dequable
 
 final class EventsTableView: UITableView, FetchedResultsControllerDelegate, FetchedResultsControllerDatasource, DequeableTableView {
   

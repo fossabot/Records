@@ -9,8 +9,6 @@
 import UIKit
 import Records
 import Database
-import Dequable
-import Require
 
 class RelationshipRestrictionViewController: UIViewController {
   
