@@ -28,15 +28,9 @@ extension {{ type.name }}.Query: Queryable {
     public func predicateRepresentation() -> NSCompoundPredicate? {
       var predicates = [NSPredicate]()
       {% for variable in type.variables where variable|!annotated:"sourcerySkip" and variable.readAccess != "private" and variable.readAccess != "fileprivate" %}
-      {% if variable.type|enum %}
       if let predicate = {{ variable.name|replace:"_","" }}Predicate() {
         predicates.append(predicate)
       }
-      {% else %}
-      if let predicate = {{ variable.name }}Predicate() {
-        predicates.append(predicate)
-      }
-      {% endif %}
       {% endfor %}
       if predicates.count == 0 {
         return nil
@@ -56,14 +50,14 @@ extension {{ type.name }}.Query: Queryable {
       return {{ variable.name }}.predicate("{{ variable.name }}")
     }
     {% elif variable.typeName|contains:"String" %}
-    private func {{ variable.name }}Predicate() -> NSPredicate? {
-      guard let {{ variable.name }} = {{ variable.name }} else { return nil }
-      return NSPredicate(format: "{{ variable.name }} BEGINSWITH[cd] %@", {{ variable.name }})
+    private func {{ variable.name|replace:"_","" }}Predicate() -> NSPredicate? {
+      guard let {{ variable.name|replace:"_","" }} = {{ variable.name|replace:"_","" }} else { return nil }
+      return NSPredicate(format: "{{ variable.name|replace:"_","" }} BEGINSWITH[cd] %@", {{ variable.name|replace:"_","" }})
     }
     {% else %}
-    private func {{ variable.name }}Predicate() -> NSPredicate? {
-      guard let {{ variable.name }} = {{ variable.name }} else { return nil }
-      return NSPredicate(format: "{{ variable.name }} == %@", {{ variable.name }} as CVarArg)
+    private func {{ variable.name|replace:"_","" }}Predicate() -> NSPredicate? {
+      guard let {{ variable.name|replace:"_","" }} = {{ variable.name|replace:"_","" }} else { return nil }
+      return NSPredicate(format: "{{ variable.name|replace:"_","" }} == %@", {{ variable.name|replace:"_","" }} as CVarArg)
     }
     {% endif %}
     {% endfor %}
