@@ -51,22 +51,14 @@ public class Performer: NSManagedObject, Fetchable {
 // sourcery:end
 ```
 
-By declaring conformance to `Fetchable` and adding annotation marks for sourcery, the following auto-completing syntax is at your disposal (after you compile).
+By declaring conformance to `Fetchable` and adding annotation marks for sourcery, the following auto-completing syntax is at your disposal (once you compile with cmd + b).
 
 ```swift
 let query = Performer.Query(dob: nil, firstName: "Maggie", lastName: nil, party: nil, performances: nil) // Fetch all with first name that BEGINSWITH[cd] `Maggie`
 let performers: [Performer] = try! query.all(in: context)
 ```
 
-Enjoy!
-
-But wait?...sourcery? 🤔
-
-## Sourcery
-
-[Sourcery](https://github.com/krzysztofzablocki/Sourcery) is a boiler-plate generation tool that you can optionally use with this framework. A pre-written stencil file is provided [here](https://github.com/rob-nash/Records/blob/master/Database/Templates/ManagedObject.Query.stencil) which will instruct soucery to write the 'Query' syntax for any NSManagedObject subclass that implements `Fetchable`.
-
-Any change you make to your CoreData schema will trigger the regeneration of boiler-plate code. So for instance, if you removed the property `lastName` from `Performer` the new initialiser will be as follows.
+Any change you make to your CoreData schema will trigger the regeneration of boiler-plate code. So for instance, if you removed the property `lastName` from the entity `Performer` the new initialiser will be as follows (once you compile with cmd + b).
 
 ```swift
 let query = Performer.Query(dob: nil, firstName: "Maggie", party: nil, performances: nil)
@@ -74,6 +66,16 @@ let performers: [Performer] = try! query.all(in: context)
 ```
 
 The Xcode compiler will highlight the changed initialiser at compile time. It's useful to individually evaluate each call site effected by your schema changes.
+
+Enjoy!
+
+But wait?...sourcery? 🤔
+
+## Sourcery
+
+[Sourcery](https://github.com/krzysztofzablocki/Sourcery) is a boiler-plate generation tool that you can optionally use with this framework. 
+
+A pre-written stencil file is provided [here](https://github.com/rob-nash/Records/blob/master/Database/Templates/ManagedObject.Query.stencil) which will instruct soucery to write the 'Query' syntax for any NSManagedObject subclass that implements `Fetchable`.
 
 ## Other Features
 
