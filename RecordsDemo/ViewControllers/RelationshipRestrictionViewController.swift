@@ -161,9 +161,11 @@ extension RelationshipRestrictionViewController: UIPickerViewDelegate {
     }
     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
       self.tableView.reloadData()
-      DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
-        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-      }
+        if self.performances.count > 0 {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
+                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            }
+        }
     }
   }
   
