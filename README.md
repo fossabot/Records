@@ -89,6 +89,8 @@ let query = Performance.Query(performers: restriction, event: nil, ability: nil,
 let performances: [Performance] = try! query.all(in: context)
 ```
 
+<p align="right"><img src="http://i.giphy.com/3ohs82NxrNw72WMkRW.gif" width="252" height="395"/></p>
+
 Null predicate searching.
 
 ```swift
