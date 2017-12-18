@@ -79,7 +79,7 @@ A pre-written stencil file is provided [here](https://github.com/rob-nash/Record
 
 ## Other Features
 
-Take a look at the source in the `RecordsDemo` target for more details on these features.
+Checkout [Performances](https://github.com/rob-nash/Performances) for an example implementation of these features.
 
 To-Many relationship queries.
 
