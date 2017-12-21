@@ -11,7 +11,7 @@
     </a>
 </p>
 
-A lightweight convenience API for basic CoreData database tasks. Run the `RecordsDemo` Xcode scheme for a demonstration. 
+A lightweight convenience API for basic CoreData database tasks.
 
 *Scalar or transformable types not supported*
 
