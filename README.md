@@ -54,8 +54,15 @@ public class Performer: NSManagedObject, Fetchable {
 By declaring conformance to `Fetchable` and adding annotation marks for sourcery, the following auto-completing syntax is at your disposal (once you compile with cmd + b).
 
 ```swift
-let query = Performer.Query(dob: nil, firstName: "Maggie", lastName: nil, party: nil, performances: nil) // Fetch all with first name that BEGINSWITH[cd] `Maggie`
+// Query all for first name that BEGINSWITH[cd] `Maggie` ignoring other attributes.
+let query = Performer.Query(dob: nil, firstName: "Maggie", lastName: nil, party: nil, performances: nil)
 let performers: [Performer] = try! query.all(in: context)
+```
+
+Custom predicates are still available.
+
+```swift
+let performers: [Performer] = try! Performer.fetchAll(withPredicate: NSPredicate(format: "firstName CONTAINS[cd] %@", "Maggie"), in: context)
 ```
 
 Any change you make to your CoreData schema will trigger the regeneration of boiler-plate code. So for instance, if you removed the property `lastName` from the entity `Performer` the new initialiser will be as follows (once you compile with cmd + b).
@@ -66,6 +73,12 @@ let performers: [Performer] = try! query.all(in: context)
 ```
 
 The Xcode compiler will highlight the changed initialiser at compile time. It's useful to individually evaluate each call site effected by your schema changes.
+
+Create a record the CoreData API.
+
+```swift
+let performer = Performer(context: context)
+```
 
 Enjoy!
 
@@ -96,12 +109,6 @@ Null predicate searching.
 ```swift
 let performer: Performer? = try! Performer.fetchFirst(in: context)
 let performer: Performer? = try! Performer.fetchFirst(in: context, sortedBy: NSSortDescriptor(key: "firstName", ascending: true))
-```
-
-Custom predicates are still available.
-
-```swift
-let performers: [Performer] = try! Performer.fetchAll(withPredicate: NSPredicate(format: "firstName CONTAINS[cd] %@", "Maggie"), in: context)
 ```
 
 Small UIViewController subclasses.
