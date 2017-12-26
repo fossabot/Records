@@ -56,6 +56,11 @@ By declaring conformance to `Fetchable` and adding annotation marks for sourcery
 ```swift
 // Query all for first name that BEGINSWITH[cd] `Maggie` ignoring other attributes.
 let query = Performer.Query(dob: nil, firstName: "Maggie", lastName: nil, party: nil, performances: nil)
+```
+
+Queries can then be executed in various ways. Such as 'fetch all'.
+
+```swift
 do {
   let performers: [Performer] = try query.all(in: context)
   if performers.count == 0 { print("none found") }
