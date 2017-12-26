@@ -65,7 +65,7 @@ do {
   let performers: [Performer] = try query.all(in: context)
   if performers.count == 0 { print("none found") }
 } catch {
-  // Errors from the CoreData layer such as 'model not found' or 'validation failed' etc.
+  // Errors from the CoreData layer such as 'model not found' etc
 }
 ```
 
