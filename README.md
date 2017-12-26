@@ -56,7 +56,12 @@ By declaring conformance to `Fetchable` and adding annotation marks for sourcery
 ```swift
 // Query all for first name that BEGINSWITH[cd] `Maggie` ignoring other attributes.
 let query = Performer.Query(dob: nil, firstName: "Maggie", lastName: nil, party: nil, performances: nil)
-let performers: [Performer] = try! query.all(in: context)
+do {
+  let performers: [Performer] = try query.all(in: context)
+  if performers.count == 0 { print("none found") }
+} catch {
+  // Errors from the CoreData layer such as 'model not found' or 'validation failed' etc.
+}
 ```
 
 Custom predicates are still available.
