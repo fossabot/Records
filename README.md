@@ -84,7 +84,7 @@ let performers: [Performer] = try! query.all(in: context)
 
 The Xcode compiler will highlight the changed initialiser at compile time. It's useful to individually evaluate each call site effected by your schema changes.
 
-Create a record the CoreData API.
+Create a record using the usual CoreData API.
 
 ```swift
 let performer = Performer(context: context)
