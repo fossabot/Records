@@ -156,7 +156,7 @@ String replacement with Enum.
 let query = Party.Query(email: email, name: name, phone: phone, performers: nil, type: .school)
 ```
 
-To use an enum set the string property on your Entity subclass to private. Then create a `var` for your enum.
+To use an enum set the string property on your Entity subclass to private. Then create a `var` for your enum. It is recommended that you use an underscore, because the script will handle that for you. If you would like to use some other naming convention, feel free to modify [the script](https://github.com/rob-nash/Records/blob/master/Database/Templates/ManagedObject.Query.stencil).
 
 ```swift
 import Foundation
