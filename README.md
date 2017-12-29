@@ -51,7 +51,7 @@ public class Performer: NSManagedObject, Fetchable {
 // sourcery:end
 ```
 
-By declaring conformance to `Fetchable` and adding annotation marks for sourcery, the following auto-completing syntax is at your disposal (once you compile with cmd + b).
+By declaring conformance to `Fetchable`, adding annotation marks for sourcery and settings codgen to 'manual', the following auto-completing syntax is at your disposal (once you compile with cmd + b).
 
 ```swift
 // Query all for first name that BEGINSWITH[cd] `Maggie` ignoring other attributes.
@@ -156,7 +156,7 @@ String replacement with Enum.
 let query = Party.Query(email: email, name: name, phone: phone, performers: nil, type: .school)
 ```
 
-To use an enum set the string property on your Entity subclass to private. Then create a `var` for your enum. It is recommended that you use an underscore, because the script will handle that for you. If you would like to use some other naming convention, feel free to modify [the script](https://github.com/rob-nash/Records/blob/master/Database/Templates/ManagedObject.Query.stencil).
+To use an enum set the string property on your Entity subclass to private. Then create a `var` for your enum.
 
 ```swift
 import Foundation
@@ -194,6 +194,8 @@ public class Party: NSManagedObject, Fetchable {
 ```
 
 Make sure to set a default value on the property and write a unit test ([see here](https://github.com/rob-nash/Records/blob/master/RecordsTests/PartyTests.swift)).
+
+When switching the accessibility level of your @NSManaged vars from public to private, like the above enum example, it is recommended that you use an underscore, because the script will truncate the underscore from the initialiser. If you would like to use some other naming convention, feel free to modify [the script](https://github.com/rob-nash/Records/blob/master/Database/Templates/ManagedObject.Query.stencil).
 
 ## Installing
 
