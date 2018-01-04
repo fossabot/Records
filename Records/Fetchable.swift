@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 
 public protocol Fetchable {
+  static func count(in context: NSManagedObjectContext) throws -> Int
   static func fetchAll<T: NSManagedObject>(in context: NSManagedObjectContext) throws -> [T]
   static func fetchAll<T: NSManagedObject>(withPredicate predicate: NSPredicate?, in context: NSManagedObjectContext) throws -> [T]
   static func fetchFirst<T: NSManagedObject>(in context: NSManagedObjectContext) throws -> T?
@@ -19,6 +20,12 @@ public protocol Fetchable {
 }
 
 public extension Fetchable {
+  
+  static func count(in context: NSManagedObjectContext) throws -> Int {
+    let entityName = String(describing: self)
+    let request: NSFetchRequest<NSManagedObject> = NSFetchRequest(entityName: entityName)
+    return try context.count(for: request)
+  }
   
   static func fetchAll<T: NSManagedObject>(in context: NSManagedObjectContext) throws -> [T] {
     return try fetchAll(withPredicate: nil, in: context)
