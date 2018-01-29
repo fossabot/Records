@@ -11,7 +11,7 @@ import CoreData
 
 open class FetchedResultsController<Entity: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate {
   
-  public typealias ContentChanged = () -> Void
+  public typealias ContentChanged = (Int) -> Void
   
   public var contentChanged: ContentChanged?
   
@@ -98,7 +98,7 @@ open class FetchedResultsController<Entity: NSManagedObject>: NSObject, NSFetche
   
   open func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
     delegate?.didChangeContent()
-    contentChanged?()
+    contentChanged?(controller.fetchedObjects?.count ?? 0)
   }
   
 }
