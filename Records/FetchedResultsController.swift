@@ -21,15 +21,21 @@ open class FetchedResultsController<Entity: NSManagedObject>: NSObject, NSFetche
   
   public let context: NSManagedObjectContext
   
-  public private(set)var fetchedResultsController: NSFetchedResultsController<Entity>!
+  public private(set) lazy var fetchedResultsController: NSFetchedResultsController<Entity> = {
+    return build()
+  }()
   
   public required init(context: NSManagedObjectContext) throws {
     self.context = context
     super.init()
-    try load()
   }
   
   private func load() throws {
+    fetchedResultsController = build()
+    try fetchedResultsController.performFetch()
+  }
+  
+  private func build() -> NSFetchedResultsController<Entity> {
     let name = String(describing: Entity.self)
     let fetchRequest: NSFetchRequest<Entity> = NSFetchRequest<Entity>(entityName: name)
     fetchRequest.fetchBatchSize = 100
@@ -37,8 +43,7 @@ open class FetchedResultsController<Entity: NSManagedObject>: NSObject, NSFetche
     fetchRequest.sortDescriptors = self.sortDescriptors()
     let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.context, sectionNameKeyPath: sectionNameKeyPath(), cacheName: nil)
     controller.delegate = self
-    try controller.performFetch()
-    fetchedResultsController = controller
+    return controller
   }
   
   public func reload() throws {
