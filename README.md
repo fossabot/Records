@@ -13,7 +13,7 @@
 
 A lightweight convenience API for basic CoreData database tasks.
 
-*Scalar or transformable types not supported*
+*Transformable types not supported*
 
 ## Usage
 
@@ -218,7 +218,7 @@ Add `github "rob-nash/Records"` to your `Cartfile`.
 
 ## Tutorial Videos
 
-The following videos are recorded in sequence and explain how to build an App within 24 hours, using both Questionnaire and [Records](https://github.com/rob-nash/Records).
+The following videos are recorded in sequence and explain how to build an App within 24 hours, using both [Questionnaire](https://github.com/rob-nash/Questionnaire) and Records.
 
 **1. Setting up records**
 
