@@ -216,6 +216,26 @@ For the latest release, select the [release](https://github.com/rob-nash/Records
 
 Add `github "rob-nash/Records"` to your `Cartfile`.
 
+## Tutorial Videos
+
+The following videos are recorded in sequence and explain how to build an App within 24 hours, using both Questionnaire and [Records](https://github.com/rob-nash/Records).
+
+**1. Setting up records**
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/31CfpBJNAJc/0.jpg)](https://www.youtube.com/watch?v=31CfpBJNAJc)
+
+**2. Setting up Questionnaire**
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/L5C3MhNNVDo/0.jpg)](https://www.youtube.com/watch?v=L5C3MhNNVDo)
+
+**3. Continuing with Questionnaire and Records**
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/Ilfph5tb1mw/0.jpg)](https://www.youtube.com/watch?v=Ilfph5tb1mw)
+
+**4. Continuing with Questionnaire and Records**
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/dqOY_8uZDXQ/0.jpg)](https://www.youtube.com/watch?v=dqOY_8uZDXQ)
+
 ### Donations.
 <p>If you like this and you want to buy me a drink, use bitcoin.</p>
 
