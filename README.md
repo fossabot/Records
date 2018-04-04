@@ -15,7 +15,32 @@ A lightweight convenience API for basic CoreData database tasks.
 
 *Transformable types not supported*
 
+## Installing
+
+For the latest release, select the [release](https://github.com/rob-nash/Records/releases) tab.
+
+  **1. Installation**
+   
+  [<img width="300" alt="screen shot" src="https://img.youtube.com/vi/31CfpBJNAJc/0.jpg">](https://www.youtube.com/watch?v=31CfpBJNAJc)
+
+  **2. Usage**
+
+  [<img width="300" alt="screen shot" src="https://img.youtube.com/vi/HOTwBou6FB4/0.jpg">](https://www.youtube.com/watch?v=HOTwBou6FB4)
+
 ## Usage
+
+```swift
+// Query all for first name that BEGINSWITH[cd] `Maggie` ignoring other attributes.
+let query = Performer.Query(dob: nil, firstName: "Maggie", lastName: nil, party: nil, performances: nil)
+do {
+  let performers: [Performer] = try query.all(in: context)
+  //or
+  let performers: [Performer] = try Performer.fetchAll(withPredicate: NSPredicate(format: "firstName CONTAINS[cd] %@", "Maggie"), in: context)
+  if performers.count == 0 { print("none found") }
+} catch {
+  // Errors from the CoreData layer such as 'model not found' etc
+}
+```
 
 Consider the following database schema.
 
@@ -207,14 +232,6 @@ public extension Performer {
     return firstName + " " + lastName
   }
 ```
-
-## Installing
-
-For the latest release, select the [release](https://github.com/rob-nash/Records/releases) tab.
-
-### Carthage:
-
-Add `github "rob-nash/Records"` to your `Cartfile`.
 
 ### Donations.
 <p>If you like this and you want to buy me a drink, use bitcoin.</p>
