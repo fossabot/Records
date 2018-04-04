@@ -15,18 +15,6 @@ A lightweight convenience API for basic CoreData database tasks.
 
 *Transformable types not supported*
 
-## Installing
-
-For the latest release, select the [release](https://github.com/rob-nash/Records/releases) tab.
-
-  **1. Installation**
-   
-  [<img width="300" alt="screen shot" src="https://img.youtube.com/vi/31CfpBJNAJc/0.jpg">](https://www.youtube.com/watch?v=31CfpBJNAJc)
-
-  **2. Usage**
-
-  [<img width="300" alt="screen shot" src="https://img.youtube.com/vi/HOTwBou6FB4/0.jpg">](https://www.youtube.com/watch?v=HOTwBou6FB4)
-
 ## Usage
 
 ```swift
@@ -41,6 +29,19 @@ do {
   // Errors from the CoreData layer such as 'model not found' etc
 }
 ```
+
+## Installing
+
+For the latest release, select the [release](https://github.com/rob-nash/Records/releases) tab.
+
+  **1. Installation**
+   
+  [<img width="300" alt="screen shot" src="https://img.youtube.com/vi/31CfpBJNAJc/0.jpg">](https://www.youtube.com/watch?v=31CfpBJNAJc)
+
+  **2. Usage**
+
+  [<img width="300" alt="screen shot" src="https://img.youtube.com/vi/HOTwBou6FB4/0.jpg">](https://www.youtube.com/watch?v=HOTwBou6FB4)
+
 
 Consider the following database schema.
 
