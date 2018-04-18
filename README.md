@@ -19,7 +19,7 @@ A lightweight convenience API for basic CoreData database tasks.
 
 ```swift
 // Query all for first name that BEGINSWITH[cd] `Maggie` ignoring other attributes.
-let query = Performer.Query(dob: nil, firstName: "Maggie", lastName: nil, party: nil, performances: nil)
+let query = Performer.Query(firstName: "Maggie")
 do {
   let performers: [Performer] = try query.all(in: context)
   //or
@@ -81,7 +81,7 @@ By declaring conformance to `Fetchable`, adding annotation marks for sourcery an
 
 ```swift
 // Query all for first name that BEGINSWITH[cd] `Maggie` ignoring other attributes.
-let query = Performer.Query(dob: nil, firstName: "Maggie", lastName: nil, party: nil, performances: nil)
+let query = Performer.Query(firstName: "Maggie")
 ```
 
 Queries can then be executed in various ways. Such as 'fetch all'.
@@ -104,7 +104,7 @@ let performers: [Performer] = try! Performer.fetchAll(withPredicate: NSPredicate
 Any change you make to your CoreData schema will trigger the regeneration of boiler-plate code. So for instance, if you removed the property `lastName` from the entity `Performer` the new initialiser will be as follows (once you compile with cmd + b).
 
 ```swift
-let query = Performer.Query(dob: nil, firstName: "Maggie", party: nil, performances: nil)
+let query = Performer.Query(firstName: "Maggie")
 let performers: [Performer] = try! query.all(in: context)
 ```
 
@@ -134,7 +134,7 @@ To-Many relationship queries.
 
 ```swift
 let restriction = RelationshipRestriction(operation: .allMatching, records: Set(arrayLiteral: performerA, performerB))
-let query = Performance.Query(performers: restriction, event: nil, ability: nil, group: nil)
+let query = Performance.Query(performers: restriction)
 let performances: [Performance] = try! query.all(in: context)
 ```
 
@@ -180,7 +180,7 @@ class PerformancesViewController: UIViewController {
 String replacement with Enum.
 
 ```swift
-let query = Party.Query(email: email, name: name, phone: phone, performers: nil, type: .school)
+let query = Party.Query(type: .school)
 ```
 
 To use an enum set the string property on your Entity subclass to private. Then create a `var` for your enum.
