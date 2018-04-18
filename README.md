@@ -171,6 +171,7 @@ class PerformancesViewController: UIViewController {
     fetchedResultsController.selectPerformance = { performance in
       /// do something
     }
+    try! fetchedResultsController.reload()
   }
   
 }
