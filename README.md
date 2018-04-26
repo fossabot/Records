@@ -23,13 +23,19 @@ Consider the following database schema.
     </a>
 </p>
 
-## Usage
+## Example Usage
 
 ```swift
 do {
-  let query = Performer.Query(firstName: "Maggie")
-  let performers: [Performer] = try query.all(in: context)
-  if performers.count == 0 { print("none found") }
+  let performers = try Performer.fetchAll(in: context)
+} catch {
+  // Errors from the CoreData layer such as 'model not found' etc
+}
+```
+
+```swift
+do {
+  let performers: [Performer] = try Performer.Query(firstName: "Maggie").all(in: context)
 } catch {
   // Errors from the CoreData layer such as 'model not found' etc
 }
@@ -38,14 +44,18 @@ do {
 ```swift
 do {
   let query = Performer.Query(firstName: "Maggie")
-  let performer: Performer? = try query.first(in: context, sortedBy: [NSSortDescriptor(key: "firstName", ascending: true)])
-  if performer == nil { print("not found") }
+  let sorts = [NSSortDescriptor(key: "firstName", ascending: true)]
+  let performer: Performer? = try query.first(in: context, sortedBy: sorts)
 } catch {
   // Errors from the CoreData layer such as 'model not found' etc
 }
 ```
 
-A class for entity 'Performer', may look like the following.
+A class for entity 'Performer', may look like the following. 
+
+* Declare conformance to `Fetchable` 
+* Add annotation marks for sourcery
+* Set codgen to 'manual'
 
 ```swift
 import CoreData
@@ -68,27 +78,6 @@ public class Performer: NSManagedObject, Fetchable {
 
 // sourcery:inline:Performer.ManagedObject.Query.stencil
 // sourcery:end
-```
-
-By declaring conformance to `Fetchable`, adding annotation marks for sourcery and settings codgen to 'manual', the following auto-completing syntax is at your disposal (once you compile with cmd + b). Any change you make to your CoreData schema will trigger the regeneration of boiler-plate code automatically.
-
-```swift
-// Query all for first name that BEGINSWITH[cd] `Maggie` ignoring other attributes.
-let query = Performer.Query(firstName: "Maggie")
-```
-
-Queries can then be executed in various ways. Such as 'fetch all'.
-
-```swift
-do {
-  let performers: [Performer] = try query.all(in: context)
-  if performers.count == 0 { print("none found") }
-} catch {
-  // Errors from the CoreData layer such as 'model not found' etc
-}
-//or
-let predicate = NSPredicate(format: "firstName CONTAINS[cd] %@", "Maggie")
-let performers: [Performer] = try! Performer.fetchAll(withPredicate: predicate, in: context)
 ```
 
 Create a record using the usual CoreData API.
