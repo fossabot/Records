@@ -70,7 +70,7 @@ public class Performer: NSManagedObject, Fetchable {
 // sourcery:end
 ```
 
-By declaring conformance to `Fetchable`, adding annotation marks for sourcery and settings codgen to 'manual', the following auto-completing syntax is at your disposal (once you compile with cmd + b).
+By declaring conformance to `Fetchable`, adding annotation marks for sourcery and settings codgen to 'manual', the following auto-completing syntax is at your disposal (once you compile with cmd + b). Any change you make to your CoreData schema will trigger the regeneration of boiler-plate code automatically.
 
 ```swift
 // Query all for first name that BEGINSWITH[cd] `Maggie` ignoring other attributes.
@@ -90,14 +90,6 @@ do {
 let predicate = NSPredicate(format: "firstName CONTAINS[cd] %@", "Maggie")
 let performers: [Performer] = try! Performer.fetchAll(withPredicate: predicate, in: context)
 ```
-
-Custom predicates are still available.
-
-```swift
-let performers: [Performer] = try! Performer.fetchAll(withPredicate: NSPredicate(format: "firstName CONTAINS[cd] %@", "Maggie"), in: context)
-```
-
-Any change you make to your CoreData schema will trigger the regeneration of boiler-plate code, automatically.
 
 Create a record using the usual CoreData API.
 
