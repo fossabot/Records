@@ -19,11 +19,19 @@ A lightweight convenience API for basic CoreData database tasks.
 
 ```swift
 do {
-  let query = Performer.Query(firstName: "Maggie") // Query all for first name that BEGINSWITH[cd] `Maggie` ignoring other attributes.
+  let query = Performer.Query(firstName: "Maggie")
   let performers: [Performer] = try query.all(in: context)
-  //or
-  let performers: [Performer] = try Performer.fetchAll(withPredicate: NSPredicate(format: "firstName CONTAINS[cd] %@", "Maggie"), in: context)
   if performers.count == 0 { print("none found") }
+} catch {
+  // Errors from the CoreData layer such as 'model not found' etc
+}
+```
+
+```swift
+do {
+  let query = Performer.Query(firstName: "Maggie")
+  let performer: Performer? = try query.first(in: context)
+  if performer == nil { print("not found") }
 } catch {
   // Errors from the CoreData layer such as 'model not found' etc
 }
@@ -91,6 +99,9 @@ do {
 } catch {
   // Errors from the CoreData layer such as 'model not found' etc
 }
+//or
+let predicate = NSPredicate(format: "firstName CONTAINS[cd] %@", "Maggie")
+let performers: [Performer] = try! Performer.fetchAll(withPredicate: predicate, in: context)
 ```
 
 Custom predicates are still available.
