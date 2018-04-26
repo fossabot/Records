@@ -35,6 +35,7 @@ do {
 
 ```swift
 do {
+  // All records with first name BEGINSWITH[cd] `Maggie`
   let performers: [Performer] = try Performer.Query(firstName: "Maggie").all(in: context)
 } catch {
   // Errors from the CoreData layer such as 'model not found' etc
@@ -52,10 +53,6 @@ do {
 ```
 
 A class for entity 'Performer', may look like the following. 
-
-* Declare conformance to `Fetchable` 
-* Add annotation marks for sourcery
-* Set codgen to 'manual'
 
 ```swift
 import CoreData
@@ -80,22 +77,16 @@ public class Performer: NSManagedObject, Fetchable {
 // sourcery:end
 ```
 
+* Declare conformance to `Fetchable` 
+* Add annotation marks for sourcery
+* Set codgen to 'manual'
+* Then build
+
 Create a record using the usual CoreData API.
 
 ```swift
 let performer = Performer(context: context)
 ```
-
-Enjoy!
-
-But wait?...sourcery? 🤔
-
-## Sourcery
-
-[Sourcery](https://github.com/krzysztofzablocki/Sourcery) is a boiler-plate generation tool that you can optionally use with this framework. 
-
-A pre-written stencil file is provided [here](https://github.com/rob-nash/Records/blob/master/Database/Templates/ManagedObject.Query.stencil) which will instruct soucery to write the 'Query' syntax for any NSManagedObject subclass that implements `Fetchable`.
-
 ## Other Features
 
 Checkout [Performances](https://github.com/rob-nash/Performances) for an example implementation of these features.
@@ -215,6 +206,12 @@ For the latest release, select the [release](https://github.com/rob-nash/Records
   **2. Usage**
 
   [<img width="300" alt="screen shot" src="https://img.youtube.com/vi/HOTwBou6FB4/0.jpg">](https://www.youtube.com/watch?v=HOTwBou6FB4)
+
+## Sourcery
+
+[Sourcery](https://github.com/krzysztofzablocki/Sourcery) is a boiler-plate generation tool that you can optionally use with this framework. 
+
+A pre-written stencil file is provided [here](https://github.com/rob-nash/Records/blob/master/Database/Templates/ManagedObject.Query.stencil) which will instruct soucery to write the 'Query' syntax for any NSManagedObject subclass that implements `Fetchable`.
 
 ### Donations.
 <p>If you like this and you want to buy me a drink, use bitcoin.</p>
