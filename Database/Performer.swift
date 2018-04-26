@@ -1,12 +1,3 @@
-//
-//  Performer.swift
-//  Database
-//
-//  Created by Robert Nash on 21/10/2017.
-//  Copyright © 2017 Robert Nash. All rights reserved.
-//
-
-import Foundation
 import CoreData
 import Records
 
@@ -32,9 +23,9 @@ public extension Performer {
         public var firstName: String?
         public var lastName: String?
         public var party: Party?
-        public var performances: RelationshipRestriction?
+        public var performances: Aggregate<Performance>?
 
-        public init(dob: Date?,firstName: String?,lastName: String?,party: Party?,performances: RelationshipRestriction?) {
+        public init(dob: Date? = nil, firstName: String? = nil, lastName: String? = nil, party: Party? = nil, performances: Aggregate<Performance>? = nil) {
           self.dob = dob 
           self.firstName = firstName 
           self.lastName = lastName 
@@ -44,11 +35,11 @@ public extension Performer {
     }
 }
 
-extension Performer.Query: Queryable {
+extension Performer.Query: QueryGenerator {
 
     public typealias Entity = Performer
 
-    public func predicateRepresentation() -> NSCompoundPredicate? {
+    public var predicateRepresentation: NSCompoundPredicate? {
       var predicates = [NSPredicate]()
       if let predicate = dobPredicate() {
         predicates.append(predicate)

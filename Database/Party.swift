@@ -1,12 +1,3 @@
-//
-//  Party.swift
-//  Database
-//
-//  Created by Robert Nash on 21/10/2017.
-//  Copyright © 2017 Robert Nash. All rights reserved.
-//
-
-import Foundation
 import CoreData
 import Records
 
@@ -45,10 +36,10 @@ public extension Party {
         public var email: String?
         public var name: String?
         public var phone: String?
-        public var performers: RelationshipRestriction?
+        public var performers: Aggregate<Performer>?
         public var type: PartyType?
 
-        public init(email: String?,name: String?,phone: String?,performers: RelationshipRestriction?,type: PartyType?) {
+        public init(email: String? = nil, name: String? = nil, phone: String? = nil, performers: Aggregate<Performer>? = nil, type: PartyType? = nil) {
           self.email = email 
           self.name = name 
           self.phone = phone 
@@ -58,11 +49,11 @@ public extension Party {
     }
 }
 
-extension Party.Query: Queryable {
+extension Party.Query: QueryGenerator {
 
     public typealias Entity = Party
 
-    public func predicateRepresentation() -> NSCompoundPredicate? {
+    public var predicateRepresentation: NSCompoundPredicate? {
       var predicates = [NSPredicate]()
       if let predicate = emailPredicate() {
         predicates.append(predicate)

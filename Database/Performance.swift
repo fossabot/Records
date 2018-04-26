@@ -1,12 +1,3 @@
-//
-//  Performance.swift
-//  Database
-//
-//  Created by Robert Nash on 21/10/2017.
-//  Copyright © 2017 Robert Nash. All rights reserved.
-//
-
-import Foundation
 import CoreData
 import Records
 
@@ -90,12 +81,12 @@ public class Performance: NSManagedObject, Fetchable {
 // sourcery:inline:Performance.ManagedObject.Query.stencil
 public extension Performance {
     struct Query {
-        public var performers: RelationshipRestriction?
+        public var performers: Aggregate<Performer>?
         public var event: Event?
         public var ability: Ability?
         public var group: Group?
 
-        public init(performers: RelationshipRestriction?,event: Event?,ability: Ability?,group: Group?) {
+        public init(performers: Aggregate<Performer>? = nil, event: Event? = nil, ability: Ability? = nil, group: Group? = nil) {
           self.performers = performers 
           self.event = event 
           self.ability = ability 
@@ -104,11 +95,11 @@ public extension Performance {
     }
 }
 
-extension Performance.Query: Queryable {
+extension Performance.Query: QueryGenerator {
 
     public typealias Entity = Performance
 
-    public func predicateRepresentation() -> NSCompoundPredicate? {
+    public var predicateRepresentation: NSCompoundPredicate? {
       var predicates = [NSPredicate]()
       if let predicate = performersPredicate() {
         predicates.append(predicate)

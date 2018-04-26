@@ -1,57 +1,87 @@
-//
-//  DuplicationPreventable.swift
-//  Records
-//
-//  Created by Robert Nash on 20/10/2017.
-//  Copyright © 2017 Robert Nash. All rights reserved.
-//
-
-import Foundation
 import CoreData
 
-public protocol Fetchable {
+/// An interface for extracting records from CoreData
+public protocol Fetchable where Self: NSManagedObject {
+  associatedtype T: NSFetchRequestResult = Self
+  /// This function counts the total records saved for the CoreData Model Entity represented by the invocant of this function.
+  ///
+  /// - Parameter context: The object associated with the relevant persistent store co-ordinator you would like to query.
+  /// - Returns: The total count of records.
+  /// - Throws: Errors from the CoreData layer.
   static func count(in context: NSManagedObjectContext) throws -> Int
-  static func fetchAll<T: NSManagedObject>(in context: NSManagedObjectContext) throws -> [T]
-  static func fetchAll<T: NSManagedObject>(withPredicate predicate: NSPredicate?, in context: NSManagedObjectContext) throws -> [T]
-  static func fetchFirst<T: NSManagedObject>(in context: NSManagedObjectContext) throws -> T?
-  static func fetchFirst<T: NSManagedObject>(in context: NSManagedObjectContext, sortedBy sort: [NSSortDescriptor]?) throws -> T?
-  static func fetchFirst<T: NSManagedObject>(withPredicate predicate: NSPredicate?, in context: NSManagedObjectContext) throws -> T?
-  static func fetchFirst<T: NSManagedObject>(withPredicate predicate: NSPredicate?, in context: NSManagedObjectContext, sortedBy sort: [NSSortDescriptor]?) throws -> T?
+  /// This function retrieves all saved records for the CoreData Model Entity represented by the invocant of this function.
+  ///
+  /// - Parameter context: The object associated with the relevant persistent store co-ordinator you would like to query.
+  /// - Returns: Every available record.
+  /// - Throws: Errors from the CoreData layer.
+  static func fetchAll(in context: NSManagedObjectContext) throws -> [T]
+  /// This function retrieves all saved records for the CoreData Model Entity represented by the invocant of this function.
+  ///
+  /// - Parameters:
+  ///   - predicate: A custom predicate to restrict the query.
+  ///   - context: The object associated with the relevant persistent store co-ordinator you would like to query.
+  /// - Returns: Every available record that matches the predicate.
+  /// - Throws: Errors from the CoreData layer.
+  static func fetchAll(withPredicate predicate: NSPredicate?, in context: NSManagedObjectContext) throws -> [T]
+  /// This function retrieves the first saved record found, for the CoreData Model Entity represented by the invocant of this function.
+  ///
+  /// - Parameter context: The object associated with the relevant persistent store co-ordinator you would like to query.
+  /// - Returns: The first saved record found. Any other records are ignored.
+  /// - Throws: Errors from the CoreData layer.
+  static func fetchFirst(in context: NSManagedObjectContext) throws -> T?
+  /// This function retrieves the first saved record found, for the CoreData Model Entity represented by the invocant of this function.
+  ///
+  /// - Parameters:
+  ///   - context: The object associated with the relevant persistent store co-ordinator you would like to query.
+  ///   - sort: The sorting that should take place, before the first record is selected.
+  /// - Returns: The first saved record found. Any other records are ignored.
+  /// - Throws: Errors from the CoreData layer.
+  static func fetchFirst(in context: NSManagedObjectContext, sortedBy sort: [NSSortDescriptor]?) throws -> T?
+  /// This function retrieves the first saved record found, for the CoreData Model Entity represented by the invocant of this function.
+  ///
+  /// - Parameters:
+  ///   - predicate: A custom predicate to restrict the query.
+  ///   - context: The object associated with the relevant persistent store co-ordinator you would like to query.
+  /// - Returns: The first saved record found. Any other records are ignored.
+  /// - Throws: Errors from the CoreData layer.
+  static func fetchFirst(withPredicate predicate: NSPredicate?, in context: NSManagedObjectContext) throws -> T?
+  /// This function retrieves the first saved record found, for the CoreData Model Entity represented by the invocant of this function.
+  ///
+  /// - Parameters:
+  ///   - predicate: A custom predicate to restrict the query.
+  ///   - context: The object associated with the relevant persistent store co-ordinator you would like to query.
+  ///   - sort: The sorting that should take place, before the first record is selected.
+  /// - Returns: The first saved record found. Any other records are ignored.
+  /// - Throws: Errors from the CoreData layer.
+  static func fetchFirst(withPredicate predicate: NSPredicate?, in context: NSManagedObjectContext, sortedBy sort: [NSSortDescriptor]?) throws -> T?
 }
 
 public extension Fetchable {
-  
   static func count(in context: NSManagedObjectContext) throws -> Int {
-    let entityName = String(describing: self)
-    let request: NSFetchRequest<NSManagedObject> = NSFetchRequest(entityName: entityName)
+    let entityName = typeName(self)
+    let request: NSFetchRequest<T> = NSFetchRequest(entityName: entityName)
     return try context.count(for: request)
   }
-  
-  static func fetchAll<T: NSManagedObject>(in context: NSManagedObjectContext) throws -> [T] {
+  static func fetchAll(in context: NSManagedObjectContext) throws -> [T] {
     return try fetchAll(withPredicate: nil, in: context)
   }
-  
-  static func fetchAll<T: NSManagedObject>(withPredicate predicate: NSPredicate?, in context: NSManagedObjectContext) throws -> [T] {
-    let entityName = String(describing: self)
+  static func fetchAll(withPredicate predicate: NSPredicate?, in context: NSManagedObjectContext) throws -> [T] {
+    let entityName = typeName(self)
     let request = NSFetchRequest<T>(entityName: entityName)
     request.predicate = predicate
     return try context.fetch(request)
   }
-  
-  static func fetchFirst<T: NSManagedObject>(in context: NSManagedObjectContext) throws -> T? {
+  static func fetchFirst(in context: NSManagedObjectContext) throws -> T? {
     return try fetchFirst(withPredicate: nil, in: context, sortedBy: nil)
   }
-  
-  static func fetchFirst<T: NSManagedObject>(in context: NSManagedObjectContext, sortedBy sort: [NSSortDescriptor]?) throws -> T? {
+  static func fetchFirst(in context: NSManagedObjectContext, sortedBy sort: [NSSortDescriptor]?) throws -> T? {
     return try fetchFirst(withPredicate: nil, in: context, sortedBy: sort)
   }
-  
-  static func fetchFirst<T: NSManagedObject>(withPredicate predicate: NSPredicate?, in context: NSManagedObjectContext) throws -> T? {
+  static func fetchFirst(withPredicate predicate: NSPredicate?, in context: NSManagedObjectContext) throws -> T? {
     return try fetchFirst(withPredicate: predicate, in: context, sortedBy: nil)
   }
-  
-  static func fetchFirst<T: NSManagedObject>(withPredicate predicate: NSPredicate?, in context: NSManagedObjectContext, sortedBy sort: [NSSortDescriptor]?) throws -> T? {
-    let entityName = String(describing: self)
+  static func fetchFirst(withPredicate predicate: NSPredicate?, in context: NSManagedObjectContext, sortedBy sort: [NSSortDescriptor]?) throws -> T? {
+    let entityName = typeName(self)
     let request = NSFetchRequest<T>(entityName: entityName)
     request.predicate = predicate
     request.fetchLimit = 1
@@ -59,5 +89,4 @@ public extension Fetchable {
     let fetch = try context.fetch(request)
     return fetch.first
   }
-  
 }

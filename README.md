@@ -18,9 +18,8 @@ A lightweight convenience API for basic CoreData database tasks.
 ## Usage
 
 ```swift
-// Query all for first name that BEGINSWITH[cd] `Maggie` ignoring other attributes.
-let query = Performer.Query(firstName: "Maggie")
 do {
+  let query = Performer.Query(firstName: "Maggie") // Query all for first name that BEGINSWITH[cd] `Maggie` ignoring other attributes.
   let performers: [Performer] = try query.all(in: context)
   //or
   let performers: [Performer] = try Performer.fetchAll(withPredicate: NSPredicate(format: "firstName CONTAINS[cd] %@", "Maggie"), in: context)
@@ -54,7 +53,6 @@ Consider the following database schema.
 A class for entity 'Performer', may look like the following.
 
 ```swift
-import Foundation
 import CoreData
 import Records
 
@@ -101,14 +99,7 @@ Custom predicates are still available.
 let performers: [Performer] = try! Performer.fetchAll(withPredicate: NSPredicate(format: "firstName CONTAINS[cd] %@", "Maggie"), in: context)
 ```
 
-Any change you make to your CoreData schema will trigger the regeneration of boiler-plate code. So for instance, if you removed the property `lastName` from the entity `Performer` the new initialiser will be as follows (once you compile with cmd + b).
-
-```swift
-let query = Performer.Query(firstName: "Maggie")
-let performers: [Performer] = try! query.all(in: context)
-```
-
-The Xcode compiler will highlight the changed initialiser at compile time. It's useful to individually evaluate each call site effected by your schema changes.
+Any change you make to your CoreData schema will trigger the regeneration of boiler-plate code, automatically.
 
 Create a record using the usual CoreData API.
 
@@ -133,8 +124,8 @@ Checkout [Performances](https://github.com/rob-nash/Performances) for an example
 To-Many relationship queries.
 
 ```swift
-let restriction = RelationshipRestriction(operation: .allMatching, records: Set(arrayLiteral: performerA, performerB))
-let query = Performance.Query(performers: restriction)
+let aggregate = Aggregate<Performer>(.allMatching, records: Set([performerA, performerB]))
+let query = Performance.Query(performers: aggregate)
 let performances: [Performance] = try! query.all(in: context)
 ```
 
@@ -186,7 +177,6 @@ let query = Party.Query(type: .school)
 To use an enum set the string property on your Entity subclass to private. Then create a `var` for your enum.
 
 ```swift
-import Foundation
 import CoreData
 import Records
 

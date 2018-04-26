@@ -24,16 +24,16 @@ class QueryTests: XCTestCase {
   }
   
   func testSomeMatching() {
-    guard let p1 = try! Performer.Query(dob: nil, firstName: "Angel", lastName: "Jones", party: nil, performances: nil).first(in: context) else {
+    guard let p1 = try! Performer.Query(firstName: "Angel", lastName: "Jones").first(in: context) else {
       XCTFail("Performer not found")
       return
     }
-    guard let p2 = try! Performer.Query(dob: nil, firstName: "Ashton", lastName: "Longworth", party: nil, performances: nil).first(in: context)  else {
+    guard let p2 = try! Performer.Query(firstName: "Ashton", lastName: "Longworth").first(in: context)  else {
       XCTFail("Performer not found")
       return
     }
-    let pred = RelationshipRestriction(operation: .someMatching, records: Set(arrayLiteral: p1,p2))
-    let query = Performance.Query(performers: pred, event: nil, ability: nil, group: nil)
+    let pred = Aggregate<Performer>(.someMatching, records: Set([p1,p2]))
+    let query = Performance.Query(performers: pred)
     let performances: [Performance] = try! query.all(in: context)
     XCTAssert(performances.count == 4)
     performances.forEach { (performance) in
@@ -42,16 +42,16 @@ class QueryTests: XCTestCase {
   }
   
   func testAllMatching() {
-    guard let p1 = try! Performer.Query(dob: nil, firstName: "Angel", lastName: "Jones", party: nil, performances: nil).first(in: context) else {
+    guard let p1 = try! Performer.Query(firstName: "Angel", lastName: "Jones").first(in: context) else {
       XCTFail("Performer not found")
       return
     }
-    guard let p2 = try! Performer.Query(dob: nil, firstName: "Ashton", lastName: "Longworth", party: nil, performances: nil).first(in: context)  else {
+    guard let p2 = try! Performer.Query(firstName: "Ashton", lastName: "Longworth").first(in: context)  else {
       XCTFail("Performer not found")
       return
     }
-    let pred = RelationshipRestriction(operation: .allMatching, records: Set(arrayLiteral: p1,p2))
-    let query = Performance.Query(performers: pred, event: nil, ability: nil, group: nil)
+    let pred = Aggregate<Performer>(.allMatching, records: Set([p1,p2]))
+    let query = Performance.Query(performers: pred)
     let performances: [Performance] = try! query.all(in: context)
     XCTAssert(performances.count == 2)
     performances.forEach { (performance) in
@@ -60,16 +60,16 @@ class QueryTests: XCTestCase {
   }
   
   func testNoneMatching() {
-    guard let p1 = try! Performer.Query(dob: nil, firstName: "Angel", lastName: "Jones", party: nil, performances: nil).first(in: context) else {
+    guard let p1 = try! Performer.Query(firstName: "Angel", lastName: "Jones").first(in: context) else {
       XCTFail("Performer not found")
       return
     }
-    guard let p2 = try! Performer.Query(dob: nil, firstName: "Ashton", lastName: "Longworth", party: nil, performances: nil).first(in: context)  else {
+    guard let p2 = try! Performer.Query(firstName: "Ashton", lastName: "Longworth").first(in: context)  else {
       XCTFail("Performer not found")
       return
     }
-    let pred = RelationshipRestriction(operation: .noneMatching, records: Set(arrayLiteral: p1,p2))
-    let query = Performance.Query(performers: pred, event: nil, ability: nil, group: nil)
+    let pred = Aggregate<Performer>(.noneMatching, records: Set([p1,p2]))
+    let query = Performance.Query(performers: pred)
     let performances: [Performance] = try! query.all(in: context)
     XCTAssert(performances.count == 19)
     performances.forEach { (performance) in

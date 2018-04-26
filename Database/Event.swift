@@ -1,12 +1,3 @@
-//
-//  Event.swift
-//  Database
-//
-//  Created by Robert Nash on 21/10/2017.
-//  Copyright © 2017 Robert Nash. All rights reserved.
-//
-
-import Foundation
 import CoreData
 import Records
 
@@ -23,20 +14,20 @@ public class Event: NSManagedObject, Fetchable {
 public extension Event {
     struct Query {
         public var startDate: Date?
-        public var performances: RelationshipRestriction?
+        public var performances: Aggregate<Performance>?
 
-        public init(startDate: Date?,performances: RelationshipRestriction?) {
+        public init(startDate: Date? = nil, performances: Aggregate<Performance>? = nil) {
           self.startDate = startDate 
           self.performances = performances 
         }
     }
 }
 
-extension Event.Query: Queryable {
+extension Event.Query: QueryGenerator {
 
     public typealias Entity = Event
 
-    public func predicateRepresentation() -> NSCompoundPredicate? {
+    public var predicateRepresentation: NSCompoundPredicate? {
       var predicates = [NSPredicate]()
       if let predicate = startDatePredicate() {
         predicates.append(predicate)

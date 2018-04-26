@@ -1,11 +1,3 @@
-//
-//  FetchedResultsController.swift
-//  Records
-//
-//  Created by Robert Nash on 20/10/2017.
-//  Copyright © 2017 Robert Nash. All rights reserved.
-//
-
 import UIKit
 import CoreData
 
@@ -35,8 +27,13 @@ open class FetchedResultsController<Entity: NSManagedObject>: NSObject, NSFetche
     try fetchedResultsController.performFetch()
   }
   
+  public func reload() throws {
+    try load()
+    delegate?.didReload()
+  }
+  
   private func build() -> NSFetchedResultsController<Entity> {
-    let name = String(describing: Entity.self)
+    let name = typeName(Entity.self)
     let fetchRequest: NSFetchRequest<Entity> = NSFetchRequest<Entity>(entityName: name)
     fetchRequest.fetchBatchSize = 100
     fetchRequest.predicate = self.predicate()
@@ -44,11 +41,6 @@ open class FetchedResultsController<Entity: NSManagedObject>: NSObject, NSFetche
     let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.context, sectionNameKeyPath: sectionNameKeyPath(), cacheName: nil)
     controller.delegate = self
     return controller
-  }
-  
-  public func reload() throws {
-    try load()
-    delegate?.didReload()
   }
   
   open func predicate() -> NSCompoundPredicate { return NSCompoundPredicate(andPredicateWithSubpredicates: []) }

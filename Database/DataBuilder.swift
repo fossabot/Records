@@ -1,12 +1,3 @@
-//
-//  DataBuilder.swift
-//  RecordsDemo
-//
-//  Created by Robert Nash on 21/10/2017.
-//  Copyright © 2017 Robert Nash. All rights reserved.
-//
-
-import Foundation
 import CoreData
 import Records
 
@@ -187,7 +178,7 @@ public struct DataBuilder {
       let performersRecords: [Database.Performer] = performers.map {
         $0.record(forParty: party, in: context)
       }
-      let restriction = RelationshipRestriction(operation: .allMatching, records: Set(performersRecords))
+      let restriction = Aggregate<Database.Performer>(.allMatching, records: Set(performersRecords))
         /// Query = Is there a performance for this event, at this ability, with this group type and these exact performers?
       let query = Database.Performance.Query(performers: restriction, event: event, ability: ability_, group: group_)
       let records = try! query.all(in: context)

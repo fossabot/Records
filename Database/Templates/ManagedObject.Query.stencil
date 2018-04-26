@@ -5,7 +5,7 @@
     struct Query {
         {% for variable in type.variables where variable|!annotated:"sourcerySkip" and variable.readAccess != "private" and variable.readAccess != "fileprivate" %}
         {% if variable.typeName|contains:"Set" %}
-        public var {{ variable.name|replace:"_","" }}: RelationshipRestriction?
+        public var {{ variable.name|replace:"_","" }}: Aggregate{{ variable.unwrappedTypeName|replace:"Set",""|capitalise }}?
         {% elif variable.typeName.isOptional %}
         public var {{ variable.name|replace:"_","" }}: {{ variable.typeName }}
         {% else %}
@@ -13,7 +13,7 @@
         {% endif %}
         {% endfor %}
 
-        public init({% for variable in type.variables where variable|!annotated:"sourcerySkip" and variable.readAccess != "private" and variable.readAccess != "fileprivate" %}{% if variable.typeName|contains:"Set" %}{{ variable.name|replace:"_","" }}: RelationshipRestriction? = nil{% elif variable.typeName.isOptional %}{{ variable.name|replace:"_","" }}: {{ variable.typeName }} = nil{% else %}{{ variable.name|replace:"_","" }}: {{ variable.typeName }}? = nil{% endif %}{% if not forloop.last %},{% endif %}{% endfor %}) {
+        public init({% for variable in type.variables where variable|!annotated:"sourcerySkip" and variable.readAccess != "private" and variable.readAccess != "fileprivate" %}{% if variable.typeName|contains:"Set" %}{{ variable.name|replace:"_","" }}: Aggregate{{ variable.unwrappedTypeName|replace:"Set",""|capitalise }}? = nil{% elif variable.typeName.isOptional %}{{ variable.name|replace:"_","" }}: {{ variable.typeName }} = nil{% else %}{{ variable.name|replace:"_","" }}: {{ variable.typeName }}? = nil{% endif %}{% if not forloop.last %}, {% endif %}{% endfor %}) {
           {% for variable in type.variables where variable|!annotated:"sourcerySkip" and variable.readAccess != "private" and variable.readAccess != "fileprivate" %}
           self.{{ variable.name|replace:"_","" }} = {{ variable.name|replace:"_","" }} 
           {% endfor %}
@@ -21,11 +21,11 @@
     }
 }
 
-extension {{ type.name }}.Query: Queryable {
+extension {{ type.name }}.Query: QueryGenerator {
 
     public typealias Entity = {{ type.name }}
 
-    public func predicateRepresentation() -> NSCompoundPredicate? {
+    public var predicateRepresentation: NSCompoundPredicate? {
       var predicates = [NSPredicate]()
       {% for variable in type.variables where variable|!annotated:"sourcerySkip" and variable.readAccess != "private" and variable.readAccess != "fileprivate" %}
       if let predicate = {{ variable.name|replace:"_","" }}Predicate() {
