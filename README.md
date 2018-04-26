@@ -38,7 +38,7 @@ do {
 ```swift
 do {
   let query = Performer.Query(firstName: "Maggie")
-  let performer: Performer? = try query.first(in: context)
+  let performer: Performer? = try query.first(in: context, sortedBy: [NSSortDescriptor(key: "firstName", ascending: true)])
   if performer == nil { print("not found") }
 } catch {
   // Errors from the CoreData layer such as 'model not found' etc
