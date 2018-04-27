@@ -78,7 +78,7 @@ import UIKit
 
 class PerformancesViewController: UIViewController {
   
-  var fetchedResultsController: PerformancesFetchedResultsController!
+  private let fetchedResultsController: PerformancesFetchedResultsController!
   
   @IBOutlet private weak var tableView: PerformancesTableView! {
     didSet {
@@ -186,6 +186,8 @@ public class Performer: NSManagedObject, Fetchable {
 * Declare conformance to `Fetchable` in each of your NSManaged object suclasses.
 * Add annotation marks for sourcery in each of your NSManaged object suclasses.
 * Set codgen to 'manual' for each of your CoreData entities.
+
+Then hit build and compile your code! Done!
 
 Checkout [Performances](https://github.com/rob-nash/Performances) to see a fully configured installation.
 
