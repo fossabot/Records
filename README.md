@@ -101,14 +101,6 @@ class PerformancesViewController: UIViewController {
 }
 ```
 
-**1. Installation**
-   
-  [<img width="300" alt="screen shot" src="https://img.youtube.com/vi/31CfpBJNAJc/0.jpg">](https://www.youtube.com/watch?v=31CfpBJNAJc)
-
-**2. Usage**
-
-  [<img width="300" alt="screen shot" src="https://img.youtube.com/vi/HOTwBou6FB4/0.jpg">](https://www.youtube.com/watch?v=HOTwBou6FB4)
-
 ## Installing
 
 Consider using [Homebrew](https://brew.sh) to install [Carthage](https://github.com/Carthage/Carthage) v0.29.0+
@@ -258,6 +250,14 @@ public extension Performer {
     return firstName + " " + lastName
   }
 ```
+
+**1. Installation**
+   
+  [<img width="300" alt="screen shot" src="https://img.youtube.com/vi/31CfpBJNAJc/0.jpg">](https://www.youtube.com/watch?v=31CfpBJNAJc)
+
+**2. Usage**
+
+  [<img width="300" alt="screen shot" src="https://img.youtube.com/vi/HOTwBou6FB4/0.jpg">](https://www.youtube.com/watch?v=HOTwBou6FB4)
 
 ### Donations.
 <p>If you like this and you want to buy me a drink, use bitcoin.</p>
