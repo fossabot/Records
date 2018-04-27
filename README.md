@@ -15,6 +15,8 @@ A lightweight convenience API for basic CoreData database tasks.
 
 *Transformable types not supported*
 
+Checkout [Performances](https://github.com/rob-nash/Performances) for an example implementation.
+
 ## Example Usage
 
 Assume `Performer` is a CoreData entity.
@@ -51,9 +53,6 @@ Create a record using the usual CoreData API.
 ```swift
 let performer = Performer(context: context)
 ```
-## Other Features
-
-Checkout [Performances](https://github.com/rob-nash/Performances) for an example implementation of these features.
 
 To-Many relationship queries.
 
@@ -111,6 +110,8 @@ class PerformancesViewController: UIViewController {
   [<img width="300" alt="screen shot" src="https://img.youtube.com/vi/HOTwBou6FB4/0.jpg">](https://www.youtube.com/watch?v=HOTwBou6FB4)
 
 ## Installing
+
+Checkout [Performances](https://github.com/rob-nash/Performances) to see a fully configured installation.
 
 For the latest release, select the [release](https://github.com/rob-nash/Records/releases) tab.
 
@@ -185,6 +186,8 @@ public class Performer: NSManagedObject, Fetchable {
 * Declare conformance to `Fetchable` in each of your NSManaged object suclasses.
 * Add annotation marks for sourcery in each of your NSManaged object suclasses.
 * Set codgen to 'manual' for each of your CoreData entities.
+
+Checkout [Performances](https://github.com/rob-nash/Performances) to see a fully configured installation.
 
 ## Footnote
 
