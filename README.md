@@ -102,62 +102,13 @@ class PerformancesViewController: UIViewController {
 }
 ```
 
-String replacement with Enum.
+**1. Installation**
+   
+  [<img width="300" alt="screen shot" src="https://img.youtube.com/vi/31CfpBJNAJc/0.jpg">](https://www.youtube.com/watch?v=31CfpBJNAJc)
 
-```swift
-let query = Party.Query(type: .school)
-```
+**2. Usage**
 
-To use an enum set the string property on your Entity subclass to private. Then create a `var` for your enum.
-
-```swift
-import CoreData
-import Records
-
-@objc(Party)
-public class Party: NSManagedObject, Fetchable {
-  
-  @NSManaged public var email: String
-  
-  @NSManaged public var name: String
-  
-  @NSManaged public var phone: String
-  
-  @NSManaged private var type: String
-  
-  @NSManaged public var performers: Set<Performer>?
-  
-  public enum PartyType: String {
-    case school = "School"
-    case independent = "Independent"
-  }
-  
-  public var type_: PartyType {
-    get {
-      return PartyType(rawValue: type)!
-    }
-    set {
-      type = newValue.rawValue
-    }
-  }
-  
-}
-```
-
-Make sure to set a default value on the property and write a unit test ([see here](https://github.com/rob-nash/Records/blob/master/RecordsTests/PartyTests.swift)).
-
-When switching the accessibility level of your @NSManaged vars from public to private, like the above enum example, it is recommended that you use an underscore, because the script will truncate the underscore from the initialiser. If you would like to use some other naming convention, feel free to modify [the script](https://github.com/rob-nash/Records/blob/master/Database/Templates/ManagedObject.Query.stencil).
-
-If you write custom properties on classes targetted by Sourcery you may want to use the following annotation.
-
-```swift
-public extension Performer {
-  
-  //sourcery:sourcerySkip
-  var fullName: String {
-    return firstName + " " + lastName
-  }
-```
+  [<img width="300" alt="screen shot" src="https://img.youtube.com/vi/HOTwBou6FB4/0.jpg">](https://www.youtube.com/watch?v=HOTwBou6FB4)
 
 ## Installing
 
@@ -235,15 +186,64 @@ public class Performer: NSManagedObject, Fetchable {
 * Add annotation marks for sourcery in each of your NSManaged object suclasses.
 * Set codgen to 'manual' for each of your CoreData entities.
 
-## Video tutorials
+## Footnote
 
-**1. Installation**
-   
-  [<img width="300" alt="screen shot" src="https://img.youtube.com/vi/31CfpBJNAJc/0.jpg">](https://www.youtube.com/watch?v=31CfpBJNAJc)
+String replacement with Enum.
 
-  **2. Usage**
+```swift
+let query = Party.Query(type: .school)
+```
 
-  [<img width="300" alt="screen shot" src="https://img.youtube.com/vi/HOTwBou6FB4/0.jpg">](https://www.youtube.com/watch?v=HOTwBou6FB4)
+To use an enum set the string property on your Entity subclass to private. Then create a `var` for your enum.
+
+```swift
+import CoreData
+import Records
+
+@objc(Party)
+public class Party: NSManagedObject, Fetchable {
+  
+  @NSManaged public var email: String
+  
+  @NSManaged public var name: String
+  
+  @NSManaged public var phone: String
+  
+  @NSManaged private var type: String
+  
+  @NSManaged public var performers: Set<Performer>?
+  
+  public enum PartyType: String {
+    case school = "School"
+    case independent = "Independent"
+  }
+  
+  public var type_: PartyType {
+    get {
+      return PartyType(rawValue: type)!
+    }
+    set {
+      type = newValue.rawValue
+    }
+  }
+  
+}
+```
+
+Make sure to set a default value on the property and write a unit test ([see here](https://github.com/rob-nash/Records/blob/master/RecordsTests/PartyTests.swift)).
+
+When switching the accessibility level of your @NSManaged vars from public to private, like the above enum example, it is recommended that you use an underscore, because the script will truncate the underscore from the initialiser. If you would like to use some other naming convention, feel free to modify [the script](https://github.com/rob-nash/Records/blob/master/Database/Templates/ManagedObject.Query.stencil).
+
+If you write custom properties on classes targetted by Sourcery you may want to use the following annotation.
+
+```swift
+public extension Performer {
+  
+  //sourcery:sourcerySkip
+  var fullName: String {
+    return firstName + " " + lastName
+  }
+```
 
 ### Donations.
 <p>If you like this and you want to buy me a drink, use bitcoin.</p>
