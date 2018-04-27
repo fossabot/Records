@@ -117,11 +117,7 @@ For the latest release, select the [release](https://github.com/rob-nash/Records
 
 ### Carthage
 
-* Install Carthage.
-
-Manually install the following. Can be done easily with [Homebrew](https://brew.sh).
-
-* [Carthage](https://github.com/Carthage/Carthage) v0.29.0+
+Consider using [Homebrew](https://brew.sh) to install [Carthage](https://github.com/Carthage/Carthage) v0.29.0+
 
 Add the following to your `Cartfile`.
 
@@ -144,9 +140,7 @@ Once the `Records` binary is built, link it to your project.
 * Add annotation marks for sourcery in each of your NSManaged object suclasses.
 * Add a build phase for sourcery.
 
-Manually install the following. Can be done easily with [Homebrew](https://brew.sh).
-
-* [Sourcery](https://github.com/krzysztofzablocki/Sourcery) v0.11.0+
+Consider using [Homebrew](https://brew.sh) to install [Sourcery](https://github.com/krzysztofzablocki/Sourcery) v0.11.0+
 
 Create the following at the root directory of your project.
 
