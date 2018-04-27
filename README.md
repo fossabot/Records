@@ -117,10 +117,11 @@ For the latest release, select the [release](https://github.com/rob-nash/Records
 
 ### Carthage and Sourcery
 
-* Install Carthage
-* Install Sourcery
-* Create a yml file for sourcery
+* Install Carthage.
+* Install Sourcery.
+* Create a yml file for sourcery.
 * Add annotation marks for sourcery in each of your NSManaged object suclasses.
+* Add a build phase for sourcery.
 
 Manually install the following. Can be done easily with [Homebrew](https://brew.sh).
 
@@ -149,6 +150,12 @@ templates:
 - ../Carthage/Checkouts/Records/Database/Templates
 output:
 - ./Path/To/Your/NSManagedObject/Subclasses
+```
+
+Add a build phase that runs some bash, just before the build phase 'compile sources'.
+
+```
+sourcery --config ./.sourcery.yml
 ```
 
 ### Setting up your Entities
