@@ -168,7 +168,11 @@ Manually install the following. Can be done easily with [Homebrew](https://brew.
 * [Carthage](https://github.com/Carthage/Carthage) v0.29.0+
 * [Sourcery](https://github.com/krzysztofzablocki/Sourcery) v0.11.0+
 
-Add rob-nash/Records to your `Cartfile`.
+Add the following to your `Cartfile`.
+
+```
+github rob-nash/Records
+```
 
 Consider the following database schema.
 
@@ -178,15 +182,11 @@ Consider the following database schema.
     </a>
 </p>
 
-We will go through the following, one by one.
+## Steps
 
 * Setup sourcery.
-* Declare conformance to `Fetchable` in each of your NSManaged object suclasses.
-* Add annotation marks for sourcery in each of your NSManaged object suclasses.
-* Set codgen to 'manual' for each of your CoreData entities.
+* Setup NSManagedObjects.
 * Compile your code.
-
-A pre-written stencil file is provided [here](https://github.com/rob-nash/Records/blob/master/Database/Templates/ManagedObject.Query.stencil) which will instruct soucery to write the 'Query' syntax for any NSManagedObject subclass that implements `Fetchable`.
 
 Create the following at the root directory of your project.
 
@@ -194,7 +194,7 @@ Create the following at the root directory of your project.
 ./.sourcery.yml
 ```
 
-If you installed `Records` using Carthage, then the contents of .sourcery.yml file should be this.
+If you installed `Records` using Carthage, then the contents of .sourcery.yml file should be like the following.
 
 ```
 sources:
@@ -231,6 +231,10 @@ public class Performer: NSManagedObject, Fetchable {
 // sourcery:end
 ```
 
+* Declare conformance to `Fetchable` in each of your NSManaged object suclasses.
+* Add annotation marks for sourcery in each of your NSManaged object suclasses.
+* Set codgen to 'manual' for each of your CoreData entities.
+
 ## Video tutorials
 
 **1. Installation**
@@ -240,11 +244,6 @@ public class Performer: NSManagedObject, Fetchable {
   **2. Usage**
 
   [<img width="300" alt="screen shot" src="https://img.youtube.com/vi/HOTwBou6FB4/0.jpg">](https://www.youtube.com/watch?v=HOTwBou6FB4)
-
-## Sourcery
-
-[Sourcery](https://github.com/krzysztofzablocki/Sourcery) is a boiler-plate generation tool that you can optionally use with this framework. 
-
 
 ### Donations.
 <p>If you like this and you want to buy me a drink, use bitcoin.</p>
