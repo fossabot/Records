@@ -15,45 +15,9 @@ A lightweight convenience API for basic CoreData database tasks.
 
 *Transformable types not supported*
 
-Consider the following database schema.
-
-<p align="center">
-    <a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/KeyConcepts.html">
-        <img src="https://i.imgur.com/WRlhnlK.png" alt="CoreData" />
-    </a>
-</p>
-
-A class for entity 'Performer', may look like the following. 
-
-```swift
-import CoreData
-import Records
-
-@objc(Performer)
-public class Performer: NSManagedObject, Fetchable {
-
-@NSManaged public var dob: Date
-
-@NSManaged public var firstName: String
-
-@NSManaged public var lastName: String
-
-@NSManaged public var party: Party
-
-@NSManaged public var performances: Set<Performance>?
-
-}
-
-// sourcery:inline:Performer.ManagedObject.Query.stencil
-// sourcery:end
-```
-
-* Declare conformance to `Fetchable` 
-* Add annotation marks for sourcery
-* Set codgen to 'manual'
-* Compile your code
-
 ## Example Usage
+
+Assume `Performer` is a CoreData entity.
 
 ```swift
 do {
@@ -199,7 +163,77 @@ public extension Performer {
 
 For the latest release, select the [release](https://github.com/rob-nash/Records/releases) tab.
 
-  **1. Installation**
+Manually install the following. Can be done easily with [Homebrew](https://brew.sh).
+
+* [Carthage](https://github.com/Carthage/Carthage) v0.29.0+
+* [Sourcery](https://github.com/krzysztofzablocki/Sourcery) v0.11.0+
+
+Add rob-nash/Records to your `Cartfile`.
+
+Consider the following database schema.
+
+<p align="center">
+    <a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/KeyConcepts.html">
+        <img src="https://i.imgur.com/WRlhnlK.png" alt="CoreData" />
+    </a>
+</p>
+
+We will go through the following, one by one.
+
+* Setup sourcery.
+* Declare conformance to `Fetchable` in each of your NSManaged object suclasses.
+* Add annotation marks for sourcery in each of your NSManaged object suclasses.
+* Set codgen to 'manual' for each of your CoreData entities.
+* Compile your code.
+
+A pre-written stencil file is provided [here](https://github.com/rob-nash/Records/blob/master/Database/Templates/ManagedObject.Query.stencil) which will instruct soucery to write the 'Query' syntax for any NSManagedObject subclass that implements `Fetchable`.
+
+Create the following at the root directory of your project.
+
+```
+./.sourcery.yml
+```
+
+If you installed `Records` using Carthage, then the contents of .sourcery.yml file should be this.
+
+```
+sources:
+- ../Carthage/Checkouts/Records/Records
+- ./Path/To/Your/NSManagedObject/Subclasses
+templates:
+- ../Carthage/Checkouts/Records/Database/Templates
+output:
+- ./Path/To/Your/NSManagedObject/Subclasses
+```
+
+A class for entity 'Performer', should look like the following.
+
+```swift
+import CoreData
+import Records
+
+@objc(Performer)
+public class Performer: NSManagedObject, Fetchable {
+
+@NSManaged public var dob: Date
+
+@NSManaged public var firstName: String
+
+@NSManaged public var lastName: String
+
+@NSManaged public var party: Party
+
+@NSManaged public var performances: Set<Performance>?
+
+}
+
+// sourcery:inline:Performer.ManagedObject.Query.stencil
+// sourcery:end
+```
+
+## Video tutorials
+
+**1. Installation**
    
   [<img width="300" alt="screen shot" src="https://img.youtube.com/vi/31CfpBJNAJc/0.jpg">](https://www.youtube.com/watch?v=31CfpBJNAJc)
 
@@ -211,7 +245,6 @@ For the latest release, select the [release](https://github.com/rob-nash/Records
 
 [Sourcery](https://github.com/krzysztofzablocki/Sourcery) is a boiler-plate generation tool that you can optionally use with this framework. 
 
-A pre-written stencil file is provided [here](https://github.com/rob-nash/Records/blob/master/Database/Templates/ManagedObject.Query.stencil) which will instruct soucery to write the 'Query' syntax for any NSManagedObject subclass that implements `Fetchable`.
 
 ### Donations.
 <p>If you like this and you want to buy me a drink, use bitcoin.</p>
