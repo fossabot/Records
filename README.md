@@ -23,6 +23,36 @@ Consider the following database schema.
     </a>
 </p>
 
+A class for entity 'Performer', may look like the following. 
+
+```swift
+import CoreData
+import Records
+
+@objc(Performer)
+public class Performer: NSManagedObject, Fetchable {
+
+@NSManaged public var dob: Date
+
+@NSManaged public var firstName: String
+
+@NSManaged public var lastName: String
+
+@NSManaged public var party: Party
+
+@NSManaged public var performances: Set<Performance>?
+
+}
+
+// sourcery:inline:Performer.ManagedObject.Query.stencil
+// sourcery:end
+```
+
+* Declare conformance to `Fetchable` 
+* Add annotation marks for sourcery
+* Set codgen to 'manual'
+* Compile your code
+
 ## Example Usage
 
 ```swift
@@ -51,36 +81,6 @@ do {
   // Errors from the CoreData layer such as 'model not found' etc
 }
 ```
-
-A class for entity 'Performer', may look like the following. 
-
-```swift
-import CoreData
-import Records
-
-@objc(Performer)
-public class Performer: NSManagedObject, Fetchable {
-
-  @NSManaged public var dob: Date
-  
-  @NSManaged public var firstName: String
-  
-  @NSManaged public var lastName: String
-  
-  @NSManaged public var party: Party
-  
-  @NSManaged public var performances: Set<Performance>?
-
-}
-
-// sourcery:inline:Performer.ManagedObject.Query.stencil
-// sourcery:end
-```
-
-* Declare conformance to `Fetchable` 
-* Add annotation marks for sourcery
-* Set codgen to 'manual'
-* Then build
 
 Create a record using the usual CoreData API.
 
