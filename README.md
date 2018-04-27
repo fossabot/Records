@@ -115,9 +115,30 @@ Checkout [Performances](https://github.com/rob-nash/Performances) to see a fully
 
 For the latest release, select the [release](https://github.com/rob-nash/Records/releases) tab.
 
-### Carthage and Sourcery
+### Carthage
 
 * Install Carthage.
+
+Manually install the following. Can be done easily with [Homebrew](https://brew.sh).
+
+* [Carthage](https://github.com/Carthage/Carthage) v0.29.0+
+
+Add the following to your `Cartfile`.
+
+```
+github rob-nash/Records
+```
+
+Run the following
+
+```
+carthage update
+```
+
+Once the `Records` binary is built, link it to your project.
+
+### Sourcery
+
 * Install Sourcery.
 * Create a yml file for sourcery.
 * Add annotation marks for sourcery in each of your NSManaged object suclasses.
@@ -125,14 +146,7 @@ For the latest release, select the [release](https://github.com/rob-nash/Records
 
 Manually install the following. Can be done easily with [Homebrew](https://brew.sh).
 
-* [Carthage](https://github.com/Carthage/Carthage) v0.29.0+
 * [Sourcery](https://github.com/krzysztofzablocki/Sourcery) v0.11.0+
-
-Add the following to your `Cartfile`.
-
-```
-github rob-nash/Records
-```
 
 Create the following at the root directory of your project.
 
@@ -152,7 +166,7 @@ output:
 - ./Path/To/Your/NSManagedObject/Subclasses
 ```
 
-Add a build phase that runs some bash, just before the build phase 'compile sources'.
+Add a build phase that runs some bash. Make sure this build phase runs just before the build phase named 'compile sources'.
 
 ```
 sourcery --config ./.sourcery.yml
