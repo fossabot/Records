@@ -111,12 +111,6 @@ class PerformancesViewController: UIViewController {
 
 ## Installing
 
-Checkout [Performances](https://github.com/rob-nash/Performances) to see a fully configured installation.
-
-For the latest release, select the [release](https://github.com/rob-nash/Records/releases) tab.
-
-### Carthage
-
 Consider using [Homebrew](https://brew.sh) to install [Carthage](https://github.com/Carthage/Carthage) v0.29.0+
 
 Add the following to your `Cartfile`.
@@ -132,8 +126,6 @@ carthage update
 ```
 
 Once the `Records` binary is built, link it to your project.
-
-### Sourcery
 
 * Install Sourcery.
 * Create a yml file for sourcery.
@@ -165,8 +157,6 @@ Add a build phase that runs some bash. Make sure this build phase runs just befo
 ```
 sourcery --config ./.sourcery.yml
 ```
-
-### Setting up your Entities
 
 * Declare conformance to `Fetchable` in each of your NSManaged object suclasses.
 * Set codgen to 'manual' for each of your CoreData entities.
@@ -207,6 +197,8 @@ public class Performer: NSManagedObject, Fetchable {
 Then hit build and compile your code! Done!
 
 Checkout [Performances](https://github.com/rob-nash/Performances) to see a fully configured installation.
+
+For the latest release, select the [release](https://github.com/rob-nash/Records/releases) tab.
 
 ## Footnote
 
