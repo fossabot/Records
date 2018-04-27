@@ -115,6 +115,13 @@ Checkout [Performances](https://github.com/rob-nash/Performances) to see a fully
 
 For the latest release, select the [release](https://github.com/rob-nash/Records/releases) tab.
 
+### Carthage and Sourcery
+
+* Install Carthage
+* Install Sourcery
+* Create a yml file for sourcery
+* Add annotation marks for sourcery in each of your NSManaged object suclasses.
+
 Manually install the following. Can be done easily with [Homebrew](https://brew.sh).
 
 * [Carthage](https://github.com/Carthage/Carthage) v0.29.0+
@@ -125,20 +132,6 @@ Add the following to your `Cartfile`.
 ```
 github rob-nash/Records
 ```
-
-Consider the following database schema.
-
-<p align="center">
-    <a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/KeyConcepts.html">
-        <img src="https://i.imgur.com/WRlhnlK.png" alt="CoreData" />
-    </a>
-</p>
-
-## Steps
-
-* Setup sourcery.
-* Setup NSManagedObjects.
-* Compile your code.
 
 Create the following at the root directory of your project.
 
@@ -157,6 +150,19 @@ templates:
 output:
 - ./Path/To/Your/NSManagedObject/Subclasses
 ```
+
+### Setting up your Entities
+
+* Declare conformance to `Fetchable` in each of your NSManaged object suclasses.
+* Set codgen to 'manual' for each of your CoreData entities.
+
+Consider the following database schema.
+
+<p align="center">
+    <a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/KeyConcepts.html">
+        <img src="https://i.imgur.com/WRlhnlK.png" alt="CoreData" />
+    </a>
+</p>
 
 A class for entity 'Performer', should look like the following.
 
@@ -182,10 +188,6 @@ public class Performer: NSManagedObject, Fetchable {
 // sourcery:inline:Performer.ManagedObject.Query.stencil
 // sourcery:end
 ```
-
-* Declare conformance to `Fetchable` in each of your NSManaged object suclasses.
-* Add annotation marks for sourcery in each of your NSManaged object suclasses.
-* Set codgen to 'manual' for each of your CoreData entities.
 
 Then hit build and compile your code! Done!
 
