@@ -136,12 +136,11 @@ If you installed `Records` using Carthage, then the contents of .sourcery.yml fi
 
 ```
 sources:
-- ../Carthage/Checkouts/Records/Records
 - ./Path/To/Your/NSManagedObject/Subclasses
 templates:
-- ../Carthage/Checkouts/Records/Database/Templates
+- ../Carthage/Build/iOS/Records.framework/
 output:
-- ./Path/To/Your/NSManagedObject/Subclasses
+./Path/To/Your/NSManagedObject/Subclasses
 ```
 
 Add a build phase that runs some bash. Make sure this build phase runs just before the build phase named 'compile sources'.

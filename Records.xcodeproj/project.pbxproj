@@ -15,6 +15,7 @@
 		5050A09D1FA71F64005B2F34 /* Parties.json in Resources */ = {isa = PBXBuildFile; fileRef = 50B7924B1FA362AA006F0F5B /* Parties.json */; };
 		5050A09F1FA7210A005B2F34 /* QueryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5050A09E1FA7210A005B2F34 /* QueryTests.swift */; };
 		506FB34D2091CE79006CE5FE /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506FB34C2091CE79006CE5FE /* Utilities.swift */; };
+		50A30F1720971DC1007103A8 /* ManagedObject.Query.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 506DFAF51F9C929400C793BA /* ManagedObject.Query.stencil */; };
 		50B4FB9B1FA6FD6D0086439D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DD8BB61F9B18AF0075E16E /* Storage.swift */; };
 		50B4FBA11FA70E490086439D /* PerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B4FBA01FA70E490086439D /* PerformanceTests.swift */; };
 		50B4FBA31FA70F480086439D /* PartyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B4FBA21FA70F480086439D /* PartyTests.swift */; };
@@ -317,6 +318,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50A30F1720971DC1007103A8 /* ManagedObject.Query.stencil in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
