@@ -1,4 +1,4 @@
-{% for type in types.implementing.Fetchable %}
+{% for type in types.based.Fetchable %}
 // sourcery:inline:{{ type.name }}.ManagedObject.Query.stencil
 {% if type.kind == "class" %}
 {{ type.accessLevel }} extension {{ type.name }} {
