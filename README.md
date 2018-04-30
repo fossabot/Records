@@ -15,8 +15,6 @@ A lightweight convenience API for basic CoreData database tasks.
 
 *Transformable types not supported*
 
-Checkout [Performances](https://github.com/rob-nash/Performances) for an example implementation.
-
 ## Example Usage
 
 Assume `Performer` is a CoreData entity.
@@ -119,11 +117,6 @@ carthage update
 
 Once the `Records` binary is built, link it to your project.
 
-* Install Sourcery.
-* Create a yml file for sourcery.
-* Add annotation marks for sourcery in each of your NSManaged object suclasses.
-* Add a build phase for sourcery.
-
 Consider using [Homebrew](https://brew.sh) to install [Sourcery](https://github.com/krzysztofzablocki/Sourcery) v0.11.0+
 
 Create the following at the root directory of your project.
@@ -143,14 +136,11 @@ output:
 ./Path/To/Your/NSManagedObject/Subclasses
 ```
 
-Add a build phase that runs some bash. Make sure this build phase runs just before the build phase named 'compile sources'.
+Add the following bash script as a build phase that runs just before the build phase named 'compile sources'.
 
 ```
 sourcery --config ./.sourcery.yml
 ```
-
-* Declare conformance to `Fetchable` in each of your NSManaged object suclasses.
-* Set codgen to 'manual' for each of your CoreData entities.
 
 Consider the following database schema.
 
@@ -159,6 +149,10 @@ Consider the following database schema.
         <img src="https://i.imgur.com/WRlhnlK.png" alt="CoreData" />
     </a>
 </p>
+
+* Set codgen to 'manual' for each of your CoreData entities.
+* Declare conformance to `Fetchable` in each of your NSManaged object suclasses.
+* Add annotation marks for Sourcery.
 
 A class for entity 'Performer', should look like the following.
 
