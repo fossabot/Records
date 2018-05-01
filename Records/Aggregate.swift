@@ -39,7 +39,7 @@ public struct Aggregate<T: NSManagedObject> {
   
 }
 
-@available(*, deprecated: 4.0.0, message: "Please use Aggregate<T: NSManagedObject>")
+@available(*, deprecated: 3.1.0, message: "Please use Aggregate<T: NSManagedObject>")
 public struct RelationshipRestriction {
   /// Inclusive operators. As per https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/Predicates/Articles/pSyntax.html
   ///

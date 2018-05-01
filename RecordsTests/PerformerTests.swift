@@ -57,7 +57,7 @@ class PerformerTests: XCTestCase {
   func testFetchAll1() {
     let count: Int = 3
     createPerfomers(count: count, inContext: context)
-    let all: [Performer]? = try! Performer.fetchAll(withPredicate: nil, in: context)
+    let all: [Performer]? = try! Performer.fetchAll(in: context)
     let total = all?.count ?? 0
     XCTAssert(total == count, String(format: "Total is %i not: %i", total, count))
   }
@@ -65,7 +65,7 @@ class PerformerTests: XCTestCase {
   func testFetchAll2() {
     let count: Int = 3
     createPerfomers(count: count, inContext: context)
-    let query = Performer.Query(dob: nil, firstName: "Bob", lastName: "Nash", party: nil, performances: nil)
+    let query = Performer.Query(firstName: "Bob", lastName: "Nash")
     let all: [Performer]? = try! query.all(in: context)
     let total = all?.count ?? 0
     XCTAssert(total == count, String(format: "Total is %i not: %i", total, count))

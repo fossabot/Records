@@ -1,11 +1,3 @@
-//
-//  FetchedResultsControllerDelegate.swift
-//  Records
-//
-//  Created by Robert Nash on 20/10/2017.
-//  Copyright © 2017 Robert Nash. All rights reserved.
-//
-
 import UIKit
 
 public protocol FetchedResultsControllerDelegate: class {
