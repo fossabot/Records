@@ -179,6 +179,18 @@ public class Performer: NSManagedObject, Fetchable {
 // sourcery:end
 ```
 
+Make sure you change any `NSSet` types to their swift equivalent.
+
+```swift
+@NSManaged public var performances: NSSet?
+```
+
+to
+
+```swift
+@NSManaged public var performances: Set<Performance>?
+```
+
 Then hit build and compile your code! Done!
 
 Checkout [Performances](https://github.com/rob-nash/Performances) to see a fully configured installation.
