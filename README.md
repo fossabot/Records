@@ -101,7 +101,45 @@ class PerformancesViewController: UIViewController {
 
 ## Installing
 
-Consider using [Homebrew](https://brew.sh) to install [Carthage](https://github.com/Carthage/Carthage) v0.29.0+
+Install the following. [Homebrew](https://brew.sh) is your friend.
+
+<p align="left">
+    <a href="https://github.com/krzysztofzablocki/Sourcery">
+        <img src="https://img.shields.io/badge/sourcery-0.11.0+-green.svg?style=flat" alt="Sourcery: 0.11.0+" />
+    </a>
+    <a href="https://github.com/Carthage/Carthage">
+        <img src="https://img.shields.io/badge/carthage-0.29.0+-green.svg?style=flat" alt="Carthage: 0.29.0+" />
+    </a>
+    <a href="https://swift.org">
+        <img src="https://img.shields.io/badge/swift-4+-green.svg?style=flat" alt="Swift: 4+" />
+    </a>
+    <a href="https://developer.apple.com">
+        <img src="https://img.shields.io/badge/xcode-9+-green.svg?style=flat" alt="Xcode: 9+" />
+    </a>
+</p>
+
+Create the following at the root directory of your project.
+
+```
+./.sourcery.yml
+```
+
+The config file should contain the following.
+
+```
+sources:
+- ./Path/To/Your/NSManagedObject/Subclasses
+templates:
+- ../Carthage/Build/iOS/Records.framework/
+output:
+./Path/To/Your/NSManagedObject/Subclasses
+```
+
+Run this bash as a build phase, just before 'compile sources'.
+
+```
+sourcery --config ./.sourcery.yml
+```
 
 Add the following to your `Cartfile`.
 
@@ -117,31 +155,6 @@ carthage update
 
 Once the `Records` binary is built, link it to your project.
 
-Consider using [Homebrew](https://brew.sh) to install [Sourcery](https://github.com/krzysztofzablocki/Sourcery) v0.11.0+
-
-Create the following at the root directory of your project.
-
-```
-./.sourcery.yml
-```
-
-If you installed `Records` using Carthage, then the contents of .sourcery.yml file should be like the following.
-
-```
-sources:
-- ./Path/To/Your/NSManagedObject/Subclasses
-templates:
-- ../Carthage/Build/iOS/Records.framework/
-output:
-./Path/To/Your/NSManagedObject/Subclasses
-```
-
-Add the following bash script as a build phase that runs just before the build phase named 'compile sources'.
-
-```
-sourcery --config ./.sourcery.yml
-```
-
 Consider the following database schema.
 
 <p align="center">
@@ -153,6 +166,7 @@ Consider the following database schema.
 * Set codgen to 'manual' for each of your CoreData entities.
 * Declare conformance to `Fetchable` in each of your NSManaged object suclasses.
 * Add annotation marks for Sourcery.
+* Change type `NSSet` to `Set<Something>`
 
 A class for entity 'Performer', should look like the following.
 
@@ -171,24 +185,13 @@ public class Performer: NSManagedObject, Fetchable {
 
 @NSManaged public var party: Party
 
+//@NSManaged public var performances: NSSet?
 @NSManaged public var performances: Set<Performance>?
 
 }
 
 // sourcery:inline:Performer.ManagedObject.Query.stencil
 // sourcery:end
-```
-
-Make sure you change any `NSSet` types to their swift equivalent.
-
-```swift
-@NSManaged public var performances: NSSet?
-```
-
-to
-
-```swift
-@NSManaged public var performances: Set<Performance>?
 ```
 
 Then hit build and compile your code! Done!
