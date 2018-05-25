@@ -113,20 +113,17 @@ struct Data {
     let phone: String
     let email: String
     let type: String
-    var type_: Party.PartyType {
-        return Party.PartyType(rawValue: type)!
-    }
 }
 
 extension Data: Recordable {
     var primaryKey: Party.Query? {
-        Party.Query(email: email, name: name, phone: phone, type: type_)
+        Party.Query(email: email, name: name, phone: phone, type: Party.PartyType(rawValue: type)!)
     }
     func update(record: Party) {
         record.email = email
         record.name = name
         record.phone = phone
-        record.type_ = type_
+        record.type_ = Party.PartyType(rawValue: type)!
     }
 }
 
