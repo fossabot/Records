@@ -11,13 +11,128 @@
     </a>
 </p>
 
-A lightweight convenience API for basic CoreData database tasks.
+A lightweight convenience API for basic CoreData database tasks. Checkout [Performances](https://github.com/rob-nash/Performances) for a fully configured installation and a demo.
 
-*Transformable types not supported*
+Consider the following database schema.
+
+<p align="center">
+<a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/KeyConcepts.html">
+<img src="https://i.imgur.com/WRlhnlK.png" alt="CoreData" />
+</a>
+</p>
+
+</br>
+<details>
+<summary>Installation</summary>
+</br>
+<p>Add the following to your `Cartfile`.</p>
+<pre><code class="swift language-swift">
+github rob-nash/Records
+</code></pre>
+<p>Run the following.</p>
+<pre><code class="swift language-swift">
+carthage update
+</code></pre>
+<p>Once the <code>Records</code> binary is built, link it to your project.<p>
+<p>For the latest release, select the <a href="https://github.com/rob-nash/Records/releases">Releases</a> tab.
+<p>After installation, there is ~3 minutes of setup to perform. Firstly, install the following. <a href="https://brew.sh">Homebrew</a> is your friend.</p>
+</br>
+<p align="left">
+<a href="https://github.com/krzysztofzablocki/Sourcery">
+<img src="https://img.shields.io/badge/sourcery-0.11.0+-green.svg?style=flat" alt="Sourcery: 0.11.0+" />
+</a>
+<a href="https://github.com/Carthage/Carthage">
+<img src="https://img.shields.io/badge/carthage-0.29.0+-green.svg?style=flat" alt="Carthage: 0.29.0+" />
+</a>
+<a href="https://swift.org">
+<img src="https://img.shields.io/badge/swift-4+-green.svg?style=flat" alt="Swift: 4+" />
+</a>
+<a href="https://developer.apple.com">
+<img src="https://img.shields.io/badge/xcode-9+-green.svg?style=flat" alt="Xcode: 9+" />
+</a>
+</p>
+</br>
+<p>Create the following at the root directory of your project.</p>
+<pre><code class="swift language-swift">
+./.sourcery.yml
+</code></pre>
+<p>This <code>sourcery.yml</code> file should contain the following.</p>
+<pre><code class="swift language-swift">
+sources:
+- ./Path/To/Your/NSManagedObject/Subclasses
+templates:
+- ../Carthage/Build/iOS/Records.framework/
+output:
+./Path/To/Your/NSManagedObject/Subclasses
+</code></pre>
+<p>Run the following as a build phase, just before the build phase named 'compile sources'.</p>
+<pre><code class="swift language-swift">
+sourcery --config ./.sourcery.yml
+</code></pre>
+<p>In your core data model file, set codgen to 'manual' for each of your CoreData entities.</p>
+<p>A class for entity <code>Performer</code>, should look like the following.</p>
+<pre><code class="swift language-swift">
+import CoreData
+import Records
+
+@objc(Performer)
+public class Performer: NSManagedObject, Fetchable {
+@NSManaged public var dob: Date
+@NSManaged public var firstName: String
+@NSManaged public var lastName: String
+@NSManaged public var party: Party
+//@NSManaged public var performances: NSSet?
+@NSManaged public var performances: Set<Performance>?
+}
+
+// sourcery:inline:Performer.ManagedObject.Query.stencil
+// sourcery:end
+</code></pre>
+<p>Notice the following.</p>
+<ul>
+<li>Declared conformance to `Fetchable` in each of your entity suclasses.</li>
+<li>Added annotation marks for Sourcery.</li>
+<li>Changed type <code>NSSet</code> to <code>`Set<Performance></code></li>
+</ul>
+</details>
+</br> 
 
 ## Example Usage
 
-Assume `Performer` is a CoreData entity.
+Create a unique core data record, from a dataset.
+
+```swift
+struct Data {
+    let name: String
+    let phone: String
+    let email: String
+    let type: String
+    var type_: Party.PartyType {
+        return Database.Party.PartyType(rawValue: type)!
+    }
+}
+
+extension Data: Recordable {
+    var primaryKey: Party.Query? {
+        Database.Party.Query(email: email, name: name, phone: phone, type: type_)
+    }
+    func update(record: Database.Party) {
+        record.email = email
+        record.name = name
+        record.phone = phone
+        record.type_ = type_
+    }
+}
+
+do {
+    let party = Party(name: "DanceSchool", phone: "01234567891", email: "dance@school.com", type: "School")
+    let record = try party.record(in: context)
+} catch {
+    // Errors from the CoreData layer such as 'model not found' etc
+}
+```
+
+Fetch all records.
 
 ```swift
 do {
@@ -99,107 +214,6 @@ class PerformancesViewController: UIViewController {
 }
 ```
 
-## Installing
-
-Install the following. [Homebrew](https://brew.sh) is your friend.
-
-<p align="left">
-    <a href="https://github.com/krzysztofzablocki/Sourcery">
-        <img src="https://img.shields.io/badge/sourcery-0.11.0+-green.svg?style=flat" alt="Sourcery: 0.11.0+" />
-    </a>
-    <a href="https://github.com/Carthage/Carthage">
-        <img src="https://img.shields.io/badge/carthage-0.29.0+-green.svg?style=flat" alt="Carthage: 0.29.0+" />
-    </a>
-    <a href="https://swift.org">
-        <img src="https://img.shields.io/badge/swift-4+-green.svg?style=flat" alt="Swift: 4+" />
-    </a>
-    <a href="https://developer.apple.com">
-        <img src="https://img.shields.io/badge/xcode-9+-green.svg?style=flat" alt="Xcode: 9+" />
-    </a>
-</p>
-
-Create the following at the root directory of your project.
-
-```
-./.sourcery.yml
-```
-
-The config file should contain the following.
-
-```
-sources:
-- ./Path/To/Your/NSManagedObject/Subclasses
-templates:
-- ../Carthage/Build/iOS/Records.framework/
-output:
-./Path/To/Your/NSManagedObject/Subclasses
-```
-
-Run this bash as a build phase, just before 'compile sources'.
-
-```
-sourcery --config ./.sourcery.yml
-```
-
-Add the following to your `Cartfile`.
-
-```
-github rob-nash/Records
-```
-
-Run the following
-
-```
-carthage update
-```
-
-Once the `Records` binary is built, link it to your project.
-
-Consider the following database schema.
-
-<p align="center">
-    <a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/KeyConcepts.html">
-        <img src="https://i.imgur.com/WRlhnlK.png" alt="CoreData" />
-    </a>
-</p>
-
-* Set codgen to 'manual' for each of your CoreData entities.
-* Declare conformance to `Fetchable` in each of your NSManaged object suclasses.
-* Add annotation marks for Sourcery.
-* Change type `NSSet` to `Set<Something>`
-
-A class for entity 'Performer', should look like the following.
-
-```swift
-import CoreData
-import Records
-
-@objc(Performer)
-public class Performer: NSManagedObject, Fetchable {
-
-@NSManaged public var dob: Date
-
-@NSManaged public var firstName: String
-
-@NSManaged public var lastName: String
-
-@NSManaged public var party: Party
-
-//@NSManaged public var performances: NSSet?
-@NSManaged public var performances: Set<Performance>?
-
-}
-
-// sourcery:inline:Performer.ManagedObject.Query.stencil
-// sourcery:end
-```
-
-Then hit build and compile your code! Done!
-
-Checkout [Performances](https://github.com/rob-nash/Performances) to see a fully configured installation.
-
-For the latest release, select the [release](https://github.com/rob-nash/Records/releases) tab.
-
 ## Footnote
 
 String replacement with Enum.
@@ -258,6 +272,8 @@ public extension Performer {
     return firstName + " " + lastName
   }
 ```
+
+*Transformable types not supported*
 
 **1. Installation**
    
