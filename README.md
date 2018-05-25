@@ -160,7 +160,7 @@ struct Data {
 
 extension Data: Recordable {
     var primaryKey: Party.Query? {
-        Party.Query(email: email, name: name, phone: phone, type: Party.PartyType(rawValue: type)!)
+        return Party.Query(email: email, name: name, phone: phone, type: Party.PartyType(rawValue: type)!)
     }
     func update(record: Party) {
         record.email = email
@@ -172,13 +172,13 @@ extension Data: Recordable {
 
 do {
     let data = Data(name: "DanceSchool", phone: "01234567891", email: "dance@school.com", type: "School")
-    let record = try data.record(in: context)
+    let record: Party = try data.record(in: context)
 } catch {
     // Errors from the CoreData layer such as 'model not found' etc
 }
 ```
 
-A more complex example, that uses a relationship named 'party as a query constraint.
+A more complex example, that uses a relationship named `party` as a query constraint.
 
 ```swift
 struct Data {
@@ -205,10 +205,10 @@ struct Data {
     }
 }
 
-let data = Performer(firstName: "Rob", lastName: "Nash", dob: Date())
+let data = Data(firstName: "Rob", lastName: "Nash", dob: Date())
 let export = data.export(withParty: party)
 do {
-    let record = try export.record(in: context)
+    let record: Performer = try export.record(in: context)
 } catch {
     // Errors from the CoreData layer such as 'model not found' etc
 }
