@@ -120,9 +120,9 @@ struct Data {
 
 extension Data: Recordable {
     var primaryKey: Party.Query? {
-        Database.Party.Query(email: email, name: name, phone: phone, type: type_)
+        Party.Query(email: email, name: name, phone: phone, type: type_)
     }
-    func update(record: Database.Party) {
+    func update(record: Party) {
         record.email = email
         record.name = name
         record.phone = phone
@@ -131,8 +131,8 @@ extension Data: Recordable {
 }
 
 do {
-    let party = Party(name: "DanceSchool", phone: "01234567891", email: "dance@school.com", type: "School")
-    let record = try party.record(in: context)
+    let data = Data(name: "DanceSchool", phone: "01234567891", email: "dance@school.com", type: "School")
+    let record = try data.record(in: context)
 } catch {
     // Errors from the CoreData layer such as 'model not found' etc
 }
