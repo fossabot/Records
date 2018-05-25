@@ -26,16 +26,17 @@ Consider the following database schema.
 <summary>Installation</summary>
 </br>
 <p>Add the following to your `Cartfile`.</p>
-<pre><code class="swift language-swift">
-github rob-nash/Records
-</code></pre>
+
+<pre><code class="swift language-swift">github rob-nash/Records</code></pre>
+
 <p>Run the following.</p>
-<pre><code class="swift language-swift">
-carthage update
-</code></pre>
+
+<pre><code class="swift language-swift">carthage update</code></pre>
+
 <p>Once the <code>Records</code> binary is built, link it to your project.<p>
 <p>For the latest release, select the <a href="https://github.com/rob-nash/Records/releases">Releases</a> tab.
-<p>After installation, there is ~3 minutes of setup to perform. Firstly, install the following. <a href="https://brew.sh">Homebrew</a> is your friend.</p>
+<p>Install the following. <a href="https://brew.sh">Homebrew</a> is your friend.</p>
+
 </br>
 <p align="left">
 <a href="https://github.com/krzysztofzablocki/Sourcery">
@@ -51,12 +52,14 @@ carthage update
 <img src="https://img.shields.io/badge/xcode-9+-green.svg?style=flat" alt="Xcode: 9+" />
 </a>
 </p>
+
 </br>
 <p>Create the following at the root directory of your project.</p>
-<pre><code class="swift language-swift">
-./.sourcery.yml
-</code></pre>
+
+<pre><code class="swift language-swift">./.sourcery.yml</code></pre>
+
 <p>This <code>sourcery.yml</code> file should contain the following.</p>
+
 <pre><code class="swift language-swift">
 sources:
 - ./Path/To/Your/NSManagedObject/Subclasses
@@ -65,12 +68,14 @@ templates:
 output:
 ./Path/To/Your/NSManagedObject/Subclasses
 </code></pre>
+
 <p>Run the following as a build phase, just before the build phase named 'compile sources'.</p>
-<pre><code class="swift language-swift">
-sourcery --config ./.sourcery.yml
-</code></pre>
+
+<pre><code class="swift language-swift">sourcery --config ./.sourcery.yml</code></pre>
+
 <p>In your core data model file, set codgen to 'manual' for each of your CoreData entities.</p>
 <p>A class for entity <code>Performer</code>, should look like the following.</p>
+
 <pre><code class="swift language-swift">
 import CoreData
 import Records
@@ -88,6 +93,7 @@ public class Performer: NSManagedObject, Fetchable {
 // sourcery:inline:Performer.ManagedObject.Query.stencil
 // sourcery:end
 </code></pre>
+
 <p>Notice the following.</p>
 <ul>
 <li>Declared conformance to `Fetchable` in each of your entity suclasses.</li>
@@ -108,7 +114,7 @@ struct Data {
     let email: String
     let type: String
     var type_: Party.PartyType {
-        return Database.Party.PartyType(rawValue: type)!
+        return Party.PartyType(rawValue: type)!
     }
 }
 
