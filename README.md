@@ -21,7 +21,6 @@ Consider the following database schema.
 </a>
 </p>
 
-</br>
 <details>
 <summary>Installation</summary>
 </br>
@@ -101,7 +100,6 @@ public class Performer: NSManagedObject, Fetchable {
 <li>Changed type <code>NSSet</code> to <code>`Set<Performance></code></li>
 </ul>
 </details>
-</br> 
 
 ## Example Usage
 
