@@ -2,12 +2,12 @@ import CoreData
 
 /// An interface for building predicates for CoreData fetch requests for records represented by `Entity`
 public protocol QueryGenerator {
-  associatedtype Entity: NSManagedObject
+  associatedtype Entity: Fetchable
   /// A predicate for CoreData fetch requests
   var predicateRepresentation: NSCompoundPredicate? { get }
 }
 
-public extension QueryGenerator where Entity: Fetchable {
+public extension QueryGenerator  {
   
   func first(in context: NSManagedObjectContext) throws -> Entity? {
     return try first(in: context, sortedBy: nil)
