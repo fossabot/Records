@@ -11,7 +11,7 @@
     </a>
 </p>
 
-A lightweight convenience API for basic CoreData database tasks. Checkout [Performances](https://github.com/rob-nash/Performances) for a fully configured installation and a demo.
+A lightweight convenience API for basic CoreData database tasks. As you develop your project and make changes to your CoreData schema, boiler plate code is automatically re-written for you. Checkout [Performances](https://github.com/rob-nash/Performances) for a fully configured installation and a demo.
 
 Consider the following database schema.
 
