@@ -105,36 +105,6 @@ public class Performer: NSManagedObject, Fetchable {
 
 ## Example Usage
 
-Create a unique core data record, from a dataset.
-
-```swift
-struct Data {
-    let name: String
-    let phone: String
-    let email: String
-    let type: String
-}
-
-extension Data: Recordable {
-    var primaryKey: Party.Query? {
-        Party.Query(email: email, name: name, phone: phone, type: Party.PartyType(rawValue: type)!)
-    }
-    func update(record: Party) {
-        record.email = email
-        record.name = name
-        record.phone = phone
-        record.type_ = Party.PartyType(rawValue: type)!
-    }
-}
-
-do {
-    let data = Data(name: "DanceSchool", phone: "01234567891", email: "dance@school.com", type: "School")
-    let record = try data.record(in: context)
-} catch {
-    // Errors from the CoreData layer such as 'model not found' etc
-}
-```
-
 Fetch all records.
 
 ```swift
@@ -164,13 +134,7 @@ do {
 }
 ```
 
-Create a record using the usual CoreData API.
-
-```swift
-let performer = Performer(context: context)
-```
-
-To-Many relationship queries.
+Query using relationships as constraints.
 
 ```swift
 let aggregate = Aggregate<Performer>(.allMatching, records: Set([performerA, performerB]))
@@ -179,6 +143,78 @@ let performances: [Performance] = try! query.all(in: context)
 ```
 
 <p align="left"><img src="http://i.giphy.com/3oFzm3dzbxVd2FNJrW.gif" width="252" height="395"/></p>
+
+Create a record using the usual CoreData API.
+
+```swift
+let performer = Performer(context: context)
+```
+
+Or create a unique core data record, from a dataset.
+
+```swift
+struct Data {
+    let name: String
+    let phone: String
+    let email: String
+    let type: String
+}
+
+extension Data: Recordable {
+    var primaryKey: Party.Query? {
+        Party.Query(email: email, name: name, phone: phone, type: Party.PartyType(rawValue: type)!)
+    }
+    func update(record: Party) {
+        record.email = email
+        record.name = name
+        record.phone = phone
+        record.type_ = Party.PartyType(rawValue: type)!
+    }
+}
+
+do {
+    let data = Data(name: "DanceSchool", phone: "01234567891", email: "dance@school.com", type: "School")
+    let record = try data.record(in: context)
+} catch {
+    // Errors from the CoreData layer such as 'model not found' etc
+}
+```
+
+A more complex example, that uses a relationship named 'party as a query constraint.
+
+```swift
+struct Data {
+    let firstName: String
+    let lastName: String
+    let dob: Date
+    struct Export: Recordable {
+        let firstName: String
+        let lastName: String
+        let dob: Date
+        let party: Party
+        var primaryKey: Performer.Query? {
+            return Performer.Query(dob: dob, firstName: firstName, lastName: lastName, party: party)
+        }
+        func update(record: Performer) {
+            record.party = party
+            record.dob = dob
+            record.firstName = firstName
+            record.lastName = lastName
+        }
+    }
+    func export(withParty party: Party) -> Export {
+        return Export(firstName: firstName, lastName: lastName, dob: dob, party: party)
+    }
+}
+
+let data = Performer(firstName: "Rob", lastName: "Nash", dob: Date())
+let export = data.export(withParty: party)
+do {
+    let record = try export.record(in: context)
+} catch {
+    // Errors from the CoreData layer such as 'model not found' etc
+}
+```
 
 Null predicate searching.
 
