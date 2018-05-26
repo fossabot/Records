@@ -305,9 +305,9 @@ Make sure to set a default value on the property and write a unit test ([see her
 
 When switching the accessibility level of your @NSManaged vars from public to private, like the above enum example, it is recommended that you use an underscore, because the script will truncate the underscore from the initialiser. If you would like to use some other naming convention, feel free to modify [the script](https://github.com/rob-nash/Records/blob/master/Database/Templates/ManagedObject.Query.stencil).
 
-If you write custom properties on classes targetted by Sourcery you may want to use the following annotation.
-
 ### Preventing boiler plate generation
+
+If you write custom properties on classes targetted by Sourcery you may want to use the following annotation.
 
 ```swift
 public extension Performer {
