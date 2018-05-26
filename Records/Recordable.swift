@@ -22,20 +22,19 @@ extension Recordable {
   /// - Throws: CoreData layer errors
   @discardableResult public func record(in context: NSManagedObjectContext) throws -> RecordQuery.Entity {
     if let query = primaryKey {
-        if let record = try query.first(in: context) {
-            update(record: record)
-            return record
-        } else {
-            let record = RecordQuery.Entity(context: context)
-            update(record: record)
-            return record
-        }
-    } else if let record = try RecordQuery.Entity.fetchFirst(in: context) {
+      return try fetchOrCreate(in: context) { try query.first(in: context) }
+    }
+    return try fetchOrCreate(in: context) { try RecordQuery.Entity.fetchFirst(in: context) }
+  }
+    
+  private func fetchOrCreate(in context: NSManagedObjectContext, block: @escaping () throws -> RecordQuery.Entity?) throws -> RecordQuery.Entity {
+    if let record = try block() {
+      update(record: record)
+      return record
+    } else {
+      let record = RecordQuery.Entity(context: context)
       update(record: record)
       return record
     }
-    let record = RecordQuery.Entity(context: context)
-    update(record: record)
-    return record
   }
 }
