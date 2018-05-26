@@ -73,7 +73,7 @@ output:
 <pre><code class="swift language-swift">sourcery --config ./.sourcery.yml</code></pre>
 
 <p>In your core data model file, set codgen to 'manual' for each of your CoreData entities.</p>
-<p>A class for entity <code>Performer</code>, should look like the following.</p>
+<p>All of your NSManagedObject subclasses shoud be configured in the following way. Let's look at <code>Performer</code>, as an example.</p>
 
 <pre><code class="swift language-swift">
 import CoreData
@@ -86,7 +86,7 @@ public class Performer: NSManagedObject, Fetchable {
 @NSManaged public var lastName: String
 @NSManaged public var party: Party
 //@NSManaged public var performances: NSSet?
-@NSManaged public var performances: Set<Performance>?
+@NSManaged public var performances: Set&lt;Performance&gt;?
 }
 
 // sourcery:inline:Performer.ManagedObject.Query.stencil
@@ -97,7 +97,7 @@ public class Performer: NSManagedObject, Fetchable {
 <ul>
 <li>Declared conformance to `Fetchable` in each of your entity suclasses.</li>
 <li>Added annotation marks for Sourcery.</li>
-<li>Changed type <code>NSSet</code> to <code>`Set<Performance></code></li>
+<li>Changed type <code>NSSet</code> to <code>`Set&lt;Performance&gt;</code></li>
 </ul>
 </details>
 
