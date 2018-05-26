@@ -21,9 +21,15 @@ extension Recordable {
   /// - Returns: The record mapped with all matching data.
   /// - Throws: CoreData layer errors
   @discardableResult public func record(in context: NSManagedObjectContext) throws -> RecordQuery.Entity {
-    if let query = primaryKey, let record = try query.first(in: context) {
-      update(record: record)
-      return record
+    if let query = primaryKey {
+        if let record = try query.first(in: context) {
+            update(record: record)
+            return record
+        } else {
+            let record = RecordQuery.Entity(context: context)
+            update(record: record)
+            return record
+        }
     } else if let record = try RecordQuery.Entity.fetchFirst(in: context) {
       update(record: record)
       return record

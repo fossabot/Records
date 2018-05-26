@@ -76,7 +76,7 @@ class PerformerTests: XCTestCase {
     createPerfomers(count: count, inContext: context)
     let date = Date()
     let name = "David"
-      var performer: Performer!
+    var performer: Performer!
     performer = Performer(context: context)
     performer.firstName = name
     performer.lastName = "Nash"
@@ -88,5 +88,4 @@ class PerformerTests: XCTestCase {
     performer = all?.first
     XCTAssert(performer.firstName == name)
   }
-  
 }

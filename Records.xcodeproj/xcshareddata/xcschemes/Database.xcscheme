@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "50E3EE8A1F9A54EA002722A0"
-               BuildableName = "Records.framework"
-               BlueprintName = "Records"
+               BlueprintIdentifier = "50DD8BBC1F9B198E0075E16E"
+               BuildableName = "Database.framework"
+               BlueprintName = "Database"
                ReferencedContainer = "container:Records.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "50E3EE8A1F9A54EA002722A0"
-            BuildableName = "Records.framework"
-            BlueprintName = "Records"
+            BlueprintIdentifier = "50DD8BBC1F9B198E0075E16E"
+            BuildableName = "Database.framework"
+            BlueprintName = "Database"
             ReferencedContainer = "container:Records.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "50E3EE8A1F9A54EA002722A0"
-            BuildableName = "Records.framework"
-            BlueprintName = "Records"
+            BlueprintIdentifier = "50DD8BBC1F9B198E0075E16E"
+            BuildableName = "Database.framework"
+            BlueprintName = "Database"
             ReferencedContainer = "container:Records.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -82,9 +82,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "50E3EE8A1F9A54EA002722A0"
-            BuildableName = "Records.framework"
-            BlueprintName = "Records"
+            BlueprintIdentifier = "50DD8BBC1F9B198E0075E16E"
+            BuildableName = "Database.framework"
+            BlueprintName = "Database"
             ReferencedContainer = "container:Records.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

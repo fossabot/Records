@@ -1,199 +1,179 @@
-import CoreData
-import Records
+@_exported import CoreData
+@_exported import Records
 
 public struct DataBuilder {
-  
-  private let context: NSManagedObjectContext
-  
-  public init(context: NSManagedObjectContext) {
-    self.context = context
-  }
-  
-  public func populateDatabase() {
-    let events: [Database.Event] = unpackEvents().map { event in
-        /// The record is created if it does not already exist.
-        let record = event.record(in: context)
-        return record
+    private let context: NSManagedObjectContext
+    public init(context: NSManagedObjectContext) {
+        self.context = context
     }
-    let parties: [Database.Party] = unpackParties().map { party in
-        /// The record is created if it does not already exist.
-        let record = party.record(in: context)
-        return record
+    public func populateDatabase() throws {
+        let events: [Database.Event] = try unpackEvents().map { event in
+            let record = try event.record(in: context)
+            return record
+        }
+        let parties: [Database.Party] = try unpackParties().map { party in
+            return try party.record(in: context)
+        }
+        let _: [Database.Performance] = try unpackPerformances().map { performance in
+            let event = events.first!
+            let party = parties.first!
+            let export = try performance.export(withEvent: event, withParty: party, withContext: context)
+            return try export.record(in: context)
+        }
     }
-    let _: [Database.Performance] = unpackPerformances().map { performance in
-        /// Let's assume all performances are for the party at position 'first' and the event at position 'first'.
-        let event = events.first!
-        let party = parties.first!
-        /// The record is created if it does not already exist.
-        let record = performance.record(forParty: party, forEvent: event, in: context)
-        return record
+    private func unpackEvents() throws -> [Event] {
+        let data = try contentsOf(resource: "Events", extension: "json")
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .formatted(eventDateFormatter)
+        return try decoder.decode([Event].self, from: data)
     }
-  }
-  
-  private func unpackEvents() -> [Event] {
-    let data = contentsOf(resource: "Events", extension: "json")
-    let decoder = JSONDecoder()
-    decoder.dateDecodingStrategy = .formatted(eventDateFormatter)
-    return try! decoder.decode([Event].self, from: data)
-  }
-  
-  private let eventDateFormatter: DateFormatter = {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "d/M/yyyy"
-    return dateFormatter
-  }()
-  
-  private func unpackParties() -> [Party] {
-    let data = contentsOf(resource: "Parties", extension: "json")
-    let decoder = JSONDecoder()
-    return try! decoder.decode([Party].self, from: data)
-  }
-  
-  private func unpackPerformances() -> [Performance] {
-    let data = contentsOf(resource: "Performances", extension: "json")
-    let decoder = JSONDecoder()
-    decoder.dateDecodingStrategy = .formatted(dobDateFormatter)
-    return try! decoder.decode([Performance].self, from: data)
-  }
-    
-  private let dobDateFormatter: DateFormatter = {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "d/M/yyyy"
-    return dateFormatter
-  }()
-  
-  private func contentsOf(resource r: String, extension e: String) -> Data {
-    let bundle = Bundle(for: Database.Event.self)
-    let url = bundle.url(forResource: r, withExtension: e)!
-    return try! String(contentsOf: url).data(using: .utf8)!
-  }
-  
-  struct Event: Decodable {
-    let startDate: Date
-    
-    enum CodingKeys: String, CodingKey {
-      case startDate = "StartDate"
+    private let eventDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d/M/yyyy"
+        return dateFormatter
+    }()
+    private func unpackParties() throws -> [Party] {
+        let data = try contentsOf(resource: "Parties", extension: "json")
+        let decoder = JSONDecoder()
+        return try decoder.decode([Party].self, from: data)
     }
-    
-    func record(in context: NSManagedObjectContext) -> Database.Event {
-      /// Query = Are there any events with this start date already in existence?
-      let query = Database.Event.Query(startDate: startDate, performances: nil)
-      let records = try! query.all(in: context)
-      if records.count == 0 {
-        let record = Database.Event(context: context)
-        record.startDate = startDate
-        return record
-      }
-      /// This is the only place we create events. Therefore, there should be 1 or 0 events for this date.
-      return records.first!
+    private func unpackPerformances() throws -> [Performance] {
+        let data = try contentsOf(resource: "Performances", extension: "json")
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .formatted(dobDateFormatter)
+        return try decoder.decode([Performance].self, from: data)
     }
-
-  }
-  
-  struct Party: Decodable {
-    let name: String
-    let phone: String
-    let email: String
-    let type: String
-    
-    enum CodingKeys: String, CodingKey {
-      case name = "Name"
-      case phone = "Phone"
-      case email = "Email"
-      case type = "Type"
+    private let dobDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d/M/yyyy"
+        return dateFormatter
+    }()
+    private func contentsOf(resource r: String, extension e: String) throws -> Data {
+        let bundle = Bundle(for: Database.Event.self)
+        let url = bundle.url(forResource: r, withExtension: e)!
+        return try String(contentsOf: url).data(using: .utf8)!
     }
-    
-    private var partyType: Database.Party.PartyType {
-      return Database.Party.PartyType(rawValue: type)!
+    struct Event: Decodable, Recordable {
+        let startDate: Date
+        enum CodingKeys: String, CodingKey {
+            case startDate = "StartDate"
+        }
+        var primaryKey: Database.Event.Query? {
+            return Database.Event.Query(startDate: startDate)
+        }
+        func update(record: Database.Event) {
+            record.startDate = startDate
+        }
     }
-    
-    func record(in context: NSManagedObjectContext) -> Database.Party {
-      /// Query = Does this party already exist, with or without associated performers?
-      let query = Database.Party.Query(email: email, name: name, phone: phone, performers: nil, type: partyType)
-      let records = try! query.all(in: context)
-      if records.count == 0 {
-        let record = Database.Party(context: context)
-        record.email = email
-        record.name = name
-        record.phone = phone
-        record.type_ = partyType
-        return record
-      }
-      /// This is the only place we create Parties. Therefore, there should be 1 or 0 parties matching this info.
-      return records.first!
+    struct Party: Decodable, Recordable {
+        let name: String
+        let phone: String
+        let email: String
+        let type: String
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case phone = "Phone"
+            case email = "Email"
+            case type = "Type"
+        }
+        var partyType: Database.Party.PartyType {
+            return Database.Party.PartyType(rawValue: type)!
+        }
+        var primaryKey: Database.Party.Query? {
+            return Database.Party.Query(email: email, name: name, phone: phone, type: partyType)
+        }
+        func update(record: Database.Party) {
+            record.email = email
+            record.name = name
+            record.phone = phone
+            record.type_ = partyType
+        }
     }
-  }
-  
-  struct Performer: Decodable {
-    let firstName: String
-    let lastName: String
-    let dob: Date
-    
-    enum CodingKeys: String, CodingKey {
-        case firstName = "First Name"
-        case lastName = "Last Name"
-        case dob = "D.O.B"
+    struct Performer: Decodable {
+        struct Export: Recordable {
+            let firstName: String
+            let lastName: String
+            let dob: Date
+            let party: Database.Party
+            /// There may be performers with identical details between parties and they may be the same person.
+            /// Performers may change parties over time and we wouldn't know.
+            /// Or performers may have the same details by coinsidence.
+            /// So have decided to create a single record per performer per party.
+            var primaryKey: Database.Performer.Query? {
+                return Database.Performer.Query(dob: dob, firstName: firstName, lastName: lastName, party: party)
+            }
+            func update(record: Database.Performer) {
+                record.party = party
+                record.dob = dob
+                record.firstName = firstName
+                record.lastName = lastName
+            }
+        }
+        let firstName: String
+        let lastName: String
+        let dob: Date
+        enum CodingKeys: String, CodingKey {
+            case firstName = "First Name"
+            case lastName = "Last Name"
+            case dob = "D.O.B"
+        }
+        func export(withParty party: Database.Party) -> Export {
+            return Export(firstName: firstName, lastName: lastName, dob: dob, party: party)
+        }
     }
-    
-    /// There may be performers with identical details between parties and they may be the same person. Performers may change parties over time and we wouldn't know. Or performers may have the same details by coinsidence. So have decided to create a single record per performer per party.
-    func record(forParty party: Database.Party, in context: NSManagedObjectContext) -> Database.Performer {
-      /// Query = Does this performer already exist for this party? I don't care if they have performances at this point.
-      let query = Database.Performer.Query(dob: dob, firstName: firstName, lastName: lastName, party: party, performances: nil)
-      let records = try! query.all(in: context)
-      if records.count == 0 {
-        let record = Database.Performer(context: context)
-        record.dob = dob
-        record.firstName = firstName
-        record.lastName = lastName
-        record.party = party
-        return record
-      }
-      /// This is the only place we create Performers. Therefore, there should be 1 or 0 performers matching this info.
-      return records.first!
+    struct Performance: Decodable {
+        struct Export: Recordable {
+            let ability: Database.Performance.Ability
+            let group: Database.Performance.Group
+            let performers: Set<Database.Performer>
+            let event: Database.Event
+            let aggregate: Aggregate<Database.Performer>.Operator = .allMatching
+            var primaryKey: Database.Performance.Query? {
+                let restriction = Aggregate<Database.Performer>(aggregate, records: performers)
+                return Database.Performance.Query(performers: restriction, event: event, ability: ability, group: group)
+            }
+            func update(record: Database.Performance) {
+                record.event = event
+                record.performers = performers
+                record.ability_ = ability
+                record.group_ = group
+            }
+            init(ability: Database.Performance.Ability, group: Database.Performance.Group, performers: Set<Database.Performer>, event: Database.Event) {
+                self.ability = ability
+                self.group = group
+                self.performers = performers
+                self.event = event
+            }
+        }
+        let ability: String
+        let group: String
+        let performers: [Performer]
+        enum CodingKeys: String, CodingKey {
+            case ability = "Ability"
+            case group = "Group"
+            case performers = "Performers"
+        }
+        init(from decoder: Decoder) throws {
+            let values = try decoder.container(keyedBy: CodingKeys.self)
+            let ability = try values.decode(String.self, forKey: .ability)
+            let group = try values.decode(String.self, forKey: .group)
+            let performers = try values.decode([DataBuilder.Performer].self, forKey: .performers)
+            self.init(ability: ability, group: group, performers: performers)
+        }
+        init(ability: String, group: String, performers: [Performer]) {
+            self.ability = ability
+            self.group = group
+            self.performers = performers
+        }
+        func export(withEvent event: Database.Event, withParty party: Database.Party, withContext context: NSManagedObjectContext) throws -> Export {
+            let performers_: [Database.Performer] = try performers.map {
+                let export = $0.export(withParty: party)
+                let record = try export.record(in: context)
+                return record
+            }
+            let ability_ = Database.Performance.Ability(rawValue: ability)!
+            let group_ = Database.Performance.Group(rawValue: group)!
+            return Export(ability: ability_, group: group_, performers: Set(performers_), event: event)
+        }
     }
-
-  }
-  
-  struct Performance: Decodable {
-    let ability: String
-    let group: String
-    let performers: [Performer]
-
-    enum CodingKeys: String, CodingKey {
-        case ability = "Ability"
-        case group = "Group"
-        case performers = "Performers"
-    }
-    
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        ability = try values.decode(String.self, forKey: .ability)
-        group = try values.decode(String.self, forKey: .group)
-        performers = try values.decode([DataBuilder.Performer].self, forKey: .performers)
-    }
-    
-    func record(forParty party: Database.Party, forEvent event: Database.Event, in context: NSManagedObjectContext) -> Database.Performance {
-      let ability_ = Database.Performance.Ability(rawValue: ability)!
-      let group_ = Database.Performance.Group(rawValue: group)!
-      let performersRecords: [Database.Performer] = performers.map {
-        $0.record(forParty: party, in: context)
-      }
-      let restriction = Aggregate<Database.Performer>(.allMatching, records: Set(performersRecords))
-        /// Query = Is there a performance for this event, at this ability, with this group type and these exact performers?
-      let query = Database.Performance.Query(performers: restriction, event: event, ability: ability_, group: group_)
-      let records = try! query.all(in: context)
-      if records.count == 0 {
-        let record = Database.Performance(context: context)
-        record.ability_ = ability_
-        record.group_ = group_
-        record.event = event
-        record.performers = Set(performersRecords)
-        return record
-      }
-      /// This is the only place we create Performances. Therefore, there should be 1 or 0 performances matching this info.
-      return records.first!
-    }
-
-  }
-
 }
