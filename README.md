@@ -151,6 +151,7 @@ let performer = Performer(context: context)
 Or create a unique core data record, from a dataset.
 
 ```swift
+// Data for a party
 struct Data {
     let name: String
     let phone: String
@@ -181,6 +182,7 @@ do {
 A more complex example, that uses a relationship named `party` as a query constraint.
 
 ```swift
+//Data for a performer that belongs to a specific party.
 struct Data {
     let firstName: String
     let lastName: String
@@ -253,7 +255,9 @@ class PerformancesViewController: UIViewController {
 
 ## Footnote
 
-String replacement with Enum.
+*Transformable types not supported*
+
+### String replacement with Enum.
 
 ```swift
 let query = Party.Query(type: .school)
@@ -297,9 +301,13 @@ public class Party: NSManagedObject, Fetchable {
 
 Make sure to set a default value on the property and write a unit test ([see here](https://github.com/rob-nash/Records/blob/master/RecordsTests/PartyTests.swift)).
 
+### The underscore_ convention
+
 When switching the accessibility level of your @NSManaged vars from public to private, like the above enum example, it is recommended that you use an underscore, because the script will truncate the underscore from the initialiser. If you would like to use some other naming convention, feel free to modify [the script](https://github.com/rob-nash/Records/blob/master/Database/Templates/ManagedObject.Query.stencil).
 
 If you write custom properties on classes targetted by Sourcery you may want to use the following annotation.
+
+### Preventing boiler plate generation
 
 ```swift
 public extension Performer {
@@ -310,7 +318,19 @@ public extension Performer {
   }
 ```
 
-*Transformable types not supported*
+### Robust Recordable implementations
+
+When implementing the `Recordable` protocol, it is a good idea to implement a test to ensure `update(record: NSManagedObject)` is robust.
+
+```swift
+func testCreateEventRecord() throws {
+    let date = Date()
+    let data = DataBuilder.Event(startDate: date)
+    let context = persistentContainer.viewContext
+    let record: Database.Event = try data.record(in: context)
+    XCTAssertTrue(record.startDate == date, "Incorrect start date of \(record.startDate). Actual \(date).")
+}
+```
 
 **1. Installation**
    
