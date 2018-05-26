@@ -332,6 +332,8 @@ func testCreateEventRecord() throws {
 }
 ```
 
+The following videos are slightly out of date but still good.
+
 **1. Installation**
    
   [<img width="300" alt="screen shot" src="https://img.youtube.com/vi/31CfpBJNAJc/0.jpg">](https://www.youtube.com/watch?v=31CfpBJNAJc)
