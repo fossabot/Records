@@ -101,7 +101,7 @@ public class Performer: NSManagedObject, Fetchable {
 </ul>
 </details>
 
-## Example Usage
+## Example Fetch
 
 Fetch all records.
 
@@ -115,8 +115,10 @@ do {
 
 ```swift
 do {
-  // All records with first name BEGINSWITH[cd] `Maggie`
+  // `firstName` param in initialiser is automatic boiler plate 
+  // which changes automatically in response to changes in your schema
   let performers: [Performer] = try Performer.Query(firstName: "Maggie").all(in: context)
+  // Default for string is BEGINSWITH[cd] `Maggie`
 } catch {
   // Errors from the CoreData layer such as 'model not found' etc
 }
@@ -137,16 +139,18 @@ do {
 Query using relationships as constraints.
 
 ```swift
-// Find performances which include performers
-// Performer A
-// Performer B
-// Both of them, 
-// Some of them
-// Or neither of them
-let aggregate = Aggregate<Performer>(.allMatching, records: Set([performerA, performerB]))
+// Find performances 
+// which include performers:
+// Performer 1
+// Performer 2
+// Both of them .allMatching, 
+// Some of them .someMatching
+// Or neither of them .noneMatching
+let aggregate = Aggregate<Performer>(.allMatching, records: Set([performer1, performer2]))
 let query = Performance.Query(performers: aggregate)
 let performances: [Performance] = try! query.all(in: context)
 ```
+## Example Create
 
 Create a record using the usual CoreData API.
 
@@ -158,7 +162,7 @@ Or create a unique core data record, from a dataset.
 
 ```swift
 // Data for a party
-struct Data {
+struct SomeData {
     let name: String
     let phone: String
     let email: String
@@ -166,6 +170,9 @@ struct Data {
 }
 
 extension Data: Recordable {
+    // A query that is guaranteed to return a unique value.
+    // Think carefully about this implementation
+    // Write tests: see footnote below about robust recordable implementations
     var primaryKey: Party.Query? {
         return Party.Query(email: email, name: name, phone: phone, type: Party.PartyType(rawValue: type)!)
     }
@@ -177,8 +184,9 @@ extension Data: Recordable {
     }
 }
 
+let data = SomeData(name: "DanceSchool", phone: "01234567891", email: "dance@school.com", type: "School")
+
 do {
-    let data = Data(name: "DanceSchool", phone: "01234567891", email: "dance@school.com", type: "School")
     let record: Party = try data.record(in: context)
 } catch {
     // Errors from the CoreData layer such as 'model not found' etc
@@ -189,7 +197,7 @@ A more complex example, that uses a relationship named `party` as a query constr
 
 ```swift
 //Data for a performer that belongs to a specific party.
-struct Data {
+struct SomeData {
     let firstName: String
     let lastName: String
     let dob: Date
@@ -198,6 +206,9 @@ struct Data {
         let lastName: String
         let dob: Date
         let party: Party
+        // A query that is guaranteed to return a unique value.
+        // Think carefully about this implementation
+        // Write tests: see footnote below about robust recordable implementations
         var primaryKey: Performer.Query? {
             return Performer.Query(dob: dob, firstName: firstName, lastName: lastName, party: party)
         }
@@ -213,7 +224,7 @@ struct Data {
     }
 }
 
-let data = Data(firstName: "Rob", lastName: "Nash", dob: Date())
+let data = SomeData(firstName: "Rob", lastName: "Nash", dob: Date())
 let export = data.export(withParty: party)
 do {
     let record: Performer = try export.record(in: context)
