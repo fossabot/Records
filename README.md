@@ -111,7 +111,7 @@ public class Performer: NSManagedObject, Fetchable {
 } catch {
   // Errors from the CoreData layer such as 'model not found' etc
 }</code></pre>
-<details>
+</details>
 
 ```
 
