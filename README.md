@@ -137,6 +137,12 @@ do {
 Query using relationships as constraints.
 
 ```swift
+// Find performances which include performers
+// Performer A
+// Performer B
+// Both of them, 
+// Some of them
+// Or neither of them
 let aggregate = Aggregate<Performer>(.allMatching, records: Set([performerA, performerB]))
 let query = Performance.Query(performers: aggregate)
 let performances: [Performance] = try! query.all(in: context)
