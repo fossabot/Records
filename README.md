@@ -154,18 +154,25 @@ let query = Performance.Query(performers: aggregate)
 let performances: [Performance] = try! query.all(in: context)</code></pre>
 </details>
 
+<details>
+<summary>Null predicate searching</summary>
+</br>
+<pre><code class="swift language-swift">let performer: Performer? = try! Performer.fetchFirst(in: context)
+let performer: Performer? = try! Performer.fetchFirst(in: context, sortedBy: NSSortDescriptor(key: "firstName", ascending: true))</code></pre>
+</details>
+
 ## Example Create
 
-Create a record using the usual CoreData API.
+<details>
+<summary>Create a single empty record</summary>
+</br>
+<pre><code class="swift language-swift">let performer = Performer(context: context)</code></pre>
+</details>
 
-```swift
-let performer = Performer(context: context)
-```
-
-Or create a unique core data record, from a dataset.
-
-```swift
-// Data for a party
+<details>
+<summary>Create a record from a dataset 1</summary>
+</br>
+<pre><code class="swift language-swift">// Data for a party
 struct SomeData {
     let name: String
     let phone: String
@@ -194,13 +201,14 @@ do {
     let record: Party = try data.record(in: context)
 } catch {
     // Errors from the CoreData layer such as 'model not found' etc
-}
-```
+}</code></pre>
+</details>
 
-A more complex example, that uses a relationship named `party` as a query constraint.
-
-```swift
-//Data for a performer that belongs to a specific party.
+<details>
+<summary>Create a record from a dataset 2</summary>
+</br>
+<pre><code class="swift language-swift">// Data for a performer that belongs to a specific party.
+// Let's use `party` to constrain query
 struct SomeData {
     let firstName: String
     let lastName: String
@@ -234,20 +242,13 @@ do {
     let record: Performer = try export.record(in: context)
 } catch {
     // Errors from the CoreData layer such as 'model not found' etc
-}
-```
+}</code></pre>
+</details>
 
-Null predicate searching.
-
-```swift
-let performer: Performer? = try! Performer.fetchFirst(in: context)
-let performer: Performer? = try! Performer.fetchFirst(in: context, sortedBy: NSSortDescriptor(key: "firstName", ascending: true))
-```
-
-Small UIViewController subclasses.
-
-```swift
-import UIKit
+<details>
+<summary>Fetched results controller</summary>
+</br>
+<pre><code class="swift language-swift">import UIKit
 
 class PerformancesViewController: UIViewController {
   
@@ -271,8 +272,8 @@ class PerformancesViewController: UIViewController {
     try! fetchedResultsController.reload()
   }
   
-}
-```
+}</code></pre>
+</details>
 
 ## Footnote
 
