@@ -19,6 +19,15 @@ Checkout [Performances](https://github.com/rob-nash/Performances) for a fully co
 
 ## Usage
 
+Consider the following database schema
+
+<p align="center">
+<a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/KeyConcepts.html">
+<img src="https://i.imgur.com/WRlhnlK.png" alt="CoreData" />
+</a>
+</p>
+
+
 ```swift
 do {
   let performers = try Performer.fetchAll(in: context)
