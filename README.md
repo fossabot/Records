@@ -103,14 +103,16 @@ public class Performer: NSManagedObject, Fetchable {
 
 ## Example Fetch
 
-Fetch all records.
-
-```swift
-do {
+<details>
+<summary>Fetch all records</summary>
+</br>
+<pre><code class="swift language-swift">do {
   let performers = try Performer.fetchAll(in: context)
 } catch {
   // Errors from the CoreData layer such as 'model not found' etc
-}
+}</code></pre>
+<details>
+
 ```
 
 ```swift
