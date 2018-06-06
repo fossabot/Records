@@ -51,6 +51,8 @@ struct SomeData {
     let phone: String
     let email: String
     let type: String
+
+    // implement `Recordable` here
 }
 
 let data = SomeData(name: "DanceSchool", phone: "01234567891", email: "dance@school.com", type: "School")
