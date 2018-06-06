@@ -97,14 +97,6 @@ Checkout [Performances](https://github.com/rob-nash/Performances) for a fully co
 
 ## Installation
 
-Add the following to your `Cartfile`.
-
-```
-github rob-nash/Records
-```
-
-For the latest release, select the [Releases](https://github.com/rob-nash/Records/releases) tab.
-
 <p>Install the following. <a href="https://brew.sh">Homebrew</a> is your friend.</p>
 <p align="left">
 <a href="https://github.com/krzysztofzablocki/Sourcery">
@@ -114,6 +106,14 @@ For the latest release, select the [Releases](https://github.com/rob-nash/Record
 <img src="https://img.shields.io/badge/carthage-0.29.0+-green.svg?style=flat" alt="Carthage: 0.29.0+" />
 </a>
 </p>
+
+Add the following to your `Cartfile`.
+
+```
+github rob-nash/Records
+```
+
+For the latest release, select the [Releases](https://github.com/rob-nash/Records/releases) tab.
 
 To setup Sourcery, follow [these steps](https://github.com/rob-nash/Records/wiki/Setting-up-Sourcery).
 
