@@ -113,35 +113,36 @@ public class Performer: NSManagedObject, Fetchable {
 }</code></pre>
 </details>
 
-```
-
-```swift
-do {
+<details>
+<summary>Fetch all performers by first name</summary>
+</br>
+<pre><code class="swift language-swift">do {
   // Initialiser param `firstName` is automatic boiler plate and 
   // changes in response to changes in your schema as your develop your project
   // Default for string is BEGINSWITH[cd] `Maggie`. Change by using `Performer.fetchAll(withPredicate: in: )` instead.
   let performers: [Performer] = try Performer.Query(firstName: "Maggie").all(in: context)
 } catch {
   // Errors from the CoreData layer such as 'model not found' etc
-}
-```
+}</code></pre>
+</details>
 
-```swift
-do {
+<details>
+<summary>Fetch first performer by first name from sorted list</summary>
+</br>
+<pre><code class="swift language-swift">do {
   let query = Performer.Query(firstName: "Maggie")
   let sorts = [NSSortDescriptor(key: "firstName", ascending: true)]
   let performer: Performer? = try query.first(in: context, sortedBy: sorts)
 } catch {
   // Errors from the CoreData layer such as 'model not found' etc
-}
-```
+}</code></pre>
+</details>
 
+<details>
+<summary>Query using relationships as constraints</summary>
+</br>
 <img align="right" src="http://i.giphy.com/3oFzm3dzbxVd2FNJrW.gif" width="252" height="395"/>
-
-Query using relationships as constraints.
-
-```swift
-// Find performances 
+<pre><code class="swift language-swift">// Find performances 
 // which include performers:
 // Performer 1
 // Performer 2
@@ -150,8 +151,9 @@ Query using relationships as constraints.
 // Or neither of them .noneMatching
 let aggregate = Aggregate<Performer>(.allMatching, records: Set([performer1, performer2]))
 let query = Performance.Query(performers: aggregate)
-let performances: [Performance] = try! query.all(in: context)
-```
+let performances: [Performance] = try! query.all(in: context)</code></pre>
+</details>
+
 ## Example Create
 
 Create a record using the usual CoreData API.
