@@ -11,9 +11,9 @@
     </a>
 </p>
 
-A lightweight convenience API for basic CoreData database tasks. As you develop your project and make changes to your CoreData schema, boiler plate code is automatically re-written for you. 
+A lightweight convenience API for basic CoreData database tasks. 
 
-Checkout [Performances](https://github.com/rob-nash/Performances) for a fully configured installation and a demo.
+As you develop your project and make changes to your CoreData schema, boiler plate code is automatically re-written for you. 
 
 *Transformable types not supported*
 
@@ -82,6 +82,14 @@ class PerformancesViewController: UIViewController {
 
 See [Observe](https://github.com/rob-nash/Records/wiki/Observe) for details on the observe API.
 
+## Footnotes
+
+See [footnotes](https://github.com/rob-nash/Records/wiki/Footnotes) for some handy tips.
+
+## Demo
+
+Checkout [Performances](https://github.com/rob-nash/Performances) for a fully configured installation and a demo.
+
 ## Installation
 
 Add the following to your `Cartfile`.
@@ -109,8 +117,6 @@ For the latest release, select the [Releases](https://github.com/rob-nash/Record
 </p>
 
 To setup Sourcery, follow [these steps](https://github.com/rob-nash/Records/wiki/Setting-up-Sourcery).
-
-These [footnotes](https://github.com/rob-nash/Records/wiki/Footnotes) are quite handy.
 
 The following videos are slightly out of date but still good.
 
