@@ -276,7 +276,6 @@ class PerformancesViewController: UIViewController {
 
 <details>
 <summary>String replacement with Enum</summary>
-</br>
 <pre><code class="swift language-swift">
 let query = Party.Query(type: .school)
 </code></pre>
@@ -289,13 +288,9 @@ import Records
 public class Party: NSManagedObject, Fetchable {
   
   @NSManaged public var email: String
-  
   @NSManaged public var name: String
-  
   @NSManaged public var phone: String
-  
   @NSManaged private var type: String
-  
   @NSManaged public var performers: Set<Performer>?
   
   public enum PartyType: String {
@@ -316,7 +311,6 @@ public class Party: NSManagedObject, Fetchable {
 </code></pre>
 <p>Make sure to set a default value on the property and write a unit test (<a href="https://github.com/rob-nash/Records/blob/master/RecordsTests/PartyTests.swift">see here</a>).</p>
 </details>
-<br>
 <details>
 <summary>The underscore_ convention</summary>
 </br>
@@ -325,7 +319,6 @@ public class Party: NSManagedObject, Fetchable {
 <br>
 <details>
 <summary>Preventing boiler plate generation</summary>
-</br>
 <p>If you write custom properties on classes targetted by Sourcery you may want to use the following annotation.</p>
 <pre><code class="swift language-swift">
 public extension Performer {
@@ -351,6 +344,7 @@ func testCreateEventRecord() throws {
 }
 </code></pre>
 </details>
+<br>
 
 The following videos are slightly out of date but still good.
 
