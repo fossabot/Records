@@ -115,10 +115,10 @@ do {
 
 ```swift
 do {
-  // `firstName` param in initialiser is automatic boiler plate 
-  // which changes automatically in response to changes in your schema
+  // Initialiser param `firstName` is automatic boiler plate and 
+  // changes in response to changes in your schema as your develop your project
+  // Default for string is BEGINSWITH[cd] `Maggie`. Change by using `Performer.fetchAll(withPredicate: in: )` instead.
   let performers: [Performer] = try Performer.Query(firstName: "Maggie").all(in: context)
-  // Default for string is BEGINSWITH[cd] `Maggie`
 } catch {
   // Errors from the CoreData layer such as 'model not found' etc
 }
@@ -169,7 +169,7 @@ struct SomeData {
     let type: String
 }
 
-extension Data: Recordable {
+extension SomeData: Recordable {
     // A query that is guaranteed to return a unique value.
     // Think carefully about this implementation
     // Write tests: see footnote below about robust recordable implementations
@@ -274,15 +274,14 @@ class PerformancesViewController: UIViewController {
 
 *Transformable types not supported*
 
-### String replacement with Enum.
-
-```swift
+<details>
+<summary>String replacement with Enum</summary>
+</br>
+<pre><code class="swift language-swift">
 let query = Party.Query(type: .school)
-```
-
-To use an enum set the string property on your Entity subclass to private. Then create a `var` for your enum.
-
-```swift
+</code></pre>
+<p>To use an enum set the string property on your Entity subclass to private. Then create a `var` for your enum.</p>
+<pre><code class="swift language-swift">
 import CoreData
 import Records
 
@@ -314,32 +313,35 @@ public class Party: NSManagedObject, Fetchable {
   }
   
 }
-```
-
-Make sure to set a default value on the property and write a unit test ([see here](https://github.com/rob-nash/Records/blob/master/RecordsTests/PartyTests.swift)).
-
-### The underscore_ convention
-
-When switching the accessibility level of your @NSManaged vars from public to private, like the above enum example, it is recommended that you use an underscore, because the script will truncate the underscore from the initialiser. If you would like to use some other naming convention, feel free to modify [the script](https://github.com/rob-nash/Records/blob/master/Database/Templates/ManagedObject.Query.stencil).
-
-### Preventing boiler plate generation
-
-If you write custom properties on classes targetted by Sourcery you may want to use the following annotation.
-
-```swift
+</code></pre>
+<p>Make sure to set a default value on the property and write a unit test (<a href="https://github.com/rob-nash/Records/blob/master/RecordsTests/PartyTests.swift">see here</a>).</p>
+</details>
+<br>
+<details>
+<summary>The underscore_ convention</summary>
+</br>
+<p>When switching the accessibility level of your @NSManaged vars from public to private, like the above enum example, it is recommended that you use an underscore, because the script will truncate the underscore from the initialiser. If you would like to use some other naming convention, feel free to modify <a href="https://github.com/rob-nash/Records/blob/master/Database/Templates/ManagedObject.Query.stencil">the script</a>.</p>
+</details>
+<br>
+<details>
+<summary>Preventing boiler plate generation</summary>
+</br>
+<p>If you write custom properties on classes targetted by Sourcery you may want to use the following annotation.</p>
+<pre><code class="swift language-swift">
 public extension Performer {
   
   //sourcery:sourcerySkip
   var fullName: String {
     return firstName + " " + lastName
   }
-```
-
-### Robust Recordable implementations
-
-When implementing the `Recordable` protocol, it is a good idea to implement a test to ensure `update(record: NSManagedObject)` is robust.
-
-```swift
+</code></pre>
+</details>
+<br>
+<details>
+<summary>Robust Recordable implementations</summary>
+</br>
+<p>When implementing the `Recordable` protocol, it is a good idea to implement a test to ensure `update(record: NSManagedObject)` is robust.</p>
+<pre><code class="swift language-swift">
 func testCreateEventRecord() throws {
     let date = Date()
     let data = DataBuilder.Event(startDate: date)
@@ -347,7 +349,8 @@ func testCreateEventRecord() throws {
     let record: Database.Event = try data.record(in: context)
     XCTAssertTrue(record.startDate == date, "Incorrect start date of \(record.startDate). Actual \(date).")
 }
-```
+</code></pre>
+</details>
 
 The following videos are slightly out of date but still good.
 
