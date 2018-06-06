@@ -132,6 +132,8 @@ do {
 }
 ```
 
+<p align="right"><img src="http://i.giphy.com/3oFzm3dzbxVd2FNJrW.gif" width="252" height="395"/></p>
+
 Query using relationships as constraints.
 
 ```swift
@@ -139,8 +141,6 @@ let aggregate = Aggregate<Performer>(.allMatching, records: Set([performerA, per
 let query = Performance.Query(performers: aggregate)
 let performances: [Performance] = try! query.all(in: context)
 ```
-
-<p align="left"><img src="http://i.giphy.com/3oFzm3dzbxVd2FNJrW.gif" width="252" height="395"/></p>
 
 Create a record using the usual CoreData API.
 
