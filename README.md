@@ -61,8 +61,7 @@ Consider the following database schema.
 </br>
 <p>Find performances which include Performer1 and Performer2. Both of them .allMatching. Some of them .someMatching. Or neither of them .noneMatching.</p>
 <img align="right" src="http://i.giphy.com/3oFzm3dzbxVd2FNJrW.gif" width="252" height="395"/>
-<pre><code class="swift language-swift">// Find performances 
-let aggregate = Aggregate<Performer>(.allMatching, records: Set([performer1, performer2]))
+<pre><code class="swift language-swift">let aggregate = Aggregate<Performer>(.allMatching, records: Set([performer1, performer2]))
 let query = Performance.Query(performers: aggregate)
 let performances: [Performance] = try! query.all(in: context)</code></pre>
 </details>
