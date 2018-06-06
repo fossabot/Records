@@ -36,10 +36,8 @@ Consider the following database schema.
 <details>
 <summary>Fetch all performers by first name</summary>
 </br>
+<p>Initialiser param `firstName` is automatic boiler plate and changes in response to changes in your schema as you develop your project. Default for string is BEGINSWITH[cd] `Maggie`. Change by using Performer.fetchAll(withPredicate: in: ) instead.</p>
 <pre><code class="swift language-swift">do {
-  // Initialiser param `firstName` is automatic boiler plate and 
-  // changes in response to changes in your schema as your develop your project
-  // Default for string is BEGINSWITH[cd] `Maggie`. Change by using `Performer.fetchAll(withPredicate: in: )` instead.
   let performers: [Performer] = try Performer.Query(firstName: "Maggie").all(in: context)
 } catch {
   // Errors from the CoreData layer such as 'model not found' etc
@@ -61,14 +59,9 @@ Consider the following database schema.
 <details>
 <summary>Query using relationships as constraints</summary>
 </br>
+<p>Find performances which include Performer1 and Performer2. Both of them .allMatching. Some of them .someMatching. Or neither of them .noneMatching.</p>
 <img align="right" src="http://i.giphy.com/3oFzm3dzbxVd2FNJrW.gif" width="252" height="395"/>
 <pre><code class="swift language-swift">// Find performances 
-// which include performers:
-// Performer 1
-// Performer 2
-// Both of them .allMatching, 
-// Some of them .someMatching
-// Or neither of them .noneMatching
 let aggregate = Aggregate<Performer>(.allMatching, records: Set([performer1, performer2]))
 let query = Performance.Query(performers: aggregate)
 let performances: [Performance] = try! query.all(in: context)</code></pre>
@@ -92,6 +85,7 @@ let performer: Performer? = try! Performer.fetchFirst(in: context, sortedBy: NSS
 <details>
 <summary>Create a record from a dataset 1</summary>
 </br>
+<p>The primary key is a query that is guaranteed to return a unique value. If you return nil then the first record found will be returned. Use nil from the outset if you only want one record to exist for a given entity (the same record will be overwritten). Think carefully about this implementation. Write tests: see footnote below about robust recordable implementations.</p>
 <pre><code class="swift language-swift">// Data for a party
 struct SomeData {
     let name: String
@@ -101,9 +95,6 @@ struct SomeData {
 }
 
 extension SomeData: Recordable {
-    // A query that is guaranteed to return a unique value.
-    // Think carefully about this implementation
-    // Write tests: see footnote below about robust recordable implementations
     var primaryKey: Party.Query? {
         return Party.Query(email: email, name: name, phone: phone, type: Party.PartyType(rawValue: type)!)
     }
@@ -127,6 +118,7 @@ do {
 <details>
 <summary>Create a record from a dataset 2</summary>
 </br>
+<p>The primary key is a query that is guaranteed to return a unique value. If you return nil then the first record found will be returned. Use nil from the outset if you only want one record to exist for a given entity (the same record will be overwritten). Think carefully about this implementation. Write tests: see footnote below about robust recordable implementations.</p>
 <pre><code class="swift language-swift">// Data for a performer that belongs to a specific party.
 // Let's use `party` to constrain query
 struct SomeData {
@@ -138,9 +130,6 @@ struct SomeData {
         let lastName: String
         let dob: Date
         let party: Party
-        // A query that is guaranteed to return a unique value.
-        // Think carefully about this implementation
-        // Write tests: see footnote below about robust recordable implementations
         var primaryKey: Performer.Query? {
             return Performer.Query(dob: dob, firstName: firstName, lastName: lastName, party: party)
         }
