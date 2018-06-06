@@ -9,6 +9,12 @@
     <a href="https://twitter.com/nashytitz">
         <img src="https://img.shields.io/badge/contact-@nashytitz-blue.svg?style=flat" alt="Twitter: @nashytitz" />
     </a>
+    <a href="https://swift.org">
+        <img src="https://img.shields.io/badge/swift-4+-green.svg?style=flat" alt="Swift: 4+" />
+    </a>
+    <a href="https://developer.apple.com">
+        <img src="https://img.shields.io/badge/xcode-9+-green.svg?style=flat" alt="Xcode: 9+" />
+    </a>
 </p>
 
 A lightweight convenience API for basic CoreData database tasks. 
@@ -27,6 +33,7 @@ Consider the following database schema
 </a>
 </p>
 
+[Fetch API](https://github.com/rob-nash/Records/wiki/Fetching)
 
 ```swift
 do {
@@ -36,7 +43,7 @@ do {
 }
 ```
 
-See [Fetch](https://github.com/rob-nash/Records/wiki/Fetching) for details on the fetch API.
+[Create API](https://github.com/rob-nash/Records/wiki/Create)
 
 ```swift
 struct SomeData {
@@ -55,9 +62,7 @@ do {
 }
 ```
 
-`SomeData` must implement `Recordable`. 
-
-See [Create](https://github.com/rob-nash/Records/wiki/Create) for details on the create API.
+[Observe API](https://github.com/rob-nash/Records/wiki/Observe)
 
 ```swift
 class PerformancesViewController: UIViewController {
@@ -79,8 +84,6 @@ class PerformancesViewController: UIViewController {
   } 
 }
 ```
-
-See [Observe](https://github.com/rob-nash/Records/wiki/Observe) for details on the observe API.
 
 ## Footnotes
 
@@ -108,15 +111,11 @@ For the latest release, select the [Releases](https://github.com/rob-nash/Record
 <a href="https://github.com/Carthage/Carthage">
 <img src="https://img.shields.io/badge/carthage-0.29.0+-green.svg?style=flat" alt="Carthage: 0.29.0+" />
 </a>
-<a href="https://swift.org">
-<img src="https://img.shields.io/badge/swift-4+-green.svg?style=flat" alt="Swift: 4+" />
-</a>
-<a href="https://developer.apple.com">
-<img src="https://img.shields.io/badge/xcode-9+-green.svg?style=flat" alt="Xcode: 9+" />
-</a>
 </p>
 
 To setup Sourcery, follow [these steps](https://github.com/rob-nash/Records/wiki/Setting-up-Sourcery).
+
+## Tutorials
 
 The following videos are slightly out of date but still good.
 
@@ -131,6 +130,6 @@ The following videos are slightly out of date but still good.
 ### Donations.
 <p>If you like this and you want to buy me a drink, use bitcoin.</p>
 
-![Bitcoin Image](Resources/Bitcoin.jpg)
+![Bitcoin Image](https://github.com/rob-nash/Records/blob/master/Resources/Bitcoin.jpg)
 
 Bitcoin Address: 15Gj4DBTzSujnJrfRZ6ivrR9kDnWXNPvNQ
