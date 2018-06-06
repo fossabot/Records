@@ -132,7 +132,7 @@ do {
 }
 ```
 
-<p align="right"><img src="http://i.giphy.com/3oFzm3dzbxVd2FNJrW.gif" width="252" height="395"/></p>
+<img align="right"><img src="http://i.giphy.com/3oFzm3dzbxVd2FNJrW.gif" width="252" height="395"/>
 
 Query using relationships as constraints.
 
