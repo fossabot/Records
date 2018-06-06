@@ -17,6 +17,62 @@ Checkout [Performances](https://github.com/rob-nash/Performances) for a fully co
 
 *Transformable types not supported*
 
+## Usage
+
+```swift
+do {
+  let performers = try Performer.fetchAll(in: context)
+} catch {
+  // Errors from the CoreData layer such as 'model not found' etc
+}
+```
+
+See [Fetch](https://github.com/rob-nash/Records/wiki/Fetching) for details on the fetch API.
+
+```swift
+struct SomeData {
+    let name: String
+    let phone: String
+    let email: String
+    let type: String
+}
+
+let data = SomeData(name: "DanceSchool", phone: "01234567891", email: "dance@school.com", type: "School")
+
+do {
+    let record: Party = try data.record(in: context)
+} catch {
+    // Errors from the CoreData layer such as 'model not found' etc
+}
+```
+
+`SomeData` must implement `Recordable`. 
+
+See [Create](https://github.com/rob-nash/Records/wiki/Create) for details on the create API.
+
+```swift
+class PerformancesViewController: UIViewController {
+  
+  private let fetchedResultsController: PerformancesFetchedResultsController!
+  
+  @IBOutlet private weak var tableView: PerformancesTableView! {
+    didSet {
+      fetchedResultsController.delegate = tableView
+      fetchedResultsController.dataSource = tableView
+      tableView.dataSource = fetchedResultsController
+      tableView.delegate = fetchedResultsController
+    }
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    try! fetchedResultsController.reload()
+  } 
+}
+```
+
+See [Observe](https://github.com/rob-nash/Records/wiki/Observe) for details on the observe API.
+
 ## Installation
 
 Add the following to your `Cartfile`.
