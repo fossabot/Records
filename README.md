@@ -276,6 +276,7 @@ class PerformancesViewController: UIViewController {
 
 <details>
 <summary>String replacement with Enum</summary>
+</br>
 <pre><code class="swift language-swift">
 let query = Party.Query(type: .school)
 </code></pre>
@@ -316,9 +317,9 @@ public class Party: NSManagedObject, Fetchable {
 </br>
 <p>When switching the accessibility level of your @NSManaged vars from public to private, like the above enum example, it is recommended that you use an underscore, because the script will truncate the underscore from the initialiser. If you would like to use some other naming convention, feel free to modify <a href="https://github.com/rob-nash/Records/blob/master/Database/Templates/ManagedObject.Query.stencil">the script</a>.</p>
 </details>
-<br>
 <details>
 <summary>Preventing boiler plate generation</summary>
+</br>
 <p>If you write custom properties on classes targetted by Sourcery you may want to use the following annotation.</p>
 <pre><code class="swift language-swift">
 public extension Performer {
@@ -329,7 +330,6 @@ public extension Performer {
   }
 </code></pre>
 </details>
-<br>
 <details>
 <summary>Robust Recordable implementations</summary>
 </br>
