@@ -1,14 +1,17 @@
 language: swift
-
-branches:
- only:
- - master
-
 xcode_project: Records.xcodeproj
 xcode_scheme: Records
 osx_image: xcode9
 xcode_sdk: iphonesimulator11.0
 
-script: 
- - xcodebuild -scheme Records -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=11.0' test
- 
+env:
+  global:
+    - FRAMEWORK_NAME=Records
+before_install:
+  - brew update
+  - brew outdated carthage || brew upgrade carthage
+before_script:
+  - carthage bootstrap
+before_deploy:
+  - carthage build --no-skip-current
+  - carthage archive Records
