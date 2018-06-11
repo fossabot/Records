@@ -53,22 +53,22 @@ extension Event.Query: QueryGenerator {
 // sourcery:end
 
 public extension Event {
-  
   /// sourcery:sourcerySkip
   var performerCount: Int {
+    guard let performances = performances else {
+      return 0
+    }
     var uniquePerformers: Set<Performer> = []
-    performances?.forEach({ (performance) in
-      _ = performance.performers.filter({ (performer) -> Bool in
-        if uniquePerformers.contains(performer) {
-          return false
-        } else {
-          uniquePerformers.insert(performer)
-          return true
+    for performance in performances {
+      _ = performance.performers.filter {
+        if uniquePerformers.contains($0) {
+            return false
         }
-      })
-    })
+        uniquePerformers.insert($0)
+        return true
+      }
+    }
     return uniquePerformers.count
   }
-  
 }
 
