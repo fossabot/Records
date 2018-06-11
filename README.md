@@ -39,7 +39,11 @@ Consider the following database schema
 
 ```swift
 do {
-  let performers = try Performer.fetchAll(in: context)
+  let performances = try Performance.Query(group: .solo).all(in: context)
+  performances.forEach { (performance) in
+    context.delete(performance)
+  }
+  try context.save()
 } catch {
   // Errors from the CoreData layer such as 'model not found' etc
 }
