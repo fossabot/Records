@@ -11,7 +11,7 @@ import Database
 import CoreData
 import XCTest
 
-class PartyTests: XCTestCase {
+final class PartyTests: XCTestCase {
   
   private var context: NSManagedObjectContext!
   

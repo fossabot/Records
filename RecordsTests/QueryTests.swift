@@ -12,7 +12,7 @@ import Records
 import CoreData
 import XCTest
 
-class QueryTests: XCTestCase {
+final class QueryTests: XCTestCase {
     private var context: NSManagedObjectContext!
     override func setUp() {
         super.setUp()

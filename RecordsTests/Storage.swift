@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import Database
 
-class Storage {
+final class Storage {
   
   static func load() -> NSPersistentContainer {
     let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: Database.Event.self)])!

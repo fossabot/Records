@@ -11,7 +11,7 @@ import Database
 import CoreData
 import XCTest
 
-class PerformanceTests: XCTestCase {
+final class PerformanceTests: XCTestCase {
   
   private var context: NSManagedObjectContext!
   
@@ -27,5 +27,5 @@ class PerformanceTests: XCTestCase {
     XCTAssert(performance.ability_ == .newcomer, message)
     XCTAssert(performance.group_ == .solo, message)
   }
-  
+
 }

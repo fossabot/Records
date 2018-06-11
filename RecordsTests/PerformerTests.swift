@@ -11,7 +11,7 @@ import Database
 import CoreData
 import XCTest
 
-class PerformerTests: XCTestCase {
+final class PerformerTests: XCTestCase {
   
   private var context: NSManagedObjectContext!
   
@@ -59,7 +59,8 @@ class PerformerTests: XCTestCase {
     createPerfomers(count: count, inContext: context)
     let all: [Performer]? = try! Performer.fetchAll(in: context)
     let total = all?.count ?? 0
-    XCTAssert(total == count, String(format: "Total is %i not: %i", total, count))
+    let message = String(format: "Total is %i not: %i", total, count)
+    XCTAssert(total == count, message)
   }
   
   func testFetchAll2() {
@@ -68,7 +69,8 @@ class PerformerTests: XCTestCase {
     let query = Performer.Query(firstName: "Bob", lastName: "Nash")
     let all: [Performer]? = try! query.all(in: context)
     let total = all?.count ?? 0
-    XCTAssert(total == count, String(format: "Total is %i not: %i", total, count))
+    let message = String(format: "Total is %i not: %i", total, count)
+    XCTAssert(total == count, message)
   }
   
   func testFetchAll3() {
@@ -84,7 +86,8 @@ class PerformerTests: XCTestCase {
     let predicate = NSPredicate(format: "firstName == %@", name)
     let all: [Performer]? = try! Performer.fetchAll(withPredicate: predicate, in: context)
     let total = all?.count ?? 0
-    XCTAssert(total == 1, String(format: "Total is %i not: %i", total, count))
+    let message = String(format: "Total is %i not: %i", total, count)
+    XCTAssert(total == 1, message)
     performer = all?.first
     XCTAssert(performer.firstName == name)
   }

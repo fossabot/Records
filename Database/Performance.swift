@@ -22,6 +22,7 @@ public class Performance: NSManagedObject, Fetchable {
   public enum Group: String {
     case solo = "Solo"
     case duo = "Duo"
+    case quad = "Quad"
     case team = "Team"
   }
   
@@ -64,6 +65,12 @@ public class Performance: NSManagedObject, Fetchable {
     case .duo:
       if performers.count != 2 {
         let errString = "A duo must only have 2 performers."
+        let userInfo = [NSLocalizedFailureReasonErrorKey: errString, NSValidationObjectErrorKey: self] as [String : Any]
+        throw NSError(domain: "PERFORMANCE_ERROR_DOMAIN", code: 1, userInfo: userInfo)
+      }
+    case .quad:
+      if performers.count != 4 {
+        let errString = "A quad must only have 4 performers."
         let userInfo = [NSLocalizedFailureReasonErrorKey: errString, NSValidationObjectErrorKey: self] as [String : Any]
         throw NSError(domain: "PERFORMANCE_ERROR_DOMAIN", code: 1, userInfo: userInfo)
       }
