@@ -12,7 +12,7 @@
     	<img alt="codebeat badge" src="https://codebeat.co/badges/94dfa117-7d48-451d-bff9-81117efe5032" />
     </a>
     <a href="https://swift.org">
-        <img src="https://img.shields.io/badge/swift-4+-green.svg?style=flat" alt="Swift: 4+" />
+        <img src="https://img.shields.io/badge/swift-4.1-green.svg?style=flat" alt="Swift: 4.1" />
     </a>
     <a href="https://developer.apple.com">
         <img src="https://img.shields.io/badge/xcode-9+-green.svg?style=flat" alt="Xcode: 9+" />
