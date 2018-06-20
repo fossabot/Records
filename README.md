@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-    <a href="https://travis-ci.org/rob-nash/records">
+    <a href="https://travis-ci.org/rob-nash/Records">
         <img src="https://travis-ci.org/rob-nash/Records.svg?branch=master" alt="Build" />
     </a>
     <a href="https://twitter.com/nashytitz">
