@@ -19,7 +19,7 @@
     </a>
 </p>
 
-A very light-weight CoreData wrapper that **dynamically re-writes itself**, as you develop your project. The type safe nature of swift ensures that **every query has a result**. There are **no errors thrown for queries** per se (errors are thrown if developer does not read CoreData documentation).
+A very light-weight **CoreData** wrapper that **dynamically re-writes itself**, as you develop your project. The type safe nature of swift ensures that **every query has a result**. There are **no errors thrown for queries** per se. For error handling see CoreData documentation.
 
 <p align="center">
 <a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/KeyConcepts.html">
@@ -29,9 +29,11 @@ A very light-weight CoreData wrapper that **dynamically re-writes itself**, as y
 
 ## Fetch
 
+In the following example, if zero `solo` performances are stored then the returned result will be an empty array.
+
 ```swift
 do {
-  let performances = try Performance.Query(group: .solo).all(in: context)
+  let performances: [Performance] = try Performance.Query(group: .solo).all(in: context)
   performances.forEach { (performance) in
     context.delete(performance)
   }
@@ -40,9 +42,15 @@ do {
   // Errors from the CoreData layer such as 'model not found' etc
 }
 ```
-[Fetch API](https://github.com/rob-nash/Records/wiki/Fetching)
+
+[More Fetch API](https://github.com/rob-nash/Records/wiki/Fetching)
 
 ## Create
+
+When using `Recordable` we ensure the following.
+
+1. If a record does not exist for this data, it is created.
+2. If a record does exist, it is found and updated.
 
 ```swift
 struct SomeData {
@@ -63,14 +71,11 @@ do {
 }
 ```
 
-When using `Recordable` we ensure the following.
-
-1. If a record does not exist for this data, it is created.
-2. If a record does exist, it is found and updated.
-
-[Create API](https://github.com/rob-nash/Records/wiki/Create)
+[More Create API](https://github.com/rob-nash/Records/wiki/Create)
 
 ## Observe
+
+The following tableView is connected to an NSFetchedResultsController and UI changes are delegated to a default protocol implementation.
 
 ```swift
 class PerformancesViewController: UIViewController {
@@ -93,7 +98,7 @@ class PerformancesViewController: UIViewController {
 }
 ```
 
-[Observe API](https://github.com/rob-nash/Records/wiki/Observe)
+[More details](https://github.com/rob-nash/Records/wiki/Observe)
 
 ## Installation
 
