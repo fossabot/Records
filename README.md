@@ -43,7 +43,7 @@ do {
 }
 ```
 
-[More Fetch API](https://github.com/rob-nash/Records/wiki/Fetching)
+[More details](https://github.com/rob-nash/Records/wiki/Fetching)
 
 ## Create
 
@@ -71,7 +71,7 @@ do {
 }
 ```
 
-[More Create API](https://github.com/rob-nash/Records/wiki/Create)
+[More details](https://github.com/rob-nash/Records/wiki/Create)
 
 ## Observe
 
