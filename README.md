@@ -19,7 +19,7 @@
     </a>
 </p>
 
-A very light-weight CoreData wrapper that dynamically re-writes itself, as you develop your project.
+A very light-weight CoreData wrapper that dynamically re-writes itself, as you develop your project. The type safe nature of swift ensures that **every query has a result**. There are **no errors thrown for queries** per se (Errors arrise if CoreData stack not setup correctly, or the database gets full etc).
 
 <p align="center">
 <a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/KeyConcepts.html">
@@ -62,6 +62,11 @@ do {
     // Errors from the CoreData layer such as 'model not found' etc
 }
 ```
+
+When using `Recordable` we ensure the following.
+
+1. If a record does not exist for this data, it is created.
+2. If a record does exist, it is found and updated.
 
 [Create API](https://github.com/rob-nash/Records/wiki/Create)
 
