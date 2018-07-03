@@ -19,15 +19,7 @@
     </a>
 </p>
 
-A lightweight convenience API for basic CoreData database tasks. 
-
-As you develop your project and make changes to your CoreData schema, boiler plate code is automatically re-written for you. 
-
-*Transformable types not supported*
-
-## Usage
-
-Consider the following database schema
+A lightweight convenience API for basic CoreData database tasks. As you develop your project and make changes to your CoreData schema, boiler plate code is automatically re-written for you. *Transformable types not supported*. Consider the following database schema
 
 <p align="center">
 <a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/KeyConcepts.html">
@@ -35,7 +27,7 @@ Consider the following database schema
 </a>
 </p>
 
-[Fetch API](https://github.com/rob-nash/Records/wiki/Fetching)
+## Fetch
 
 ```swift
 do {
@@ -48,8 +40,9 @@ do {
   // Errors from the CoreData layer such as 'model not found' etc
 }
 ```
+[Fetch API](https://github.com/rob-nash/Records/wiki/Fetching)
 
-[Create API](https://github.com/rob-nash/Records/wiki/Create)
+## Create
 
 ```swift
 struct SomeData {
@@ -70,7 +63,9 @@ do {
 }
 ```
 
-[Observe API](https://github.com/rob-nash/Records/wiki/Observe)
+[Create API](https://github.com/rob-nash/Records/wiki/Create)
+
+## Observe
 
 ```swift
 class PerformancesViewController: UIViewController {
@@ -93,13 +88,7 @@ class PerformancesViewController: UIViewController {
 }
 ```
 
-## Footnotes
-
-See [footnotes](https://github.com/rob-nash/Records/wiki/Footnotes) for some handy tips.
-
-## Demo
-
-Checkout [Performances](https://github.com/rob-nash/Performances) for a fully configured installation and a demo.
+[Observe API](https://github.com/rob-nash/Records/wiki/Observe)
 
 ## Installation
 
@@ -116,16 +105,12 @@ For the latest release, select the [Releases](https://github.com/rob-nash/Record
 * [Sourcery](http://brewformulas.org/sourcery) 
 * [Carthage](http://brewformulas.org/Carthage)
 
-To setup Sourcery, follow [these steps](https://github.com/rob-nash/Records/wiki/Setting-up-Sourcery).
+To configure Sourcery, follow [these steps](https://github.com/rob-nash/Records/wiki/Setting-up-Sourcery) ~ 2 minutes.
 
-## Tutorials
+## Demo
 
-The following videos are slightly out of date but still good.
+Checkout [Performances](https://github.com/rob-nash/Performances) for a fully configured installation and a demo.
 
-**1. Installation**
-   
-  [<img width="300" alt="screen shot" src="https://img.youtube.com/vi/31CfpBJNAJc/0.jpg">](https://www.youtube.com/watch?v=31CfpBJNAJc)
+## Footnotes
 
-**2. Usage**
-
-  [<img width="300" alt="screen shot" src="https://img.youtube.com/vi/HOTwBou6FB4/0.jpg">](https://www.youtube.com/watch?v=HOTwBou6FB4)
+See [footnotes](https://github.com/rob-nash/Records/wiki/Footnotes) for some handy tips.
