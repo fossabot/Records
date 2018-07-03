@@ -19,7 +19,7 @@
     </a>
 </p>
 
-A lightweight convenience API for basic CoreData database tasks. As you develop your project and make changes to your CoreData schema, boiler plate code is automatically re-written for you. *Transformable types not supported*. Consider the following database schema
+A very light-weight CoreData wrapper that dynamically re-writes itself, as you develop your project.
 
 <p align="center">
 <a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/KeyConcepts.html">
@@ -51,7 +51,7 @@ struct SomeData {
     let email: String
     let type: String
 
-    // implement `Recordable` here
+    // implement `Recordable` here ~ 2 minutes
 }
 
 let data = SomeData(name: "DanceSchool", phone: "01234567891", email: "dance@school.com", type: "School")
