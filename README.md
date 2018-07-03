@@ -103,16 +103,6 @@ Checkout [Performances](https://github.com/rob-nash/Performances) for a fully co
 
 ## Installation
 
-<p>Install the following. <a href="https://brew.sh">Homebrew</a> is your friend.</p>
-<p align="left">
-<a href="https://github.com/krzysztofzablocki/Sourcery">
-<img src="https://img.shields.io/badge/sourcery-0.11.0+-green.svg?style=flat" alt="Sourcery: 0.11.0+" />
-</a>
-<a href="https://github.com/Carthage/Carthage">
-<img src="https://img.shields.io/badge/carthage-0.29.0+-green.svg?style=flat" alt="Carthage: 0.29.0+" />
-</a>
-</p>
-
 Add the following to your `Cartfile`.
 
 ```
@@ -120,6 +110,11 @@ github rob-nash/Records
 ```
 
 For the latest release, select the [Releases](https://github.com/rob-nash/Records/releases) tab.
+
+## Dependencies 
+
+* [Sourcery](http://brewformulas.org/sourcery) 
+* [Carthage](http://brewformulas.org/Carthage)
 
 To setup Sourcery, follow [these steps](https://github.com/rob-nash/Records/wiki/Setting-up-Sourcery).
 
@@ -134,10 +129,3 @@ The following videos are slightly out of date but still good.
 **2. Usage**
 
   [<img width="300" alt="screen shot" src="https://img.youtube.com/vi/HOTwBou6FB4/0.jpg">](https://www.youtube.com/watch?v=HOTwBou6FB4)
-
-### Donations.
-<p>If you like this and you want to buy me a drink, use bitcoin.</p>
-
-![Bitcoin Image](https://github.com/rob-nash/Records/blob/master/Resources/Bitcoin.jpg)
-
-Bitcoin Address: 15Gj4DBTzSujnJrfRZ6ivrR9kDnWXNPvNQ
