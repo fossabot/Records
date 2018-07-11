@@ -1,0 +1,12 @@
+sources:
+  - ./Model/Database
+templates:
+  - ../Records/Templates
+output:
+  ./Model/Database
+
+# templates:
+  # - ${BUILT_PRODUCTS_DIR}/Records.framework
+# cannot use environment variables https://github.com/krzysztofzablocki/Sourcery/issues/476
+# in your project, assuming your using carthage, your templates path would be as follows
+# - ../Carthage/Build/iOS/Records.framework

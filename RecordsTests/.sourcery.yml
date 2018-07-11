@@ -1,0 +1,6 @@
+sources:
+  - ./Database
+templates:
+  - ../Records/Templates
+output:
+  ./Database

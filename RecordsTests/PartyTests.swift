@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Database
 import CoreData
 import XCTest
 
@@ -26,5 +25,4 @@ final class PartyTests: XCTestCase {
     let message = "Default value missing"
     XCTAssert(party.type_ == .school, message)
   }
-  
 }

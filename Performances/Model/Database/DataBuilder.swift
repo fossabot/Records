@@ -1,66 +1,58 @@
-//
-//  DataBuilder.swift
-//  RecordsTests
-//
-//  Created by Robert Nash on 09/06/2018.
-//  Copyright © 2018 Robert Nash. All rights reserved.
-//
+@_exported import CoreData
+@_exported import Records
+import Require
 
-import Foundation
-@testable import Records
-import CoreData
-
-struct DataBuilder {
-  private let context: NSManagedObjectContext
-  init(context: NSManagedObjectContext) {
-    self.context = context
-  }
-  func populateDatabase() throws {
-    let events: [Event] = try unpackEvents().map {
-      return try $0.record(in: context)
+public struct DataBuilder {
+    private let context: NSManagedObjectContext
+    public init(context: NSManagedObjectContext) {
+        self.context = context
     }
-    let parties: [Party] = try unpackParties().map {
-      return try $0.record(in: context)
+    public func populateDatabase() throws {
+        let events: [Event] = try unpackEvents().map {
+            return try $0.record(in: context)
+        }
+        let parties: [Party] = try unpackParties().map {
+            return try $0.record(in: context)
+        }
+        let _: [Performance] = try unpackPerformances().map {
+            let event = events.first.require()
+            let party = parties.first.require()
+            let export = try $0.export(withEvent: event, withParty: party, withContext: context)
+            return try export.record(in: context)
+        }
     }
-    let _: [Performance] = try unpackPerformances().map {
-      let event = events.first!
-      let party = parties.first!
-      let export = try $0.export(withEvent: event, withParty: party, withContext: context)
-      return try export.record(in: context)
+    private func unpackEvents() throws -> [JSONEvent] {
+        let data = try contentsOf(resource: "Events", extension: "json")
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .formatted(eventDateFormatter)
+        return try decoder.decode([JSONEvent].self, from: data)
     }
-  }
-  private func unpackEvents() throws -> [JSONEvent] {
-    let data = try contentsOf(resource: "Events", extension: "json")
-    let decoder = JSONDecoder()
-    decoder.dateDecodingStrategy = .formatted(eventDateFormatter)
-    return try decoder.decode([JSONEvent].self, from: data)
-  }
-  private let eventDateFormatter: DateFormatter = {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "d/M/yyyy"
-    return dateFormatter
-  }()
-  private func unpackParties() throws -> [JSONParty] {
-    let data = try contentsOf(resource: "Parties", extension: "json")
-    let decoder = JSONDecoder()
-    return try decoder.decode([JSONParty].self, from: data)
-  }
-  private func unpackPerformances() throws -> [JSONPerformance] {
-    let data = try contentsOf(resource: "Performances", extension: "json")
-    let decoder = JSONDecoder()
-    decoder.dateDecodingStrategy = .formatted(dobDateFormatter)
-    return try decoder.decode([JSONPerformance].self, from: data)
-  }
-  private let dobDateFormatter: DateFormatter = {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "d/M/yyyy"
-    return dateFormatter
-  }()
-  private func contentsOf(resource r: String, extension e: String) throws -> Data {
-    let bundle = Bundle(for: Event.self)
-    let url = bundle.url(forResource: r, withExtension: e)!
-    return try String(contentsOf: url).data(using: .utf8)!
-  }
+    private let eventDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d/M/yyyy"
+        return dateFormatter
+    }()
+    private func unpackParties() throws -> [JSONParty] {
+        let data = try contentsOf(resource: "Parties", extension: "json")
+        let decoder = JSONDecoder()
+        return try decoder.decode([JSONParty].self, from: data)
+    }
+    private func unpackPerformances() throws -> [JSONPerformance] {
+        let data = try contentsOf(resource: "Performances", extension: "json")
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .formatted(dobDateFormatter)
+        return try decoder.decode([JSONPerformance].self, from: data)
+    }
+    private let dobDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d/M/yyyy"
+        return dateFormatter
+    }()
+    private func contentsOf(resource r: String, extension e: String) throws -> Data {
+        let bundle = Bundle(for: Event.self)
+        let url = bundle.url(forResource: r, withExtension: e)!
+        return try String(contentsOf: url).data(using: .utf8)!
+    }
 }
 
 struct JSONParty: Decodable, Recordable {
@@ -184,8 +176,8 @@ struct JSONPerformance: Decodable {
       let record = try export.record(in: context)
       return record
     }
-    let ability_ = Performance.Ability(rawValue: ability)!
-    let group_ = Performance.Group(rawValue: group)!
+    let ability_ = Performance.Ability(rawValue: ability).require()
+    let group_ = Performance.Group(rawValue: group).require()
     return Export(ability: ability_, group: group_, performers: Set(performers_), event: event)
   }
 }

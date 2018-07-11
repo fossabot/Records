@@ -8,7 +8,6 @@
 
 import UIKit
 @testable import Records
-import Database
 import CoreData
 import XCTest
 
