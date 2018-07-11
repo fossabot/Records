@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5000654F20F5FEE100C33FA1 /* ManagedObject.Query.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 5000654E20F5FEE100C33FA1 /* ManagedObject.Query.stencil */; };
+		5000655120F6005400C33FA1 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E3EEB41F9A58E0002722A0 /* Event.swift */; };
+		5000655220F6005400C33FA1 /* Party.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E3EEB51F9A58E0002722A0 /* Party.swift */; };
+		5000655320F6005400C33FA1 /* Performer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E3EEB81F9A58E0002722A0 /* Performer.swift */; };
+		5000655420F6005400C33FA1 /* Performance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E3EEB61F9A58E0002722A0 /* Performance.swift */; };
+		5000655520F603E600C33FA1 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 50E3EEAF1F9A58D0002722A0 /* Model.xcdatamodeld */; };
 		502BAA8D1FAB3CAF0044070C /* Aggregate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502BAA8C1FAB3CAF0044070C /* Aggregate.swift */; };
 		5050A09F1FA7210A005B2F34 /* QueryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5050A09E1FA7210A005B2F34 /* QueryTests.swift */; };
 		506FB34D2091CE79006CE5FE /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506FB34C2091CE79006CE5FE /* Utilities.swift */; };
@@ -40,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5000654E20F5FEE100C33FA1 /* ManagedObject.Query.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ManagedObject.Query.stencil; sourceTree = "<group>"; };
 		5014DDE21F9B2CFE00734A40 /* Performances.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Performances.json; sourceTree = "<group>"; };
 		502BAA8C1FAB3CAF0044070C /* Aggregate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aggregate.swift; sourceTree = "<group>"; };
 		5050A09E1FA7210A005B2F34 /* QueryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryTests.swift; sourceTree = "<group>"; };
@@ -89,6 +96,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5000655020F5FF4C00C33FA1 /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				5000654E20F5FEE100C33FA1 /* ManagedObject.Query.stencil */,
+			);
+			path = Templates;
+			sourceTree = "<group>";
+		};
 		50809F681F9B5B72006D53C1 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +158,7 @@
 				50E3EE9A1F9A5826002722A0 /* FetchedResultsControllerDatasource.swift */,
 				50E3EE981F9A5826002722A0 /* FetchedResultsControllerDelegate.swift */,
 				506FB34C2091CE79006CE5FE /* Utilities.swift */,
+				5000655020F5FF4C00C33FA1 /* Templates */,
 			);
 			path = Records;
 			sourceTree = "<group>";
@@ -258,6 +274,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5000654F20F5FEE100C33FA1 /* ManagedObject.Query.stencil in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,7 +303,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "sourcery --config ./.sourcery.yml";
+			shellScript = "sourcery --config ./RecordsTests/.sourcery.yml";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -311,13 +328,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				50F0A95720CBF57A005DC744 /* DataBuilder.swift in Sources */,
+				5000655120F6005400C33FA1 /* Event.swift in Sources */,
 				50E3EED61F9A5C21002722A0 /* PerformerTests.swift in Sources */,
 				50F0A94D20CBF173005DC744 /* FetchedResultsControllerTests.swift in Sources */,
 				50B4FBA11FA70E490086439D /* PerformanceTests.swift in Sources */,
 				5050A09F1FA7210A005B2F34 /* QueryTests.swift in Sources */,
+				5000655420F6005400C33FA1 /* Performance.swift in Sources */,
+				5000655320F6005400C33FA1 /* Performer.swift in Sources */,
+				5000655220F6005400C33FA1 /* Party.swift in Sources */,
 				50B4FBA31FA70F480086439D /* PartyTests.swift in Sources */,
 				50B4FB9B1FA6FD6D0086439D /* Storage.swift in Sources */,
 				50F0A94B20CBDE23005DC744 /* AggregateTests.swift in Sources */,
+				5000655520F603E600C33FA1 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

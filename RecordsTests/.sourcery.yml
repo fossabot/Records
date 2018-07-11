@@ -1,6 +1,6 @@
 sources:
-  - ./RecordsTests/Database
+  - ./Database
 templates:
-  - ../Carthage/Build/iOS/Records.framework/
+  - ../Records/Templates
 output:
-  ./RecordsTests/Database
+  ./Database

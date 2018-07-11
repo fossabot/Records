@@ -7,7 +7,6 @@
 //
 
 import Foundation
-@testable import Database
 import Records
 import CoreData
 import XCTest
@@ -91,7 +90,7 @@ final class QueryTests: XCTestCase {
     }    
     func testCreateEventRecord() throws {
         let date = Date()
-        let data = DataBuilder.Event(startDate: date)
+        let data = JSONEvent(startDate: date)
         let record = try data.record(in: context)
         XCTAssertTrue(record.startDate == date)
     }
@@ -99,12 +98,12 @@ final class QueryTests: XCTestCase {
         let firstName = "Rob"
         let lastName = "Nash"
         let dob = Date()
-        let performerData = DataBuilder.Performer(firstName: firstName, lastName: lastName, dob: dob)
+        let performerData = JSONPerformer(firstName: firstName, lastName: lastName, dob: dob)
         let parent = "Rob Nash"
         let phone = "01928374892"
         let email = "bob@nash.com"
         let type = "Independent"
-        let partyData = DataBuilder.Party(name: parent, phone: phone, email: email, type: type)
+        let partyData = JSONParty(name: parent, phone: phone, email: email, type: type)
         let party = try partyData.record(in: context)
         let export = performerData.export(withParty: party)
         let performer = try export.record(in: context)
@@ -122,19 +121,19 @@ final class QueryTests: XCTestCase {
         let phone = "01928374892"
         let email = "bob@nash.com"
         let type = "Independent"
-        let partyData = DataBuilder.Party(name: parent, phone: phone, email: email, type: type)
+        let partyData = JSONParty(name: parent, phone: phone, email: email, type: type)
         let party = try partyData.record(in: context)
         let date = Date()
-        let eventData = DataBuilder.Event(startDate: date)
+        let eventData = JSONEvent(startDate: date)
         let event = try eventData.record(in: context)
         let firstName = "Rob"
         let lastName = "Nash"
         let dob = Date()
-        let performerData = DataBuilder.Performer(firstName: firstName, lastName: lastName, dob: dob)
+        let performerData = JSONPerformer(firstName: firstName, lastName: lastName, dob: dob)
         let performers = [performerData]
         let ability = "Newcomer"
         let group = "Solo"
-        let performanceData = DataBuilder.Performance(ability: ability, group: group, performers: performers)
+        let performanceData = JSONPerformance(ability: ability, group: group, performers: performers)
         let export = try performanceData.export(withEvent: event, withParty: party, withContext: context)
         let performance = try export.record(in: context)
         XCTAssertTrue(performance.ability_.rawValue == ability)

@@ -8,12 +8,11 @@
 
 import Foundation
 import CoreData
-import Database
 
 final class Storage {
   
   static func load() -> NSPersistentContainer {
-    let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: Database.Event.self)])!
+    let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: Event.self)])!
     let container = NSPersistentContainer(name: "Model", managedObjectModel: managedObjectModel)
     let desc = NSPersistentStoreDescription()
     desc.type = NSInMemoryStoreType

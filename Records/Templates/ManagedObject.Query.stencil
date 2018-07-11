@@ -1,0 +1,67 @@
+{% for type in types.based.Fetchable %}
+// sourcery:inline:{{ type.name }}.ManagedObject.Query.stencil
+{% if type.kind == "class" %}
+{{ type.accessLevel }} extension {{ type.name }} {
+    struct Query {
+        {% for variable in type.variables where variable|!annotated:"sourcerySkip" and variable.readAccess != "private" and variable.readAccess != "fileprivate" %}
+        {% if variable.typeName|contains:"Set" %}
+        public var {{ variable.name|replace:"_","" }}: Aggregate{{ variable.unwrappedTypeName|replace:"Set",""|capitalise }}?
+        {% elif variable.typeName.isOptional %}
+        public var {{ variable.name|replace:"_","" }}: {{ variable.typeName }}
+        {% else %}
+        public var {{ variable.name|replace:"_","" }}: {{ variable.typeName }}?
+        {% endif %}
+        {% endfor %}
+
+        public init({% for variable in type.variables where variable|!annotated:"sourcerySkip" and variable.readAccess != "private" and variable.readAccess != "fileprivate" %}{% if variable.typeName|contains:"Set" %}{{ variable.name|replace:"_","" }}: Aggregate{{ variable.unwrappedTypeName|replace:"Set",""|capitalise }}? = nil{% elif variable.typeName.isOptional %}{{ variable.name|replace:"_","" }}: {{ variable.typeName }} = nil{% else %}{{ variable.name|replace:"_","" }}: {{ variable.typeName }}? = nil{% endif %}{% if not forloop.last %}, {% endif %}{% endfor %}) {
+          {% for variable in type.variables where variable|!annotated:"sourcerySkip" and variable.readAccess != "private" and variable.readAccess != "fileprivate" %}
+          self.{{ variable.name|replace:"_","" }} = {{ variable.name|replace:"_","" }} 
+          {% endfor %}
+        }
+    }
+}
+
+extension {{ type.name }}.Query: QueryGenerator {
+
+    public typealias Entity = {{ type.name }}
+
+    public var predicateRepresentation: NSCompoundPredicate? {
+      var predicates = [NSPredicate]()
+      {% for variable in type.variables where variable|!annotated:"sourcerySkip" and variable.readAccess != "private" and variable.readAccess != "fileprivate" %}
+      if let predicate = {{ variable.name|replace:"_","" }}Predicate() {
+        predicates.append(predicate)
+      }
+      {% endfor %}
+      if predicates.count == 0 {
+        return nil
+      }
+      return NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+    }
+
+    {% for variable in type.variables where variable|!annotated:"sourcerySkip" and variable.readAccess != "private" and variable.readAccess != "fileprivate" %}
+    {% if variable.type|enum %}
+    private func {{ variable.name|replace:"_","" }}Predicate() -> NSPredicate? {
+      guard let {{ variable.name|replace:"_","" }} = {{ variable.name|replace:"_","" }} else { return nil }
+      return NSPredicate(format: "{{ variable.name|replace:"_","" }} == %@", {{ variable.name|replace:"_","" }}.rawValue as CVarArg)
+    }
+    {% elif variable.typeName|contains:"Set" %}
+    private func {{ variable.name }}Predicate() -> NSPredicate? {
+      guard let {{ variable.name }} = {{ variable.name }} else { return nil }
+      return {{ variable.name }}.predicate("{{ variable.name }}")
+    }
+    {% elif variable.typeName|contains:"String" %}
+    private func {{ variable.name|replace:"_","" }}Predicate() -> NSPredicate? {
+      guard let {{ variable.name|replace:"_","" }} = {{ variable.name|replace:"_","" }} else { return nil }
+      return NSPredicate(format: "{{ variable.name|replace:"_","" }} BEGINSWITH[cd] %@", {{ variable.name|replace:"_","" }})
+    }
+    {% else %}
+    private func {{ variable.name|replace:"_","" }}Predicate() -> NSPredicate? {
+      guard let {{ variable.name|replace:"_","" }} = {{ variable.name|replace:"_","" }} else { return nil }
+      return NSPredicate(format: "{{ variable.name|replace:"_","" }} == %@", {{ variable.name|replace:"_","" }} as CVarArg)
+    }
+    {% endif %}
+    {% endfor %}
+}
+{% endif %}
+// sourcery:end
+{% endfor %}
