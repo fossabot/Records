@@ -5,7 +5,7 @@ class PerformanceTableViewCell: UITableViewCell, DequeableComponentIdentifiable 
   private struct ViewModel {
     static func title(forPerformance performance: Performance) -> NSAttributedString {
       let value = performance.group_.rawValue + " " + performance.ability_.rawValue
-      return NSAttributedString(string: value, attributes: [.underlineStyle: NSUnderlineStyle.styleSingle.rawValue])
+      return NSAttributedString(string: value, attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue])
     }
     static func subtitle(forPerformance performance: Performance, withPerformers performers: Set<Performer>? = nil) -> NSAttributedString {
       return performance.performers.reduce(NSMutableAttributedString()) { (accumulation, performer) -> NSMutableAttributedString in
@@ -22,7 +22,7 @@ class PerformanceTableViewCell: UITableViewCell, DequeableComponentIdentifiable 
       }
     }
   }
-  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
     detailTextLabel?.numberOfLines = 0
   }

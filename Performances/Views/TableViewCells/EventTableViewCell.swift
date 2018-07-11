@@ -10,11 +10,11 @@ class EventTableViewCell: UITableViewCell, DequeableComponentIdentifiable {
       let value = (count == 1) ? "performance" : "performances"
       return "\(count) " + value + " registered"
     }
-    static func accessoryType(forCount count: Int) -> UITableViewCellAccessoryType {
+    static func accessoryType(forCount count: Int) -> UITableViewCell.AccessoryType {
       return (count == 0) ? .none : .disclosureIndicator
     }
   }
-  override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
   }
   required init?(coder aDecoder: NSCoder) {

@@ -32,7 +32,7 @@ final class EventsFetchedResultsController: FetchedResultsController<Event>, UIT
         let entity = fetchedResultsController.object(at: indexPath)
         configure(cell: cell, withEntity: entity)
     }
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let entity = fetchedResultsController.object(at: indexPath)
         context.delete(entity)
         do {
