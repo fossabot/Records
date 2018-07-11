@@ -25,5 +25,4 @@ final class PartyTests: XCTestCase {
     let message = "Default value missing"
     XCTAssert(party.type_ == .school, message)
   }
-  
 }

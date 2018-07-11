@@ -26,5 +26,4 @@ final class PerformanceTests: XCTestCase {
     XCTAssert(performance.ability_ == .newcomer, message)
     XCTAssert(performance.group_ == .solo, message)
   }
-
 }
