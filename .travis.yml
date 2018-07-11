@@ -9,6 +9,10 @@ xcode_scheme: Records
 osx_image: xcode9.3
 xcode_sdk: iphonesimulator11.3
 
+before_install:
+  - brew update
+  - brew outdated sourcery || brew upgrade sourcery
+
 script: 
  - xcodebuild -scheme Records -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=11.3' test
  
