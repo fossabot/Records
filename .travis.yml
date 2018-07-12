@@ -13,4 +13,4 @@ before_install:
   - brew install sourcery
 
 script: 
- - xcodebuild -destination 'platform=iOS Simulator,name=iPhone 6,OS=11.3' test
+ - xcodebuild test
