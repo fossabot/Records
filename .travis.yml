@@ -5,12 +5,10 @@ branches:
  - master
 
 xcode_project: Records.xcodeproj
-xcode_scheme: Records
 osx_image: xcode9.3
-xcode_sdk: iphonesimulator11.3
 
 before_install:
   - brew install sourcery
 
 script: 
- - xcodebuild test
+ - xcodebuild -scheme Records -destination 'platform=iOS Simulator,name=iPhone 6,OS=11.3' test
