@@ -19,7 +19,7 @@
     </a>
 </p>
 
-A very light-weight **CoreData** wrapper that **dynamically re-writes itself**, as you develop your project. The type safe nature of swift ensures that **every query has a result**. There are **no errors thrown for queries** per se. For error handling see CoreData documentation.
+A very light-weight **CoreData** wrapper that **dynamically re-writes itself**, as you develop your project. The type safe nature of swift ensures that **every query has a result**. There are **no errors thrown for queries** per se.
 
 <p align="center">
 <a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/KeyConcepts.html">
@@ -28,8 +28,6 @@ A very light-weight **CoreData** wrapper that **dynamically re-writes itself**, 
 </p>
 
 ## Fetch
-
-In the following example, if zero `solo` performances are stored then the returned result will be an empty array.
 
 ```swift
 do {
@@ -47,29 +45,29 @@ do {
 
 ## Create
 
-When using `Recordable` we ensure the following.
-
-1. If a record does not exist for this data, it is created.
-2. If a record does exist, it is found and updated.
-
 ```swift
-struct SomeData {
+struct Information {
     let name: String
     let phone: String
     let email: String
     let type: String
 
-    // implement `Recordable` here ~ 2 minutes
+    // implement protocol named `Recordable` here ~ 2 minutes
 }
 
-let data = SomeData(name: "DanceSchool", phone: "01234567891", email: "dance@school.com", type: "School")
+let info = Information(name: "DanceSchool", phone: "01234567891", email: "dance@school.com", type: "School")
 
 do {
-    let record: Party = try data.record(in: context)
+    let record: Party = try info.record(in: context)
 } catch {
     // Errors from the CoreData layer such as 'model not found' etc
 }
 ```
+
+When using the protocol named `Recordable` we ensure the following is performed when we call `record(in: )`.
+
+1. If a record does not exist that matches this data, it is created.
+2. If a record does exist that matches this data, it is retrieved.
 
 [More details](https://github.com/rob-nash/Records/wiki/Create)
 
