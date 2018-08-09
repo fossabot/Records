@@ -106,13 +106,13 @@ github rob-nash/Records
 
 For the latest release, select the [Releases](https://github.com/rob-nash/Records/releases) tab.
 
-Install [Sourcery](http://brewformulas.org/sourcery).
+Install [Sourcery](https://github.com/krzysztofzablocki/Sourcery#installation).
 
 To configure Sourcery, follow [these steps](https://github.com/rob-nash/Records/wiki/Setting-up-Sourcery) ~ 2 minutes.
 
 ## Demo
 
-Install [Sourcery](http://brewformulas.org/sourcery). Run the [Carthage](http://brewformulas.org/carthage) command `carthage bootstrap`. Then run the Xcode scheme named `Performances`.
+Install [Sourcery](https://github.com/krzysztofzablocki/Sourcery#installation). Run the [Carthage](https://github.com/Carthage/Carthage#installing-carthage) command `carthage bootstrap`. Then run the Xcode scheme named `Performances`.
 
 ## Footnotes
 
