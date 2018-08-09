@@ -4,18 +4,22 @@
 
 <p align="center">
     <a href="https://travis-ci.org/rob-nash/Records">
-        <img src="https://travis-ci.org/rob-nash/Records.svg?branch=master" alt="Build" />
+        <img src="https://travis-ci.org/rob-nash/Records.svg?branch=master" alt="Build"/>
     </a>
-    <a href="https://twitter.com/nashytitz">
-        <img src="https://img.shields.io/badge/contact-@nashytitz-blue.svg?style=flat" alt="Twitter: @nashytitz" />
+    <a href="https://img.shields.io/badge/carthage-compatible-brightgreen.svg">
+        <img src="https://img.shields.io/badge/carthage-compatible-brightgreen.svg" alt="Carthage"/>
+    </a>
     <a href="https://codebeat.co/projects/github-com-rob-nash-records-master">
-    	<img alt="codebeat badge" src="https://codebeat.co/badges/94dfa117-7d48-451d-bff9-81117efe5032" />
+    	<img alt="codebeat badge" src="https://codebeat.co/badges/94dfa117-7d48-451d-bff9-81117efe5032"/>
     </a>
     <a href="https://swift.org">
-        <img src="https://img.shields.io/badge/swift-4.1-green.svg?style=flat" alt="Swift: 4.1" />
+        <img src="https://img.shields.io/badge/swift-4.1-brightgreen.svg?style=flat" alt="Swift: 4.1"/>
     </a>
     <a href="https://developer.apple.com">
-        <img src="https://img.shields.io/badge/xcode-9+-green.svg?style=flat" alt="Xcode: 9+" />
+        <img src="https://img.shields.io/badge/xcode-9+-brightgreen.svg?style=flat" alt="Xcode: 9+"/>
+    </a>
+    <a href="https://twitter.com/nashytitz">
+        <img src="https://img.shields.io/badge/contact-@nashytitz-blue.svg?style=flat" alt="Twitter: @nashytitz"/>
     </a>
 </p>
 
