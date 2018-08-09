@@ -56,12 +56,12 @@
 		500065E920F6062200C33FA1 /* PerformancesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500065E720F6062200C33FA1 /* PerformancesUITests.swift */; };
 		500065EA20F6069700C33FA1 /* Records.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50E3EE8B1F9A54EA002722A0 /* Records.framework */; };
 		500065EB20F6069700C33FA1 /* Records.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 50E3EE8B1F9A54EA002722A0 /* Records.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		500065F120F606AC00C33FA1 /* Require.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 500065EF20F606AC00C33FA1 /* Require.framework */; };
-		500065F220F606AC00C33FA1 /* Require.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 500065EF20F606AC00C33FA1 /* Require.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		500065F320F606AC00C33FA1 /* Dequable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 500065F020F606AC00C33FA1 /* Dequable.framework */; };
-		500065F420F606AC00C33FA1 /* Dequable.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 500065F020F606AC00C33FA1 /* Dequable.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		502BAA8D1FAB3CAF0044070C /* Aggregate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502BAA8C1FAB3CAF0044070C /* Aggregate.swift */; };
 		5050A09F1FA7210A005B2F34 /* QueryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5050A09E1FA7210A005B2F34 /* QueryTests.swift */; };
+		5053CA08211CA33000F927DD /* Dequable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5053CA04211CA32500F927DD /* Dequable.framework */; };
+		5053CA09211CA33000F927DD /* Dequable.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5053CA04211CA32500F927DD /* Dequable.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5053CA0A211CA33000F927DD /* Require.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5053CA05211CA32500F927DD /* Require.framework */; };
+		5053CA0B211CA33000F927DD /* Require.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5053CA05211CA32500F927DD /* Require.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		506FB34D2091CE79006CE5FE /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506FB34C2091CE79006CE5FE /* Utilities.swift */; };
 		507AADB420B812E200F04CEB /* Recordable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507AADB320B812E200F04CEB /* Recordable.swift */; };
 		50B4FB9B1FA6FD6D0086439D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DD8BB61F9B18AF0075E16E /* Storage.swift */; };
@@ -113,9 +113,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				500065F420F606AC00C33FA1 /* Dequable.framework in Embed Frameworks */,
-				500065F220F606AC00C33FA1 /* Require.framework in Embed Frameworks */,
 				500065EB20F6069700C33FA1 /* Records.framework in Embed Frameworks */,
+				5053CA09211CA33000F927DD /* Dequable.framework in Embed Frameworks */,
+				5053CA0B211CA33000F927DD /* Require.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -172,11 +172,11 @@
 		500065B820F6060700C33FA1 /* PerformersTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformersTableView.swift; sourceTree = "<group>"; };
 		500065E620F6062200C33FA1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		500065E720F6062200C33FA1 /* PerformancesUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformancesUITests.swift; sourceTree = "<group>"; };
-		500065EF20F606AC00C33FA1 /* Require.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Require.framework; path = Carthage/Build/iOS/Require.framework; sourceTree = "<group>"; };
-		500065F020F606AC00C33FA1 /* Dequable.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dequable.framework; path = Carthage/Build/iOS/Dequable.framework; sourceTree = "<group>"; };
 		5014DDE21F9B2CFE00734A40 /* Performances.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Performances.json; sourceTree = "<group>"; };
 		502BAA8C1FAB3CAF0044070C /* Aggregate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aggregate.swift; sourceTree = "<group>"; };
 		5050A09E1FA7210A005B2F34 /* QueryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryTests.swift; sourceTree = "<group>"; };
+		5053CA04211CA32500F927DD /* Dequable.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dequable.framework; path = Carthage/Build/iOS/Dequable.framework; sourceTree = "<group>"; };
+		5053CA05211CA32500F927DD /* Require.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Require.framework; path = Carthage/Build/iOS/Require.framework; sourceTree = "<group>"; };
 		506465A31FAA888B00A59F11 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		506FB34C2091CE79006CE5FE /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		507AADB320B812E200F04CEB /* Recordable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recordable.swift; sourceTree = "<group>"; };
@@ -201,7 +201,6 @@
 		50F0A94A20CBDE23005DC744 /* AggregateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggregateTests.swift; sourceTree = "<group>"; };
 		50F0A94C20CBF173005DC744 /* FetchedResultsControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerTests.swift; sourceTree = "<group>"; };
 		50F0A95620CBF57A005DC744 /* DataBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBuilder.swift; sourceTree = "<group>"; };
-		50FC269D20925DCF00F2AC02 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,9 +208,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				500065F320F606AC00C33FA1 /* Dequable.framework in Frameworks */,
-				500065F120F606AC00C33FA1 /* Require.framework in Frameworks */,
 				500065EA20F6069700C33FA1 /* Records.framework in Frameworks */,
+				5053CA08211CA33000F927DD /* Dequable.framework in Frameworks */,
+				5053CA0A211CA33000F927DD /* Require.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +369,15 @@
 			path = PerformancesUITests;
 			sourceTree = "<group>";
 		};
+		5053CA03211CA32400F927DD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5053CA04211CA32500F927DD /* Dequable.framework */,
+				5053CA05211CA32500F927DD /* Require.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		50809F681F9B5B72006D53C1 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -397,14 +405,12 @@
 		50E3EE811F9A54EA002722A0 = {
 			isa = PBXGroup;
 			children = (
-				500065F020F606AC00C33FA1 /* Dequable.framework */,
-				500065EF20F606AC00C33FA1 /* Require.framework */,
-				50FC269D20925DCF00F2AC02 /* README.md */,
 				50E3EE8D1F9A54EA002722A0 /* Records */,
 				50E3EEA51F9A5861002722A0 /* RecordsTests */,
 				5000658020F6060700C33FA1 /* Performances */,
 				500065E520F6062200C33FA1 /* PerformancesUITests */,
 				50E3EE8C1F9A54EA002722A0 /* Products */,
+				5053CA03211CA32400F927DD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
