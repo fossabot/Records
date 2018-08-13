@@ -17,7 +17,7 @@
     </a>
 </p>
 
-A very light-weight **CoreData** wrapper that **dynamically re-writes itself**, as you develop your project. The type safe nature of swift ensures that **every query has a result**. There are **no errors thrown for queries** per se.
+A very light-weight **CoreData** wrapper that **dynamically re-writes itself**, as you develop your project.
 
 <p align="center">
 <a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/KeyConcepts.html">
