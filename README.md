@@ -101,7 +101,7 @@ class PerformancesViewController: UIViewController {
 Add the following to your `Cartfile`.
 
 ```
-github rob-nash/Records
+github "rob-nash/Records"
 ```
 
 For the latest release, select the [Releases](https://github.com/rob-nash/Records/releases) tab.
@@ -109,6 +109,8 @@ For the latest release, select the [Releases](https://github.com/rob-nash/Record
 Install [Sourcery](https://github.com/krzysztofzablocki/Sourcery#installation).
 
 To configure Sourcery, follow [these steps](https://github.com/rob-nash/Records/wiki/Setting-up-Sourcery) ~ 2 minutes.
+
+[![asciicast](https://asciinema.org/a/200873.png)](https://asciinema.org/a/200873)
 
 ## Demo
 
