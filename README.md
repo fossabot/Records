@@ -110,7 +110,7 @@ Install [Sourcery](https://github.com/krzysztofzablocki/Sourcery#installation).
 
 To configure Sourcery, follow [these steps](https://github.com/rob-nash/Records/wiki/Setting-up-Sourcery) ~ 2 minutes.
 
-[![asciicast](https://asciinema.org/a/200873.png)](https://asciinema.org/a/200873)
+<script src="https://asciinema.org/a/200873.js" id="asciicast-200873" async></script>
 
 ## Demo
 
