@@ -98,16 +98,17 @@ class PerformancesViewController: UIViewController {
 
 ## Installation
 
-1. Run Carthage and embed binary.
-2. Install [Sourcery](https://github.com/krzysztofzablocki/Sourcery#installation).
-3. Adjust NSManagedObject subclasses `~2 minute job`.
+1. Run the [Carthage](https://github.com/Carthage/Carthage#installing-carthage) command `carthage update`.
+2. Embed Binary.
+3. Install [Sourcery](https://github.com/krzysztofzablocki/Sourcery#installation).
+4. Adjust NSManagedObject subclasses `~2 minute job`.
 
-[More details](https://github.com/rob-nash/Records/wiki/Installation)
+[See Guide](https://github.com/rob-nash/Records/wiki/Installation)
 
 ## Demo
 
-1. Install [Sourcery](https://github.com/krzysztofzablocki/Sourcery#installation). 
-2. Run the [Carthage](https://github.com/Carthage/Carthage#installing-carthage) command `carthage bootstrap`. 
+1. Run the [Carthage](https://github.com/Carthage/Carthage#installing-carthage) command `carthage bootstrap`.
+2. Install [Sourcery](https://github.com/krzysztofzablocki/Sourcery#installation).
 3. Run the Xcode scheme named `Performances`.
 
 ## Footnotes
