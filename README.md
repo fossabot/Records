@@ -9,6 +9,7 @@
     <a href="https://img.shields.io/badge/carthage-compatible-brightgreen.svg">
         <img src="https://img.shields.io/badge/carthage-compatible-brightgreen.svg" alt="Carthage"/>
     </a>
+<a href="https://app.fossa.io/projects/git%2Bgithub.com%2Frob-nash%2FRecords?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2Frob-nash%2FRecords.svg?type=shield"/></a>
     <a href="https://codebeat.co/projects/github-com-rob-nash-records-master">
     	<img alt="codebeat badge" src="https://codebeat.co/badges/94dfa117-7d48-451d-bff9-81117efe5032"/>
     </a>
@@ -114,3 +115,7 @@ class PerformancesViewController: UIViewController {
 ## Footnotes
 
 See [footnotes](https://github.com/rob-nash/Records/wiki/Footnotes) for some handy tips.
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Frob-nash%2FRecords.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Frob-nash%2FRecords?ref=badge_large)
