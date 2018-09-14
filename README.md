@@ -98,23 +98,17 @@ class PerformancesViewController: UIViewController {
 
 ## Installation
 
-Add the following to your `Cartfile`.
+1. Run Carthage and embed binary.
+2. Install [Sourcery](https://github.com/krzysztofzablocki/Sourcery#installation).
+3. Adjust NSManagedObject subclasses `~2 minute job`.
 
-```
-github "rob-nash/Records"
-```
-
-For the latest release, select the [Releases](https://github.com/rob-nash/Records/releases) tab.
-
-Install [Sourcery](https://github.com/krzysztofzablocki/Sourcery#installation).
-
-To configure Sourcery, follow [these steps](https://github.com/rob-nash/Records/wiki/Setting-up-Sourcery) ~ 2 minutes.
-
-[![asciicast](https://asciinema.org/a/200873.png)](https://asciinema.org/a/200873)
+[More details](https://github.com/rob-nash/Records/wiki/Installation)
 
 ## Demo
 
-Install [Sourcery](https://github.com/krzysztofzablocki/Sourcery#installation). Run the [Carthage](https://github.com/Carthage/Carthage#installing-carthage) command `carthage bootstrap`. Then run the Xcode scheme named `Performances`.
+1. Install [Sourcery](https://github.com/krzysztofzablocki/Sourcery#installation). 
+2. Run the [Carthage](https://github.com/Carthage/Carthage#installing-carthage) command `carthage bootstrap`. 
+3. Run the Xcode scheme named `Performances`.
 
 ## Footnotes
 
