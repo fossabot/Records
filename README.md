@@ -115,7 +115,3 @@ class PerformancesViewController: UIViewController {
 ## Footnotes
 
 See [footnotes](https://github.com/rob-nash/Records/wiki/Footnotes) for some handy tips.
-
-
-## License
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Frob-nash%2FRecords.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Frob-nash%2FRecords?ref=badge_large)
